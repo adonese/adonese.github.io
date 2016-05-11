@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pixyll in Action &#8211; Pixyll</title>
+    <title>Spherical harmonics &#8211; Pixyll</title>
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//cdn.mathjax.org">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -16,7 +16,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for Pixyll" href="/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201605110916" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201605102317" type="text/css">
 
     <!-- Fonts -->
     
@@ -26,7 +26,14 @@
     
 
     <!-- MathJax -->
-    
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <!-- Verifications -->
     
@@ -75,13 +82,13 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://pixyll.com" class="site-title">Pixyll</a>
+      <a href="http://eebax.com" class="site-title">eebax</a>
       <nav class="site-nav">
         
     
 
     
-        <a href="/about/">About Pixyll</a>
+        <a href="/about/">About me</a>
     
 
     
@@ -130,30 +137,31 @@
 
 
 <div class="post-header mb2">
-  <h1>Pixyll in Action</h1>
-  <span class="post-meta">Jun 10, 2014</span><br>
+  <h1>What the heck are spherical harmonics?</h1>
+  <span class="post-meta">May 10, 2016</span><br>
   
   <span class="post-meta small">
   
-    2 minute read
+    20 minute read
   
   </span>
 </div>
 
 <article class="post-content">
-  <p>There is a significant amount of subtle, yet precisely calibrated, styling to ensure
-that your content is emphasized while still looking aesthetically pleasing.</p>
+  <p>This post isn't serve as a reference, it's more like a tutorial, informal one more generally. You may encounter bad language, they're so rare actually, ignore them. I've hundreads of reasons not to write this post (not to mention that I've accidently deleted a previous version of this post.), but I've suffered enough to get a good idea about this concept.</p>
 
-<p>All links are easy to <a href="#">locate and discern</a>, yet don’t detract from the <a href="#">harmony
-of a paragraph</a>. The <em>same</em> goes for italics and <strong>bold</strong> elements. Even the the strikeout
-works if <del>for some reason you need to update your post</del>. For consistency’s sake,
-<ins>The same goes for insertions</ins>, of course.</p>
+<h3>What you won't find in this post?</h3>
+<ul>
+  <li>It's not about math. I'll skip most of the equations part, except for the very necessarily ones.</li>
+  <li>This post is for spherical harmonics application in GGMs development. If you find it not particulary what you want you may want to jump to references part, though I've tried to make more generic.</li>
+  <li>This is just a placeholder.</li>
 
-<h3 id="code-with-syntax-highlighting">Code, with syntax highlighting</h3>
-
+</ul>
+<!--
 <p>Here’s an example of some ruby code with line anchors.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># The most awesome of classes</span>
+<figure class="highlight">
+<pre><code class="language-ruby" data-lang="ruby"><span class="c1"># The most awesome of classes</span>
 <span class="k">class</span> <span class="nc">Awesome</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="kp">include</span> <span class="no">EvenMoreAwesome</span>
 
@@ -170,7 +178,8 @@ works if <del>for some reason you need to update your post</del>. For consistenc
   <span class="k">def</span> <span class="nf">email_format</span>
     <span class="n">email</span> <span class="o">=~</span> <span class="sr">/\S+@\S+\.\S+/</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+<span class="k">end</span></code></pre>
+</figure>
 
 <p>Here’s some CSS:</p>
 
@@ -195,8 +204,11 @@ works if <del>for some reason you need to update your post</del>. For consistenc
   <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"h1"</span><span class="nt">&gt;</span>Hello, world!<span class="nt">&lt;/h3&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre></figure>
 
-<h1 id="headings">Headings!</h1>
+End of the code part-->
 
+<h1 id="headings">Physics is boring, math is even worse! Both? Are you kidding me?</h1>
+
+<!--
 <p>They’re responsive, and well-proportioned (in <code class="highlighter-rouge">padding</code>, <code class="highlighter-rouge">line-height</code>, <code class="highlighter-rouge">margin</code>, and <code class="highlighter-rouge">font-size</code>).
 They also heavily rely on the awesome utility, <a href="http://www.basscss.com/">BASSCSS</a>.</p>
 
@@ -205,69 +217,38 @@ They also heavily rely on the awesome utility, <a href="http://www.basscss.com/"
 <p>This allows your content to have the proper informational and contextual hierarchy. Yay.</p>
 
 <h3 id="there-are-lists-too">There are lists, too</h3>
+-->
+<p>Let's face it! We all hate physics classes. Most of them was too intuitive that makes you react like? Whaaat?
+When you asked why bodies are falling? Else, are just to hard to be expalined. Physics relies heavily on mathematics, without it, it's just a philosphy. In this post I'll try to make things as simple as possible but not simpler.</p>
 
-<ul>
-  <li>Apples</li>
-  <li>Oranges</li>
-  <li>Potatoes</li>
-  <li>Milk</li>
-</ul>
-
-<ol>
-  <li>Mow the lawn</li>
-  <li>Feed the dog</li>
-  <li>Dance</li>
-</ol>
-
-<h3 id="images-look-great-too">Images look great, too</h3>
-
-<p><img src="https://cloud.githubusercontent.com/assets/1424573/3378137/abac6d7c-fbe6-11e3-8e09-55745b6a8176.png" alt="desk" /></p>
-
-<p><em><img src="https://cloud.githubusercontent.com/assets/1424573/3378137/abac6d7c-fbe6-11e3-8e09-55745b6a8176.png" alt="desk" /></em></p>
-
-<h3 id="there-are-also-pretty-colors">There are also pretty colors</h3>
-
-<p>Also the result of <a href="http://www.basscss.com/">BASSCSS</a>, you can <span class="bg-dark-gray white">highlight</span> certain components
-of a <span class="red">post</span> <span class="mid-gray">with</span> <span class="green">CSS</span> <span class="orange">classes</span>.</p>
-
-<p>I don’t recommend using blue, though. It looks like a <span class="blue">link</span>.</p>
-
-<h3 id="footnotes">Footnotes!</h3>
-
-<p>Markdown footnotes are supported, and they look great! Simply put e.g. <code class="highlighter-rouge">[^1]</code> where you want the footnote to appear,<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and then add
-the reference at the end of your markdown.</p>
-
-<h3 id="stylish-blockquotes-included">Stylish blockquotes included</h3>
-
-<p>You can use the markdown quote syntax, <code class="highlighter-rouge">&gt;</code> for simple quotes.</p>
-
+It's the default action to search wikipedia for an article of whatever you want.
 <blockquote>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis porta mauris.</p>
+  spherical harmonics are a series of special functions defined on the surface of a sphere used to solve some kinds of differential equations.
+</blockquote>
+Have we learned something? Not sure, let's jump to other part
+<blockquote>
+  Spherical harmonics are functions defined in terms of spherical coordinates and are organized by angular frequency...
 </blockquote>
 
-<p>However, you need to inject html if you’d like a citation footer. I will be working on a way to
-hopefully sidestep this inconvenience.</p>
+No, (I quote Big-No)<sup id="fnref:1"><a href="#fn:2" class="footnote">2</a></sup>.
+<br>
+The reason for being no, is that there are already a lot of prerequisites, that's great actually, assuming that you've a general idea about them. You should have an idea about <em>"differential equations"</em> and how they relate to it, <em>angular frequency</em>! What if I don't have an idea about them? Or I just failed to link them? This post is for that reason!
 
-<blockquote>
-  <p>
-    Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
-  </p>
-  <footer><cite title="Antoine de Saint-Exupéry">Antoine de Saint-Exupéry</cite></footer>
-</blockquote>
+<p>I guess that gives me a good to reason to write this post.</p>
 
-<h3 id="theres-more-being-added-all-the-time">There’s more being added all the time</h3>
-
-<p>Checkout the <a href="https://github.com/johnotander/pixyll">Github repository</a> to request,
-or add, features.</p>
-
-<p>Happy writing.</p>
-
-<hr />
+<h2>Spherical harmonics</h2>
+We all know what spherical means? No yet just tokenize it's just <code class="highlighter-rouge">sphere</code>. It's very primitive geometry shape, it can't be explained even more. What about harmonics then? I bet you're already know, it comes from music. Then what is the problem? Both terms look very intuitive? Yes they do, but seperately. Again I've proven to you that this post is worth reading --so far.
+<br>
+From a mathematics perspective a harmonic function is a function that satisfys Laplace's equation:
+$$\nabla^2 f= 0$$
 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
       <p>Important information that may distract from the main text can go in footnotes. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+        <li id="fn:1">
+      <p>Important information that may distract from the main text can go in footnotes. <a href="#fnref:2" class="footnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -296,6 +277,8 @@ or add, features.</p>
   </div>
 </footer>
 
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 </body>
 </html>
