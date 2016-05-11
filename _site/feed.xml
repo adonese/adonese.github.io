@@ -7,21 +7,68 @@
     <atom:link href="http://pixyll.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Spherical Harmonics</title>
-        <description>
+        <title>Associated legendre functions</title>
+        <description>&lt;h1 id=&quot;its-just-anothe-empty-placeholder&quot;&gt;It’s just anothe empty placeholder&lt;/h1&gt;
 </description>
-        <pubDate>Sat, 20 Feb 2016 00:00:00 +0300</pubDate>
-        <link>http://pixyll.com/2016/02/20/spherical-harmonics/</link>
-        <guid isPermaLink="true">http://pixyll.com/2016/02/20/spherical-harmonics/</guid>
+        <pubDate>Tue, 01 Mar 2016 23:15:19 +0300</pubDate>
+        <link>http://pixyll.com/project/alf/2016/03/01/placeholder/</link>
+        <guid isPermaLink="true">http://pixyll.com/project/alf/2016/03/01/placeholder/</guid>
       </item>
     
       <item>
-        <title>Geiodapp</title>
-        <description>
+        <title>GeoidApp - Things could never be easier!</title>
+        <description>&lt;h1 id=&quot;its-just-another-placeholder&quot;&gt;It’s just another placeholder&lt;/h1&gt;
+&lt;p&gt;## Let’s see what I can do.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 01 Jan 2016 00:00:00 +0300</pubDate>
-        <link>http://pixyll.com/2016/01/01/geiodapp/</link>
-        <guid isPermaLink="true">http://pixyll.com/2016/01/01/geiodapp/</guid>
+        <pubDate>Sat, 20 Feb 2016 15:31:19 +0300</pubDate>
+        <link>http://pixyll.com/project/geoid-app/2016/02/20/geiodapp/</link>
+        <guid isPermaLink="true">http://pixyll.com/project/geoid-app/2016/02/20/geiodapp/</guid>
+      </item>
+    
+      <item>
+        <title>Spherical harmonics</title>
+        <description>&lt;h2 id=&quot;a-disclaimer&quot;&gt;A DISCLAIMER&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;This post isn’t intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever!&lt;/li&gt;
+  &lt;li&gt;I’ll try to use as less math notations as possible.&lt;/li&gt;
+  &lt;li&gt;This is just for adding other bullets.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;physics-is-boring-math-is-even-worse-both-are-you-kidding-me&quot;&gt;Physics is boring, math is even worse! Both? Are you kidding me?&lt;/h2&gt;
+&lt;p&gt;Let’s face it! We all hate physics classes. Most of them was too intuitive that makes you react like? Whaaat?
+When you asked why bodies are falling? Else, are just to hard to be expalined. Physics relies heavily on mathematics, without it, it’s just a philosphy. In this post I’ll try to make things as simple as possible but not simpler.&lt;/p&gt;
+
+&lt;p&gt;It’s the default action to search wikipedia for an article of whatever you want.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;spherical harmonics are a series of special functions defined on the surface of a sphere used to solve some kinds of differential equations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Have we learned something? Not sure, let’s jump to other part&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Spherical harmonics are functions defined in terms of spherical coordinates and are organized by angular frequency…&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The reason for being no, is that there are already a lot of prerequisites, that’s great actually, assuming that you’ve a general idea about them. You should have an idea about &lt;code class=&quot;highlighter-rouge&quot;&gt;differential equations&lt;/code&gt; and how they relate to it, &lt;code class=&quot;highlighter-rouge&quot;&gt;angular frequency&lt;/code&gt;! What if I don’t have an idea about them? Or I just failed to link them? This post is for that reason!&lt;/p&gt;
+
+&lt;p&gt;I guess that gives me a good to reason to write this post.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-the-heck-are-spherical-harmonics&quot;&gt;What the heck are spherical harmonics?&lt;/h2&gt;
+&lt;p&gt;We all know what sphere is, and we probably heard the word &lt;code class=&quot;highlighter-rouge&quot;&gt;harmonic&lt;/code&gt; a few times in music. They both seem too intuitive, but there inlies the problem.
+Being too intuitive makes it very hard, I mean can you describe for someone why &lt;code class=&quot;highlighter-rouge&quot;&gt;1 + 1 = 2&lt;/code&gt;? It’s really hard.&lt;/p&gt;
+
+&lt;p&gt;From a math perspective, a function is a called a harmonic if it satisfys Laplace’s equation.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla ^ 2 f = 0&lt;/script&gt;
+
+&lt;h3 id=&quot;where-i-can-find-them-in-real-life&quot;&gt;Where I can find them in real life?&lt;/h3&gt;
+
+&lt;h3 id=&quot;are-they-that-important&quot;&gt;Are they that important?&lt;/h3&gt;
+</description>
+        <pubDate>Sat, 20 Feb 2016 15:31:19 +0300</pubDate>
+        <link>http://pixyll.com/project/2016/02/20/spherical-harmonics/</link>
+        <guid isPermaLink="true">http://pixyll.com/project/2016/02/20/spherical-harmonics/</guid>
       </item>
     
   </channel>

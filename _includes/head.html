@@ -35,6 +35,11 @@
     </script>
     {% endif %}
 
+    {% if site.enable_mathjax %}
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+    {% endif %}
     <!-- Verifications -->
     {% if site.google_verification %}
       <meta name="google-site-verification" content="{{ site.google_verification }}" />

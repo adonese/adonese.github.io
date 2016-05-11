@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Spherical harmonics &#8211; Pixyll</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="In this I&#39;ll demonstrate the concept of spherical harmonics.">
+    <meta name="robots" content="all">
+    <meta name="author" content="John Otander">
+    <meta name="keywords" content="project">
+    <link rel="canonical" href="http://pixyll.com/project/2016/02/20/spherical-harmonics/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Pixyll" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201605112347" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- MathJax -->
+    
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+    
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Spherical harmonics">
+    <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
+    <meta property="og:url" content="http://pixyll.com/project/2016/02/20/spherical-harmonics/">
+    <meta property="og:site_name" content="Pixyll">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Spherical harmonics" />
+    <meta name="twitter:description" content="In this I'll demonstrate the concept of spherical harmonics." />
+    <meta name="twitter:url" content="http://pixyll.com/project/2016/02/20/spherical-harmonics/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site animated fade-in-down">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://pixyll.com" class="site-title">Pixyll</a>
+      <nav class="site-nav">
+        
+    
+
+    
+        <a href="/about/">About Pixyll</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+        <a href="/contact/">Say Hello</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Spherical harmonics</h1>
+  <span class="post-meta">Feb 20, 2016</span><br>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h2 id="a-disclaimer">A DISCLAIMER</h2>
+<ul>
+  <li>This post isn’t intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever!</li>
+  <li>I’ll try to use as less math notations as possible.</li>
+  <li>This is just for adding other bullets.</li>
+</ul>
+
+<h2 id="physics-is-boring-math-is-even-worse-both-are-you-kidding-me">Physics is boring, math is even worse! Both? Are you kidding me?</h2>
+<p>Let’s face it! We all hate physics classes. Most of them was too intuitive that makes you react like? Whaaat?
+When you asked why bodies are falling? Else, are just to hard to be expalined. Physics relies heavily on mathematics, without it, it’s just a philosphy. In this post I’ll try to make things as simple as possible but not simpler.</p>
+
+<p>It’s the default action to search wikipedia for an article of whatever you want.</p>
+
+<blockquote>
+  <p>spherical harmonics are a series of special functions defined on the surface of a sphere used to solve some kinds of differential equations.</p>
+</blockquote>
+
+<p>Have we learned something? Not sure, let’s jump to other part</p>
+
+<blockquote>
+  <p>Spherical harmonics are functions defined in terms of spherical coordinates and are organized by angular frequency…</p>
+</blockquote>
+
+<p>The reason for being no, is that there are already a lot of prerequisites, that’s great actually, assuming that you’ve a general idea about them. You should have an idea about <code class="highlighter-rouge">differential equations</code> and how they relate to it, <code class="highlighter-rouge">angular frequency</code>! What if I don’t have an idea about them? Or I just failed to link them? This post is for that reason!</p>
+
+<p>I guess that gives me a good to reason to write this post.</p>
+
+<h2 id="what-the-heck-are-spherical-harmonics">What the heck are spherical harmonics?</h2>
+<p>We all know what sphere is, and we probably heard the word <code class="highlighter-rouge">harmonic</code> a few times in music. They both seem too intuitive, but there inlies the problem.
+Being too intuitive makes it very hard, I mean can you describe for someone why <code class="highlighter-rouge">1 + 1 = 2</code>? It’s really hard.</p>
+
+<p>From a math perspective, a function is a called a harmonic if it satisfys Laplace’s equation.</p>
+
+<script type="math/tex; mode=display">\nabla ^ 2 f = 0</script>
+
+<h3 id="where-i-can-find-them-in-real-life">Where I can find them in real life?</h3>
+
+<h3 id="are-they-that-important">Are they that important?</h3>
+
+</article>
+
+
+  <div class="share-page">
+  Share this post!
+
+  <div class="share-links">
+    
+      <a class="fa fa-facebook" href="https://facebook.com/sharer.php?u=http://pixyll.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Spherical harmonics&url=http://pixyll.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+      <a class="fa fa-google-plus" href="https://plus.google.com/share?url=http://pixyll.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Google+"></a>
+    
+
+    
+
+    
+
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://pixyll.com/project/2016/02/20/spherical-harmonics/&title=Spherical harmonics" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/project/alf/2016/03/01/placeholder/" class="post-link">
+        <h4 class="post-title">Associated legendre functions</h4>
+        <p class="post-summary">This will be a different post. I promise.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/project/geoid-app/2016/02/20/geiodapp/" class="post-link">
+        <h4 class="post-title">GeoidApp - Things could never be easier!</h4>
+        <p class="post-summary">This will be a different post. I promise.</p>
+      </a>
+    </div>
+  
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">Github</a>.
+    </small>
+  </div>
+</footer>
+<!-- AnchorJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.0.0/anchor.min.js"></script>
+<script>
+    anchors.options.visible = 'always';
+    anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>
+
+</body>
+</html>
