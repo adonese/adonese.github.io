@@ -1,20 +1,57 @@
-# adonese blog
+# Pixyll
 
-[eebax.com](http://www.eebax.com)
+[pixyll.com](http://www.pixyll.com)
 
+![Pixyll screenshot](https://cloud.githubusercontent.com/assets/1424573/3847467/134aa236-1e66-11e4-8421-4e8c122118dc.png)
 
-I'll be using this blog to write some posts about topics interesting me. Your comments are extremely
-valuable for me.
+Pixyll is a simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff. It's mobile _first_, fluidly responsive, and delightfully lightweight.
+
+It's pretty minimal, but leverages large type and drastic contrast to make a statement, on all devices.
+
+This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
+([@4lpine](https://twitter.com/4lpine)).
+
+中文版 <https://github.com/ee0703/pixyll-zh-cn>.
 
 ## Getting Started
 
+If you're completely new to Jekyll, I recommend checking out the documentation at <http://jekyllrb.com> or there's a tutorial by [Smashing Magazine](http://www.smashingmagazine.com/2014/08/01/build-blog-jekyll-github-pages/).
+
+```
+$ git clone git@github.com:johnotander/pixyll.git
+$ cd pixyll
+$ gem install bundler # If you don't have bundler installed
+$ bundle install
+```
 
 #### Verify your Jekyll version
 
 It's important to also check your version of Jekyll since this project uses Native Sass which
 is [only supported by 2.0+](http://jekyllrb.com/news/2014/05/06/jekyll-turns-2-0-0/).
 
+### Fork, then clone
 
+Fork the repo, and then clone it so you've got the code locally.
+
+### Modify the `_config.yml`
+
+The `_config.yml` located in the root of the Pixyll directory contains all of the configuration details
+for the Jekyll site. The defaults are:
+
+```yml
+# Site settings
+title: Pixyll
+email: your_email@example.com
+author: John Otander
+description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+baseurl: ""
+url: "http://pixyll.com"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+paginate: 3
+```
 
 ### Jekyll Serve
 
