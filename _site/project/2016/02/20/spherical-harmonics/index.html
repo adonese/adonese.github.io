@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Spherical harmonics &#8211; Pixyll</title>
+    <title>Spherical harmonics &#8211; adonese</title>
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//cdn.mathjax.org">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="In this I&#39;ll demonstrate the concept of spherical harmonics.">
     <meta name="robots" content="all">
-    <meta name="author" content="John Otander">
+    <meta name="author" content="Mohamed Yousif">
     <meta name="keywords" content="project">
-    <link rel="canonical" href="http://pixyll.com/project/2016/02/20/spherical-harmonics/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Pixyll" href="/feed.xml" />
+    <link rel="canonical" href="http://eebax.com/project/2016/02/20/spherical-harmonics/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for adonese" href="/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201605112347" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201605172123" type="text/css">
 
     <!-- Fonts -->
     
@@ -47,16 +47,16 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Spherical harmonics">
-    <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://pixyll.com/project/2016/02/20/spherical-harmonics/">
-    <meta property="og:site_name" content="Pixyll">
+    <meta property="og:description" content="A blog that I use to write about stuffs that I like..">
+    <meta property="og:url" content="http://eebax.com/project/2016/02/20/spherical-harmonics/">
+    <meta property="og:site_name" content="adonese">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
     <meta name="twitter:title" content="Spherical harmonics" />
     <meta name="twitter:description" content="In this I'll demonstrate the concept of spherical harmonics." />
-    <meta name="twitter:url" content="http://pixyll.com/project/2016/02/20/spherical-harmonics/" />
+    <meta name="twitter:url" content="http://eebax.com/project/2016/02/20/spherical-harmonics/" />
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -85,7 +85,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://pixyll.com" class="site-title">Pixyll</a>
+      <a href="http://eebax.com" class="site-title">adonese</a>
       <nav class="site-nav">
         
     
@@ -141,7 +141,7 @@
   
   <span class="post-meta small">
   
-    1 minute read
+    4 minute read
   
   </span>
 </div>
@@ -152,6 +152,13 @@
   <li>This post isn’t intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever!</li>
   <li>I’ll try to use as less math notations as possible.</li>
   <li>This is just for adding other bullets.</li>
+  <li>Spherical harmonics are used in many applications, which rise the problem of naming conventions, I had trouble times suffering from this issue, it doesn’t seem to exist a unique notations. With that being said, all the notations I’ll be using here are from <code class="highlighter-rouge">Physical Geodesy</code> and most of them are from Germany authors (just in case it conflicts with Americans authors, anyway most of geodesy literature are from Germany).</li>
+</ul>
+
+<h2 id="conventions-in-this-post">Conventions in this post</h2>
+<ul>
+  <li>Vectors will be indicated by <strong>v</strong>, while matrices will be indicated by <strong>A</strong> [capital bold letter], anyway you should understand them from the context.</li>
+  <li>Acronyms, I’ll indroduce the full name first, then it’s acronym which I’ll use it in the rest of the post.</li>
 </ul>
 
 <h2 id="physics-is-boring-math-is-even-worse-both-are-you-kidding-me">Physics is boring, math is even worse! Both? Are you kidding me?</h2>
@@ -176,11 +183,72 @@ When you asked why bodies are falling? Else, are just to hard to be expalined. P
 
 <h2 id="what-the-heck-are-spherical-harmonics">What the heck are spherical harmonics?</h2>
 <p>We all know what sphere is, and we probably heard the word <code class="highlighter-rouge">harmonic</code> a few times in music. They both seem too intuitive, but there inlies the problem.
-Being too intuitive makes it very hard, I mean can you describe for someone why <code class="highlighter-rouge">1 + 1 = 2</code>? It’s really hard.</p>
+Being too intuitive makes it very hard, I mean can you describe for someone why <code class="highlighter-rouge">1 + 1 = 2?</code> It’s really hard.</p>
 
-<p>From a math perspective, a function is a called a harmonic if it satisfys Laplace’s equation.</p>
+<p>From a math perspective, a function is a called a harmonic if it satisfies Laplace’s equation.</p>
 
-<script type="math/tex; mode=display">\nabla ^ 2 f = 0</script>
+<script type="math/tex; mode=display">\omega = 0</script>
+
+<p>A very good question arise, why do we care about solving Laplace’s equation?
+The answer for this question is even trickier! We need to solve Laplace’s equation as a step for solving boundary values problems <code class="highlighter-rouge">BVPs</code>. Before you ask, we need to solve BVPs because, in our case, earth is a good example of a boundary problem (It’s bounded by latitudes and longitudes).</p>
+
+<h2 id="solving-laplaces-equation">Solving Laplace’s equation</h2>
+
+<h3 id="solving-laplaces-equation-in-cartesian-coordinates">Solving Laplace’s equation in Cartesian coordinates</h3>
+
+<p>Let’s consider the case of planar surface where x and y are the horizontal coordinates, z is the vertical coordinates. In this case we want to solve $f(x, y, z) = 0$ where z &gt; 0.
+A very important step in the solution is the separation of variables. For that let’s rewrite the previous equation as follows</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\nabla (x, y, z) = \nabla f(x) g(y) h(z) = 0
+\end{equation}</script>
+
+<p>applying the chain rule will give us the following.</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\frac {\partial ^ 2 f(x)} {\partial x ^ 2} g(y) h(z) + f(x) \frac{\partial ^ 2 g(y)} {\partial y ^ 2} h(z) + f(x) g(y) \frac{\partial ^ 2 h(z)}{\partial z ^ 2} = 0
+\end{equation}</script>
+
+<p>The first summand on the equation only depends on x, the g-part depends on y, the h-part depends on z.</p>
+
+<p>We can modify the previous equation as follows</p>
+
+<script type="math/tex; mode=display">f''gh + fg''h + fgh'' = 0</script>
+
+<p>Dividing the equation by <code class="highlighter-rouge">$1 / fgh$</code></p>
+
+<script type="math/tex; mode=display">\frac{f''}{f} + \frac{g''}{g} + \frac{h''}{h}</script>
+
+<p>And now for something completely different…</p>
+
+<p>The separation of variables leads to a separation of the partial derivatives equations into three ordinary differential equations <code class="highlighter-rouge">(ODEs)</code>.</p>
+
+<script type="math/tex; mode=display">\frac{f''}{f} = -n^2, f'' + n^2f = 0</script>
+
+<script type="math/tex; mode=display">\frac{g''}{g} = -m^2, g'' + m^2g = 0</script>
+
+<script type="math/tex; mode=display">\frac{h''}{h}, n^2 + m^2, h'' - (n^2 + m^2)h = 0</script>
+
+<p>The solution of these <code class="highlighter-rouge">ODEs</code> is elementary since they’re $2^{nd}$ order <code class="highlighter-rouge">ODE</code>.</p>
+
+<script type="math/tex; mode=display">f_1(x) = cos(nx),  f_2(x) = sin(nx)</script>
+
+<script type="math/tex; mode=display">g_1(y) = cos(my), g_2(y) = sin(my)</script>
+
+<script type="math/tex; mode=display">h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}</script>
+
+<p>The general solution $\omega(x, y, z)$ will be the product of $f, g, and h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.</p>
+
+<script type="math/tex; mode=display">\omega(x, y, z) = \sum_{n=0}^{\inf}\sum_{m=0}^{\inf} (
+    a_{nm} cos(nx) cos(my) + b_{nm} cos(nx) sin(my) + 
+    c_{nm} sin(nx) cos(my) + d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}} +
+    (e_{nm} cos(nx) cos(my) + f_{nm} cos(nx) sin(my) +
+    g_{nm} sin(nx) cos(my) + h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}}
+)</script>
+
+<p>The solution of the Laplace’s equation is not a solution of the <code class="highlighter-rouge">BVP</code>. It only gives us the behaviour of the potential $\omega$ in terms of base functions.
+For the horizontal domain the base functions are sines and cosines. Thus the potential is a Fourier series in the horizontal domain. The $n$ and $m$ are the wave numbers; the higher they are, the shorter the wavelengths.
+The vertical base functions are called <em>upward continutation</em>, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward contiutation either works as low-pass filter (minus sign), or as a high-pass filter.</p>
 
 <h3 id="where-i-can-find-them-in-real-life">Where I can find them in real life?</h3>
 
@@ -194,25 +262,25 @@ Being too intuitive makes it very hard, I mean can you describe for someone why 
 
   <div class="share-links">
     
-      <a class="fa fa-facebook" href="https://facebook.com/sharer.php?u=http://pixyll.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+      <a class="fa fa-facebook" href="https://facebook.com/sharer.php?u=http://eebax.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Facebook"></a>
     
 
     
-      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Spherical harmonics&url=http://pixyll.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Spherical harmonics&url=http://eebax.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
     
 
     
-      <a class="fa fa-google-plus" href="https://plus.google.com/share?url=http://pixyll.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Google+"></a>
-    
-
-    
-
+      <a class="fa fa-google-plus" href="https://plus.google.com/share?url=http://eebax.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Google+"></a>
     
 
     
 
     
-      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://pixyll.com/project/2016/02/20/spherical-harmonics/&title=Spherical harmonics" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://eebax.com/project/2016/02/20/spherical-harmonics/&title=Spherical harmonics" rel="nofollow" target="_blank" title="Share on Reddit"></a>
     
 
     

@@ -1,10 +1,10 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+title:       adonese
+email:       mmbusif@gmail.com
+author:      Mohamed Yousif
+description: "A blog that I use to write about stuffs that I like.."
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://eebax.com"
 date_format: "%b %-d, %Y"
 
 # Google services
@@ -21,7 +21,7 @@ animated:             true
 show_related_posts:   true
 show_post_footers:    false
 show_social_icons:    false
-ajaxify_contact_form: false
+ajaxify_contact_form: true
 enable_mathjax: true
 extended_fonts: true
 enable_anchorjs: true

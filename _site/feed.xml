@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pixyll</title>
-    <description>A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.</description>
-    <link>http://pixyll.com/</link>
-    <atom:link href="http://pixyll.com/feed.xml" rel="self" type="application/rss+xml" />
+    <title>adonese</title>
+    <description>A blog that I use to write about stuffs that I like..</description>
+    <link>http://eebax.com/</link>
+    <atom:link href="http://eebax.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>Associated legendre functions</title>
         <description>&lt;h1 id=&quot;its-just-anothe-empty-placeholder&quot;&gt;It’s just anothe empty placeholder&lt;/h1&gt;
 </description>
         <pubDate>Tue, 01 Mar 2016 23:15:19 +0300</pubDate>
-        <link>http://pixyll.com/project/alf/2016/03/01/placeholder/</link>
-        <guid isPermaLink="true">http://pixyll.com/project/alf/2016/03/01/placeholder/</guid>
+        <link>http://eebax.com/project/alf/2016/03/01/placeholder/</link>
+        <guid isPermaLink="true">http://eebax.com/project/alf/2016/03/01/placeholder/</guid>
       </item>
     
       <item>
@@ -21,8 +21,8 @@
 &lt;p&gt;## Let’s see what I can do.&lt;/p&gt;
 </description>
         <pubDate>Sat, 20 Feb 2016 15:31:19 +0300</pubDate>
-        <link>http://pixyll.com/project/geoid-app/2016/02/20/geiodapp/</link>
-        <guid isPermaLink="true">http://pixyll.com/project/geoid-app/2016/02/20/geiodapp/</guid>
+        <link>http://eebax.com/project/geoid-app/2016/02/20/geiodapp/</link>
+        <guid isPermaLink="true">http://eebax.com/project/geoid-app/2016/02/20/geiodapp/</guid>
       </item>
     
       <item>
@@ -32,6 +32,13 @@
   &lt;li&gt;This post isn’t intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever!&lt;/li&gt;
   &lt;li&gt;I’ll try to use as less math notations as possible.&lt;/li&gt;
   &lt;li&gt;This is just for adding other bullets.&lt;/li&gt;
+  &lt;li&gt;Spherical harmonics are used in many applications, which rise the problem of naming conventions, I had trouble times suffering from this issue, it doesn’t seem to exist a unique notations. With that being said, all the notations I’ll be using here are from &lt;code class=&quot;highlighter-rouge&quot;&gt;Physical Geodesy&lt;/code&gt; and most of them are from Germany authors (just in case it conflicts with Americans authors, anyway most of geodesy literature are from Germany).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conventions-in-this-post&quot;&gt;Conventions in this post&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Vectors will be indicated by &lt;strong&gt;v&lt;/strong&gt;, while matrices will be indicated by &lt;strong&gt;A&lt;/strong&gt; [capital bold letter], anyway you should understand them from the context.&lt;/li&gt;
+  &lt;li&gt;Acronyms, I’ll indroduce the full name first, then it’s acronym which I’ll use it in the rest of the post.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;physics-is-boring-math-is-even-worse-both-are-you-kidding-me&quot;&gt;Physics is boring, math is even worse! Both? Are you kidding me?&lt;/h2&gt;
@@ -56,19 +63,80 @@ When you asked why bodies are falling? Else, are just to hard to be expalined. P
 
 &lt;h2 id=&quot;what-the-heck-are-spherical-harmonics&quot;&gt;What the heck are spherical harmonics?&lt;/h2&gt;
 &lt;p&gt;We all know what sphere is, and we probably heard the word &lt;code class=&quot;highlighter-rouge&quot;&gt;harmonic&lt;/code&gt; a few times in music. They both seem too intuitive, but there inlies the problem.
-Being too intuitive makes it very hard, I mean can you describe for someone why &lt;code class=&quot;highlighter-rouge&quot;&gt;1 + 1 = 2&lt;/code&gt;? It’s really hard.&lt;/p&gt;
+Being too intuitive makes it very hard, I mean can you describe for someone why &lt;code class=&quot;highlighter-rouge&quot;&gt;1 + 1 = 2?&lt;/code&gt; It’s really hard.&lt;/p&gt;
 
-&lt;p&gt;From a math perspective, a function is a called a harmonic if it satisfys Laplace’s equation.&lt;/p&gt;
+&lt;p&gt;From a math perspective, a function is a called a harmonic if it satisfies Laplace’s equation.&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla ^ 2 f = 0&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega = 0&lt;/script&gt;
+
+&lt;p&gt;A very good question arise, why do we care about solving Laplace’s equation?
+The answer for this question is even trickier! We need to solve Laplace’s equation as a step for solving boundary values problems &lt;code class=&quot;highlighter-rouge&quot;&gt;BVPs&lt;/code&gt;. Before you ask, we need to solve BVPs because, in our case, earth is a good example of a boundary problem (It’s bounded by latitudes and longitudes).&lt;/p&gt;
+
+&lt;h2 id=&quot;solving-laplaces-equation&quot;&gt;Solving Laplace’s equation&lt;/h2&gt;
+
+&lt;h3 id=&quot;solving-laplaces-equation-in-cartesian-coordinates&quot;&gt;Solving Laplace’s equation in Cartesian coordinates&lt;/h3&gt;
+
+&lt;p&gt;Let’s consider the case of planar surface where x and y are the horizontal coordinates, z is the vertical coordinates. In this case we want to solve $f(x, y, z) = 0$ where z &amp;gt; 0.
+A very important step in the solution is the separation of variables. For that let’s rewrite the previous equation as follows&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\nabla (x, y, z) = \nabla f(x) g(y) h(z) = 0
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;applying the chain rule will give us the following.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\frac {\partial ^ 2 f(x)} {\partial x ^ 2} g(y) h(z) + f(x) \frac{\partial ^ 2 g(y)} {\partial y ^ 2} h(z) + f(x) g(y) \frac{\partial ^ 2 h(z)}{\partial z ^ 2} = 0
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;The first summand on the equation only depends on x, the g-part depends on y, the h-part depends on z.&lt;/p&gt;
+
+&lt;p&gt;We can modify the previous equation as follows&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f&#39;&#39;gh + fg&#39;&#39;h + fgh&#39;&#39; = 0&lt;/script&gt;
+
+&lt;p&gt;Dividing the equation by &lt;code class=&quot;highlighter-rouge&quot;&gt;$1 / fgh$&lt;/code&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f&#39;&#39;}{f} + \frac{g&#39;&#39;}{g} + \frac{h&#39;&#39;}{h}&lt;/script&gt;
+
+&lt;p&gt;And now for something completely different…&lt;/p&gt;
+
+&lt;p&gt;The separation of variables leads to a separation of the partial derivatives equations into three ordinary differential equations &lt;code class=&quot;highlighter-rouge&quot;&gt;(ODEs)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f&#39;&#39;}{f} = -n^2, f&#39;&#39; + n^2f = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{g&#39;&#39;}{g} = -m^2, g&#39;&#39; + m^2g = 0&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{h&#39;&#39;}{h}, n^2 + m^2, h&#39;&#39; - (n^2 + m^2)h = 0&lt;/script&gt;
+
+&lt;p&gt;The solution of these &lt;code class=&quot;highlighter-rouge&quot;&gt;ODEs&lt;/code&gt; is elementary since they’re $2^{nd}$ order &lt;code class=&quot;highlighter-rouge&quot;&gt;ODE&lt;/code&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_1(x) = cos(nx),  f_2(x) = sin(nx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g_1(y) = cos(my), g_2(y) = sin(my)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}&lt;/script&gt;
+
+&lt;p&gt;The general solution $\omega(x, y, z)$ will be the product of $f, g, and h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega(x, y, z) = \sum_{n=0}^{\inf}\sum_{m=0}^{\inf} (
+    a_{nm} cos(nx) cos(my) + b_{nm} cos(nx) sin(my) + 
+    c_{nm} sin(nx) cos(my) + d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}} +
+    (e_{nm} cos(nx) cos(my) + f_{nm} cos(nx) sin(my) +
+    g_{nm} sin(nx) cos(my) + h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}}
+)&lt;/script&gt;
+
+&lt;p&gt;The solution of the Laplace’s equation is not a solution of the &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt;. It only gives us the behaviour of the potential $\omega$ in terms of base functions.
+For the horizontal domain the base functions are sines and cosines. Thus the potential is a Fourier series in the horizontal domain. The $n$ and $m$ are the wave numbers; the higher they are, the shorter the wavelengths.
+The vertical base functions are called &lt;em&gt;upward continutation&lt;/em&gt;, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward contiutation either works as low-pass filter (minus sign), or as a high-pass filter.&lt;/p&gt;
 
 &lt;h3 id=&quot;where-i-can-find-them-in-real-life&quot;&gt;Where I can find them in real life?&lt;/h3&gt;
 
 &lt;h3 id=&quot;are-they-that-important&quot;&gt;Are they that important?&lt;/h3&gt;
 </description>
         <pubDate>Sat, 20 Feb 2016 15:31:19 +0300</pubDate>
-        <link>http://pixyll.com/project/2016/02/20/spherical-harmonics/</link>
-        <guid isPermaLink="true">http://pixyll.com/project/2016/02/20/spherical-harmonics/</guid>
+        <link>http://eebax.com/project/2016/02/20/spherical-harmonics/</link>
+        <guid isPermaLink="true">http://eebax.com/project/2016/02/20/spherical-harmonics/</guid>
       </item>
     
   </channel>
