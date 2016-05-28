@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Spherical harmonics &#8211; adonese</title>
+    <title>Spherical harmonics Understanding the weird part &#8211; adonese's blog</title>
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//cdn.mathjax.org">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -13,11 +13,10 @@
     <meta name="author" content="Mohamed Yousif">
     <meta name="keywords" content="project">
     <link rel="canonical" href="http://eebax.com/project/2016/02/20/spherical-harmonics/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for adonese" href="/feed.xml" />
-
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for adonese's blog" href="/feed.xml" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201605172123" type="text/css">
-
+    <link rel="stylesheet" href="/css/pixyll.css?201605282255" type="text/css">
+    <!--Nprgoress -->
     <!-- Fonts -->
     
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
@@ -46,15 +45,15 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Spherical harmonics">
+    <meta property="og:title" content="Spherical harmonics Understanding the weird part">
     <meta property="og:description" content="A blog that I use to write about stuffs that I like..">
     <meta property="og:url" content="http://eebax.com/project/2016/02/20/spherical-harmonics/">
-    <meta property="og:site_name" content="adonese">
+    <meta property="og:site_name" content="adonese&#39;s blog">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
-    <meta name="twitter:title" content="Spherical harmonics" />
+    <meta name="twitter:title" content="Spherical harmonics Understanding the weird part" />
     <meta name="twitter:description" content="In this I'll demonstrate the concept of spherical harmonics." />
     <meta name="twitter:url" content="http://eebax.com/project/2016/02/20/spherical-harmonics/" />
 
@@ -75,6 +74,7 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 
     
+
 </head>
 
 <body class="site animated fade-in-down">
@@ -85,7 +85,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://eebax.com" class="site-title">adonese</a>
+      <a href="http://eebax.com" class="site-title">adonese's blog</a>
       <nav class="site-nav">
         
     
@@ -136,12 +136,12 @@
 
 
 <div class="post-header mb2">
-  <h1>Spherical harmonics</h1>
+  <h1>Spherical harmonics Understanding the weird part</h1>
   <span class="post-meta">Feb 20, 2016</span><br>
   
   <span class="post-meta small">
   
-    4 minute read
+    7 minute read
   
   </span>
 </div>
@@ -187,10 +187,53 @@ Being too intuitive makes it very hard, I mean can you describe for someone why 
 
 <p>From a math perspective, a function is a called a harmonic if it satisfies Laplace’s equation.</p>
 
-<script type="math/tex; mode=display">\omega = 0</script>
+<script type="math/tex; mode=display">\Phi = 0</script>
 
 <p>A very good question arise, why do we care about solving Laplace’s equation?
 The answer for this question is even trickier! We need to solve Laplace’s equation as a step for solving boundary values problems <code class="highlighter-rouge">BVPs</code>. Before you ask, we need to solve BVPs because, in our case, earth is a good example of a boundary problem (It’s bounded by latitudes and longitudes).</p>
+
+<h2 id="boundary-value-problems">Boundary value problems</h2>
+
+<h3 id="what-is-the-boundary-value-problem">What is the Boundary value problem?</h3>
+
+<p>If I didn’t mention this term before that officially makes me a horrible writer! Our problem is to determinet the gravitational force in outer space without knowing the denisty structure of the earth. See <a href="en.wikipedia.com/wiki/boundary_value_problem">this</a> wikipage for nice explanation. <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> Boundary value problem is differntial equation with a set of other constraints called the <em>boundary conditions</em>. The important part is that the solution of the boundary value problem is also a solution to the differential equation.
+Now we have a better idea of what our problem is, we can’t measure the density of the earth. Molodonskey was the first that to base physical geodesy on boundary value problems on the earth’s surface rather than on the geoid <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> Hoffmann et, al. 
+More generally a <code class="highlighter-rouge">BVP</code> tries to determine a function in a spatial domain from:</p>
+
+<ul>
+  <li>It’s value on the boundary,</li>
+  <li>it’s spatial behaviour, described by a partial differential equation.</li>
+</ul>
+
+<p>Three BVPs are defined to determine $\Phi$ in the outer space from $\nabla \Phi = 0$ with one of the three following boundary conditions.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$1^{st}$ BVP</td>
+      <td>$2^{nd}$ BVP</td>
+      <td>$3^{rd}$ BVP</td>
+    </tr>
+    <tr>
+      <td>Dirichlet</td>
+      <td>Neumann</td>
+      <td>Robin</td>
+    </tr>
+    <tr>
+      <td>$\Phi$</td>
+      <td>$\frac{\partial \Phi}{\partial n}$</td>
+      <td>$\Phi + c \frac{\partial \Phi}{\partial n}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As a further condition we must require a regular behaviour for $r \to \infty$.</p>
+
+<p>Geodetic examples of the boundary functions are geopotential values (Dirichlet), gravity disturbance (Neumann), amd gravity anomaly (Robin).</p>
+
+<script type="math/tex; mode=display">\begin{equation}\tag{1.1}\label{regularity}
+\lim_{r \to \infty} \Phi (r) = 0
+\end{equation}</script>
 
 <h2 id="solving-laplaces-equation">Solving Laplace’s equation</h2>
 
@@ -199,7 +242,7 @@ The answer for this question is even trickier! We need to solve Laplace’s equa
 <p>Let’s consider the case of planar surface where x and y are the horizontal coordinates, z is the vertical coordinates. In this case we want to solve $f(x, y, z) = 0$ where z &gt; 0.
 A very important step in the solution is the separation of variables. For that let’s rewrite the previous equation as follows</p>
 
-<script type="math/tex; mode=display">\begin{equation}
+<script type="math/tex; mode=display">\begin{equation}\label{laplace}\tag{laplace}
 \nabla (x, y, z) = \nabla f(x) g(y) h(z) = 0
 \end{equation}</script>
 
@@ -215,7 +258,7 @@ A very important step in the solution is the separation of variables. For that l
 
 <script type="math/tex; mode=display">f''gh + fg''h + fgh'' = 0</script>
 
-<p>Dividing the equation by <code class="highlighter-rouge">$1 / fgh$</code></p>
+<p>Dividing the equation by <code class="highlighter-rouge">1 / fgh</code></p>
 
 <script type="math/tex; mode=display">\frac{f''}{f} + \frac{g''}{g} + \frac{h''}{h}</script>
 
@@ -237,22 +280,83 @@ A very important step in the solution is the separation of variables. For that l
 
 <script type="math/tex; mode=display">h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}</script>
 
-<p>The general solution $\omega(x, y, z)$ will be the product of $f, g, and h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.</p>
-
-<script type="math/tex; mode=display">\omega(x, y, z) = \sum_{n=0}^{\inf}\sum_{m=0}^{\inf} (
-    a_{nm} cos(nx) cos(my) + b_{nm} cos(nx) sin(my) + 
-    c_{nm} sin(nx) cos(my) + d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}} +
-    (e_{nm} cos(nx) cos(my) + f_{nm} cos(nx) sin(my) +
-    g_{nm} sin(nx) cos(my) + h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}}
-)</script>
-
-<p>The solution of the Laplace’s equation is not a solution of the <code class="highlighter-rouge">BVP</code>. It only gives us the behaviour of the potential $\omega$ in terms of base functions.
+<p>The general solution $\Phi(x, y, z)$ will be the product of $f, g$, and $h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.
+<script type="math/tex">\begin{equation}\label{eqn_2}
+\Phi(x, y, z) = \sum_{n=0}^{\infty}\sum_{m=0}^{\infty} \left(
+    a_{nm} cos(nx) cos(my) + b_{nm} cos(nx) sin(my)\\+
+    c_{nm} sin(nx) cos(my) + \\d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}}+
+    (e_{nm} cos(nx) cos(my) \\+ f_{nm} cos(nx) sin(my)+
+    g_{nm} sin(nx) cos(my) \\+ h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}} \right)
+\end{equation}\tag{2}</script>
+The solution of the Laplace’s equation is not a solution of the <code class="highlighter-rouge">BVP</code>. It only gives us the behaviour of the potential $\Phi$ in terms of base functions.
 For the horizontal domain the base functions are sines and cosines. Thus the potential is a Fourier series in the horizontal domain. The $n$ and $m$ are the wave numbers; the higher they are, the shorter the wavelengths.
-The vertical base functions are called <em>upward continutation</em>, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward contiutation either works as low-pass filter (minus sign), or as a high-pass filter.</p>
+The vertical base functions are called <em>upward continutation</em>, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward continutation either works as low-pass filter (minus sign), or as a high-pass filter.</p>
+
+<h3 id="solution-of-dirichlet-and-neumann-bvps-in-x-y-z">Solution of Dirichlet and Neumann BVPs in $x y z$</h3>
+<p><strong>Dirichlet</strong> Given:</p>
+
+<ul>
+  <li>the general solution in $\eqref{eqn_2}$</li>
+  <li>the regularity condition</li>
+  <li>the potential on the boundary <code class="highlighter-rouge">z = 0</code>: $\Phi (x, y, z)$
+solve for $\Phi$. The regularity condition demands already that we discard all contributions with the amplifying upward continuation. So half of the previous equation $\eqref{eqn_2}$ is used.
+Next, we suppose that the boundary function is developed into a 2D Fourier series:</li>
+</ul>
+
+<script type="math/tex; mode=display">\begin{equation}\tag{5}\label{fourier}
+\Phi(x, y, z) = \sum_{n=0}^\infty \sum_{m=0}^{\infty} (P_{nm} cos(nx) cos(my) + q_{nm} cos(nx) sin(my) + \\r_{nm} sin(nx) cos(my) + s_{nm} sin(nx) sin(my) )
+\end{equation}</script>
+
+<p>The full solution of the BVP is now obtained by comparsion of these known spectral coefficients with the unknown coefficients from the general solution.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+a_{nm} = p_{nm}, b_{nm} = q_{nm},c_{nm} = r_{nm}, d_{nm} = s_{nm}\\
+e_{nm} = f_{nm} ٍ= g_{nm} &= h_{nm} = 0
+\end{align} %]]></script>
+
+<h2 id="spherical-harmonics">Spherical Harmonics</h2>
+<p>Fourier’s series can’t be applied on the sphere, so the solution of the Laplace equation will provide a new set of base functions. We’ll assume a spherical Earth and we will use spherical coordinates $r, \theta, \lambda$
+So generally the algorithm for solving the BVP is as follows:</p>
+
+<ul>
+  <li>write down Laplace’s equation in spherical coordiantes.</li>
+  <li>separation of variables [very important step] <sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></li>
+  <li>Solution of the 3 seperate ODEs</li>
+  <li>combining all possible into a series development</li>
+  <li>apply the regularity condition and discard conflicting solutions</li>
+  <li>develop boundary functions (Dirichlet and Neumann) into series</li>
+  <li>compare coefficients</li>
+  <li>write down the full solution</li>
+</ul>
+
+<p>Recall that Laplace equation was as follows $\eqref{laplace}$</p>
+
+<p>The spherical form is now as follows</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\nabla\Phi = \frac{\partial^2 \Phi}{\partial r^2} + \frac{2}{r} \frac{\partial \Phi}{\partial r}
++\\ \frac{1}{r^2} \frac{\partial^2 \Phi}{\partial \theta^2} + \frac{cot(\theta)}{r^2} \frac{\partial \theta}{\partial \theta} +\\
+\frac{1}{r^2sin^2(\theta)} \frac{\partial^2 \Phi}{\partial \lambda^2} = 0
+\end{equation}</script>
 
 <h3 id="where-i-can-find-them-in-real-life">Where I can find them in real life?</h3>
 
 <h3 id="are-they-that-important">Are they that important?</h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Wikipedia <a href="en.wikipedia.org/wiki/bounday_value_problem">link</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Physical Geodesy Hoffmann, <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>There is another way to solve it. See Physical geodesy Hoffmann. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 </article>
 
@@ -266,7 +370,7 @@ The vertical base functions are called <em>upward continutation</em>, since they
     
 
     
-      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Spherical harmonics&url=http://eebax.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Spherical harmonics Understanding the weird part&url=http://eebax.com/project/2016/02/20/spherical-harmonics/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
     
 
     
@@ -280,7 +384,7 @@ The vertical base functions are called <em>upward continutation</em>, since they
     
 
     
-      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://eebax.com/project/2016/02/20/spherical-harmonics/&title=Spherical harmonics" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://eebax.com/project/2016/02/20/spherical-harmonics/&title=Spherical harmonics Understanding the weird part" rel="nofollow" target="_blank" title="Share on Reddit"></a>
     
 
     
@@ -293,6 +397,20 @@ The vertical base functions are called <em>upward continutation</em>, since they
 
 
 
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'adonese';
+    var disqus_identifier = '/project/2016/02/20/spherical-harmonics';
+    var disqus_title      = 'Spherical harmonics Understanding the weird part';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
 

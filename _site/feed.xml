@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>adonese</title>
+    <title>adonese&#39;s blog</title>
     <description>A blog that I use to write about stuffs that I like..</description>
     <link>http://eebax.com/</link>
     <atom:link href="http://eebax.com/feed.xml" rel="self" type="application/rss+xml" />
@@ -26,7 +26,7 @@
       </item>
     
       <item>
-        <title>Spherical harmonics</title>
+        <title>Spherical harmonics Understanding the weird part</title>
         <description>&lt;h2 id=&quot;a-disclaimer&quot;&gt;A DISCLAIMER&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;This post isn’t intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever!&lt;/li&gt;
@@ -67,10 +67,53 @@ Being too intuitive makes it very hard, I mean can you describe for someone why 
 
 &lt;p&gt;From a math perspective, a function is a called a harmonic if it satisfies Laplace’s equation.&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega = 0&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Phi = 0&lt;/script&gt;
 
 &lt;p&gt;A very good question arise, why do we care about solving Laplace’s equation?
 The answer for this question is even trickier! We need to solve Laplace’s equation as a step for solving boundary values problems &lt;code class=&quot;highlighter-rouge&quot;&gt;BVPs&lt;/code&gt;. Before you ask, we need to solve BVPs because, in our case, earth is a good example of a boundary problem (It’s bounded by latitudes and longitudes).&lt;/p&gt;
+
+&lt;h2 id=&quot;boundary-value-problems&quot;&gt;Boundary value problems&lt;/h2&gt;
+
+&lt;h3 id=&quot;what-is-the-boundary-value-problem&quot;&gt;What is the Boundary value problem?&lt;/h3&gt;
+
+&lt;p&gt;If I didn’t mention this term before that officially makes me a horrible writer! Our problem is to determinet the gravitational force in outer space without knowing the denisty structure of the earth. See &lt;a href=&quot;en.wikipedia.com/wiki/boundary_value_problem&quot;&gt;this&lt;/a&gt; wikipage for nice explanation. &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; Boundary value problem is differntial equation with a set of other constraints called the &lt;em&gt;boundary conditions&lt;/em&gt;. The important part is that the solution of the boundary value problem is also a solution to the differential equation.
+Now we have a better idea of what our problem is, we can’t measure the density of the earth. Molodonskey was the first that to base physical geodesy on boundary value problems on the earth’s surface rather than on the geoid &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Hoffmann et, al. 
+More generally a &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt; tries to determine a function in a spatial domain from:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It’s value on the boundary,&lt;/li&gt;
+  &lt;li&gt;it’s spatial behaviour, described by a partial differential equation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Three BVPs are defined to determine $\Phi$ in the outer space from $\nabla \Phi = 0$ with one of the three following boundary conditions.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$1^{st}$ BVP&lt;/td&gt;
+      &lt;td&gt;$2^{nd}$ BVP&lt;/td&gt;
+      &lt;td&gt;$3^{rd}$ BVP&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Dirichlet&lt;/td&gt;
+      &lt;td&gt;Neumann&lt;/td&gt;
+      &lt;td&gt;Robin&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$\Phi$&lt;/td&gt;
+      &lt;td&gt;$\frac{\partial \Phi}{\partial n}$&lt;/td&gt;
+      &lt;td&gt;$\Phi + c \frac{\partial \Phi}{\partial n}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;As a further condition we must require a regular behaviour for $r \to \infty$.&lt;/p&gt;
+
+&lt;p&gt;Geodetic examples of the boundary functions are geopotential values (Dirichlet), gravity disturbance (Neumann), amd gravity anomaly (Robin).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\tag{1.1}\label{regularity}
+\lim_{r \to \infty} \Phi (r) = 0
+\end{equation}&lt;/script&gt;
 
 &lt;h2 id=&quot;solving-laplaces-equation&quot;&gt;Solving Laplace’s equation&lt;/h2&gt;
 
@@ -79,7 +122,7 @@ The answer for this question is even trickier! We need to solve Laplace’s equa
 &lt;p&gt;Let’s consider the case of planar surface where x and y are the horizontal coordinates, z is the vertical coordinates. In this case we want to solve $f(x, y, z) = 0$ where z &amp;gt; 0.
 A very important step in the solution is the separation of variables. For that let’s rewrite the previous equation as follows&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{laplace}\tag{laplace}
 \nabla (x, y, z) = \nabla f(x) g(y) h(z) = 0
 \end{equation}&lt;/script&gt;
 
@@ -95,7 +138,7 @@ A very important step in the solution is the separation of variables. For that l
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;f&#39;&#39;gh + fg&#39;&#39;h + fgh&#39;&#39; = 0&lt;/script&gt;
 
-&lt;p&gt;Dividing the equation by &lt;code class=&quot;highlighter-rouge&quot;&gt;$1 / fgh$&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Dividing the equation by &lt;code class=&quot;highlighter-rouge&quot;&gt;1 / fgh&lt;/code&gt;&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{f&#39;&#39;}{f} + \frac{g&#39;&#39;}{g} + \frac{h&#39;&#39;}{h}&lt;/script&gt;
 
@@ -117,22 +160,83 @@ A very important step in the solution is the separation of variables. For that l
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}&lt;/script&gt;
 
-&lt;p&gt;The general solution $\omega(x, y, z)$ will be the product of $f, g, and h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\omega(x, y, z) = \sum_{n=0}^{\inf}\sum_{m=0}^{\inf} (
-    a_{nm} cos(nx) cos(my) + b_{nm} cos(nx) sin(my) + 
-    c_{nm} sin(nx) cos(my) + d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}} +
-    (e_{nm} cos(nx) cos(my) + f_{nm} cos(nx) sin(my) +
-    g_{nm} sin(nx) cos(my) + h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}}
-)&lt;/script&gt;
-
-&lt;p&gt;The solution of the Laplace’s equation is not a solution of the &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt;. It only gives us the behaviour of the potential $\omega$ in terms of base functions.
+&lt;p&gt;The general solution $\Phi(x, y, z)$ will be the product of $f, g$, and $h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}\label{eqn_2}
+\Phi(x, y, z) = \sum_{n=0}^{\infty}\sum_{m=0}^{\infty} \left(
+    a_{nm} cos(nx) cos(my) + b_{nm} cos(nx) sin(my)\\+
+    c_{nm} sin(nx) cos(my) + \\d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}}+
+    (e_{nm} cos(nx) cos(my) \\+ f_{nm} cos(nx) sin(my)+
+    g_{nm} sin(nx) cos(my) \\+ h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}} \right)
+\end{equation}\tag{2}&lt;/script&gt;
+The solution of the Laplace’s equation is not a solution of the &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt;. It only gives us the behaviour of the potential $\Phi$ in terms of base functions.
 For the horizontal domain the base functions are sines and cosines. Thus the potential is a Fourier series in the horizontal domain. The $n$ and $m$ are the wave numbers; the higher they are, the shorter the wavelengths.
-The vertical base functions are called &lt;em&gt;upward continutation&lt;/em&gt;, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward contiutation either works as low-pass filter (minus sign), or as a high-pass filter.&lt;/p&gt;
+The vertical base functions are called &lt;em&gt;upward continutation&lt;/em&gt;, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward continutation either works as low-pass filter (minus sign), or as a high-pass filter.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution-of-dirichlet-and-neumann-bvps-in-x-y-z&quot;&gt;Solution of Dirichlet and Neumann BVPs in $x y z$&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Dirichlet&lt;/strong&gt; Given:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the general solution in $\eqref{eqn_2}$&lt;/li&gt;
+  &lt;li&gt;the regularity condition&lt;/li&gt;
+  &lt;li&gt;the potential on the boundary &lt;code class=&quot;highlighter-rouge&quot;&gt;z = 0&lt;/code&gt;: $\Phi (x, y, z)$
+solve for $\Phi$. The regularity condition demands already that we discard all contributions with the amplifying upward continuation. So half of the previous equation $\eqref{eqn_2}$ is used.
+Next, we suppose that the boundary function is developed into a 2D Fourier series:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\tag{5}\label{fourier}
+\Phi(x, y, z) = \sum_{n=0}^\infty \sum_{m=0}^{\infty} (P_{nm} cos(nx) cos(my) + q_{nm} cos(nx) sin(my) + \\r_{nm} sin(nx) cos(my) + s_{nm} sin(nx) sin(my) )
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;The full solution of the BVP is now obtained by comparsion of these known spectral coefficients with the unknown coefficients from the general solution.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align}
+a_{nm} = p_{nm}, b_{nm} = q_{nm},c_{nm} = r_{nm}, d_{nm} = s_{nm}\\
+e_{nm} = f_{nm} ٍ= g_{nm} &amp;= h_{nm} = 0
+\end{align} %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;spherical-harmonics&quot;&gt;Spherical Harmonics&lt;/h2&gt;
+&lt;p&gt;Fourier’s series can’t be applied on the sphere, so the solution of the Laplace equation will provide a new set of base functions. We’ll assume a spherical Earth and we will use spherical coordinates $r, \theta, \lambda$
+So generally the algorithm for solving the BVP is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;write down Laplace’s equation in spherical coordiantes.&lt;/li&gt;
+  &lt;li&gt;separation of variables [very important step] &lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Solution of the 3 seperate ODEs&lt;/li&gt;
+  &lt;li&gt;combining all possible into a series development&lt;/li&gt;
+  &lt;li&gt;apply the regularity condition and discard conflicting solutions&lt;/li&gt;
+  &lt;li&gt;develop boundary functions (Dirichlet and Neumann) into series&lt;/li&gt;
+  &lt;li&gt;compare coefficients&lt;/li&gt;
+  &lt;li&gt;write down the full solution&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recall that Laplace equation was as follows $\eqref{laplace}$&lt;/p&gt;
+
+&lt;p&gt;The spherical form is now as follows&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\nabla\Phi = \frac{\partial^2 \Phi}{\partial r^2} + \frac{2}{r} \frac{\partial \Phi}{\partial r}
++\\ \frac{1}{r^2} \frac{\partial^2 \Phi}{\partial \theta^2} + \frac{cot(\theta)}{r^2} \frac{\partial \theta}{\partial \theta} +\\
+\frac{1}{r^2sin^2(\theta)} \frac{\partial^2 \Phi}{\partial \lambda^2} = 0
+\end{equation}&lt;/script&gt;
 
 &lt;h3 id=&quot;where-i-can-find-them-in-real-life&quot;&gt;Where I can find them in real life?&lt;/h3&gt;
 
 &lt;h3 id=&quot;are-they-that-important&quot;&gt;Are they that important?&lt;/h3&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Wikipedia &lt;a href=&quot;en.wikipedia.org/wiki/bounday_value_problem&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;Physical Geodesy Hoffmann, &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;There is another way to solve it. See Physical geodesy Hoffmann. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Sat, 20 Feb 2016 15:31:19 +0300</pubDate>
         <link>http://eebax.com/project/2016/02/20/spherical-harmonics/</link>

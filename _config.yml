@@ -1,5 +1,5 @@
 # Site settings
-title:       adonese
+title:       adonese's blog
 email:       mmbusif@gmail.com
 author:      Mohamed Yousif
 description: "A blog that I use to write about stuffs that I like.."
@@ -28,7 +28,7 @@ enable_anchorjs: true
 
 # Disqus post comments
 # (leave blank to disable Disqus)
-disqus_shortname:
+disqus_shortname: adonese
 
 # Facebook Comments plugin
 # (leave blank to disable Facebook Comments, otherwise set it to true)
