@@ -67,7 +67,7 @@ As a further condition we must require a regular behaviour for $r \to \infty$.
 Geodetic examples of the boundary functions are geopotential values (Dirichlet), gravity disturbance (Neumann), amd gravity anomaly (Robin).
 
 $$
-\begin{equation}\tag{1.1}\label{regularity}
+\begin{equation}\label{eqn:regularity}
 \lim_{r \to \infty} \Phi (r) = 0
 \end{equation}
 $$
@@ -80,7 +80,7 @@ Let's consider the case of planar surface where x and y are the horizontal coord
 A very important step in the solution is the separation of variables. For that let's rewrite the previous equation as follows
 
 $$
-\begin{equation}\label{laplace}\tag{laplace}
+\begin{equation}\label{laplace}
 \nabla (x, y, z) = \nabla f(x) g(y) h(z) = 0
 \end{equation}
 $$
@@ -97,7 +97,11 @@ The first summand on the equation only depends on x, the g-part depends on y, th
 
 We can modify the previous equation as follows
 
-$$f''gh + fg''h + fgh'' = 0$$
+$$
+\begin{equation}\label{eqn:rect}
+f''gh + fg''h + fgh'' = 0
+\end{equation}
+$$
 
 Dividing the equation by ``1 / fgh``
 
@@ -115,11 +119,15 @@ $$\frac{h''}{h}, n^2 + m^2, h'' - (n^2 + m^2)h = 0$$
 
 The solution of these ``ODEs`` is elementary since they're $2^{nd}$ order ``ODE``.
 
-$$f_1(x) = cos(nx),  f_2(x) = sin(nx)$$
+$$
+\begin{equation}\label{eqn:ode}
+f_1(x) = cos(nx),  f_2(x) = sin(nx)
 
-$$g_1(y) = cos(my), g_2(y) = sin(my)$$
+g_1(y) = cos(my), g_2(y) = sin(my)
 
-$$h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}$$
+h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}
+\end{equation}
+$$
 
 The general solution $\Phi(x, y, z)$ will be the product of $f, g$, and $h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.
 $$
@@ -129,23 +137,24 @@ $$
     c_{nm} sin(nx) cos(my) + \\d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}}+
     (e_{nm} cos(nx) cos(my) \\+ f_{nm} cos(nx) sin(my)+
     g_{nm} sin(nx) cos(my) \\+ h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}} \right)
-\end{equation}\tag{2}
+\end{equation}
 $$
 The solution of the Laplace's equation is not a solution of the ``BVP``. It only gives us the behaviour of the potential $\Phi$ in terms of base functions.
 For the horizontal domain the base functions are sines and cosines. Thus the potential is a Fourier series in the horizontal domain. The $n$ and $m$ are the wave numbers; the higher they are, the shorter the wavelengths.
 The vertical base functions are called _upward continutation_, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward continutation either works as low-pass filter (minus sign), or as a high-pass filter.
 
 ### Solution of Dirichlet and Neumann BVPs in $x y z$
+
 **Dirichlet** Given:
 
 - the general solution in $\eqref{eqn_2}$
-- the regularity condition
+- the regularity condition $\eqref{eqn:regularity}$
 - the potential on the boundary ``z = 0``: $\Phi (x, y, z)$
 solve for $\Phi$. The regularity condition demands already that we discard all contributions with the amplifying upward continuation. So half of the previous equation $\eqref{eqn_2}$ is used.
 Next, we suppose that the boundary function is developed into a 2D Fourier series:
 
 $$
-\begin{equation}\tag{5}\label{fourier}
+\begin{equation}\label{fourier}
 \Phi(x, y, z) = \sum_{n=0}^\infty \sum_{m=0}^{\infty} (P_{nm} cos(nx) cos(my) + q_{nm} cos(nx) sin(my) + \\r_{nm} sin(nx) cos(my) + s_{nm} sin(nx) sin(my) )
 \end{equation}
 $$
@@ -162,6 +171,7 @@ $$
 
 
 ## Spherical Harmonics
+
 Fourier's series can't be applied on the sphere, so the solution of the Laplace equation will provide a new set of base functions. We'll assume a spherical Earth and we will use spherical coordinates $r, \theta, \lambda$
 So generally the algorithm for solving the BVP is as follows:
 
@@ -186,11 +196,192 @@ $$
 \end{equation}
 $$
 
+Now, let's multiply it with $r^2$ we get the simpler form:
+$$
+\begin{equation}
+\boxed{
+    r^2 \frac{\partial^2 \Phi}{\partial r^2} + 2r \frac{\partial \Phi}{\partial r} +
+    \frac{\partial^2 \Phi}{\partial \theta^2} + \cot \theta \frac{\partial \Phi}{\partial \theta} +
+    \frac{1}{\sin ^2} \frac{\partial^2 \Phi}{\partial \lambda^2}
+}
+\end{equation}
+$$
+
+$$
+\begin{equation}
+r^2 \frac{\partial^2 \Phi}{\partial r^2} + 2r \frac{\partial \Phi}{\partial r} + \nabla_s \Phi = 0
+\end{equation}
+$$
+
+Having done that, let's use primes symbols, just to make the equation easier to read.
+
+$$
+\begin{equation}
+r^2 f'' Y + 2rf'Y + f\nabla_s Y = 0
+\end{equation}
+$$
+Again, dividing by $\frac{1}{fY}$, gives us:
+
+$$
+\begin{equation}\label{eqn:sphere}
+r^2 \frac{f''}{f} + 2r \frac{f'}{f} + \frac{\nabla_s Y}{Y} = 0
+\end{equation}
+$$
+
+You can guess that the solution of Laplace's equation in spherical is quite similar to the rectangular one. From the preceding development of ``Lapalce's equation``, which you can find it $\eqref{eqn:rect}$.
+From the preceding $\eqref{eqn:sphere}$, the first part only depends on r, where the second part depends on what is so called the angular part.
+In the previous equation, we used two new terms, which is really bad practice. However, the idea behind these two terms is to seperate the equation into two parts. By setting $\Phi\left(r, \theta, \lambda \right) = f\left(r\right) Y \left(\theta, \lambda \right)$, and then the angular components are treated by setting $Y\left(\theta, \lambda \right) = g\left(\theta\right) h\left(\lambda\right)$, then apply the Laplace operator to $\Phi = fY$, which in turns yields $\eqref{eqn:sphere}$.
+
+And again, to solve this differential equation, we'll use the same technique that we used in the rectangular case. The first part, as noted before only depends on r, where the second part depends on the angular coordinates. In order to yield zero for all $r, \theta, \lambda$ (i.e., to satisfy the harmonic condition) we conclude that both parts are constant. It turns out that $l(l+1)$ is a good solver for the ```ODE``.
+
+$$
+\begin{equation}
+r^2f'' + 2rf' - l(l+1)f = 0
+\end{equation}
+$$
+
+Which can be solved by trying the function $r^n$ [^4]. Which yields $f_1(r) = r^{-(l+1)}$ and $f_2(r) = r^l$
+I could have excluded this part and refer to any Geodesy literature, but for the sake of the completeness, and perhabs making you think that the guy behind this post knows what he says, I'll include it.
+Let's get back to the surface Laplace operator and seperate $Y$ into $g(\theta)h(\lambda)$
+
+$$
+\begin{align*}
+\nabla_sY + l(l+1)Y &= 0 && \text{surface Laplace operator}\\
+\frac{\partial^2Y}{\partial \theta^2} + cot(\theta) \frac{\partial Y}{\partial \theta} + \frac{1}{sin^2(\theta)} \frac{\partial^2Y}{\partial \lambda^2} + l(l+1)Y &= 0 && \text{We replace } \nabla_s \text{with the corresponding derivatives.}\\
+g''h + cot(\theta) g' h + \frac{1}{sin^2(\theta)} gh'' + l(l+1)gh &= 0 && \text{Using the primes, with the function as } g\\
+\underbrace{sin^2(\theta) \frac{g''}{g} + sin^2 (\theta) cot(\theta)\frac{g'}{g} + l(l+1) sin^2(\theta)}_\text{m^2} + \underbrace{\frac{h''}{h}}_\text{-m^2} m^2 &= 0
+\end{align*}
+$$
+
+<br>
+
+Following the same reasoning as we did in rectangular case, the left part only depends on $\theta$, while the right part depends on 
+$\lambda$. The ``ODE`` of the $\lambda$ part leads to the known solution:
+
+$$
+\begin{align}
+h'' = m^2h = 0 \colon h_1(\lambda) = cos(m\lambda) && h_2(\lambda) = sin(m\lambda)
+\end{align}
+$$
+
+You can guess that the ``ODE`` for the $\theta$ part is somewhat difficult. [^5] It's called the ``characterstic differential equation for the associated Legendre function`` (pretty long name!).
+
+$$
+\begin{align}
+g'' &= cot(\theta)g' + \left(l(l+1) - \frac{m^2}{sin^(\theta)}\right)g = 0 &&\text{dividing by } sin^2\theta\\ 
+    g_1(\theta) &= P_{lm}(cos\theta) \qquad \colon \qquad g_2(\theta) = Q_{lm}(cos(\theta)
+\end{align}
+$$
+
+The function $P_{lm}(cos\theta)$ is called ``associated Legendre`` of the $1^{st}$ kind, the function $Q_{lm}(cos\theta)$ is the $2^{nd}$ kind.
+
+$$
+ \begin{Bmatrix}
+r^{-(l+1)}\\
+r^l\\
+ \end{Bmatrix}
+ p_{lm}(\cos(\theta)) = 
+ \begin{Bmatrix}
+ \cos(m\lambda)\\
+ \sin(m\lambda)
+ \end{Bmatrix}
+$$ 
+
+These are called _solid spherical harmonics_. Harmonics because they solve Laplace's equation; spherical because they're in spherical coordinates; and solid because they're 3D functions, spanning the whole outer space. You can guess that we could get the surface spherical harmonics if we leave out the radial part.
+
+$$
+Y_{lm}(\theta, \lambda) = 
+P_{lm}(cos\theta)
+\begin{Bmatrix)
+cos m\lambda\\
+sin m\lambda
+\end{Bmatrix}
+$$
+
+To get the full solution, we just have to combine all possible solutions, which lead us to $\eqref{eqn:spherical_harmonics}$
+
+$$
+\begin{equation}\label{spherical_harmonics}
+\Phi(r, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(a_{lm}cos m \lambda + b_{lm}sin m\lambda)r^{-(l+1)} + P_{lm}(cos \theta)(c_{lm}cos m\lambda + d_{lm}sin m\lambda) r^l
+\end{equation}
+$$
+
+where:
+    * l is the degree
+    * m is the order
+    * $P_{lm}$ is associated Legender function of the $1^{st}$ kind also known as ALFs
+
+<!--Attach the comparsion here, page 78 LNedrm -->
+
+## Solution of Dirichlet ``BVP`` in $r, \theta, \lambda$
+
+<!-- An Introduction to the reason why we solved Laplace's equation -->
+Having solved the Laplace equation, it's very easy to solve the $1^{st} & 2^{nd}$ ``BVP``. In both cases the regularity condition $\eqref{eqn:regularity}$ demands that the term with the amplifying radial continuation $r^l$ disappears. Which result in $c_{lm} = d_{lm} = 0$ for all $l, m$ combinations (i.e., the second term of $\eqref{eqn:spherical_harmonics}$ becomes 0). 
+
+$$
+\begin{equation}\label{eqn:spherical_vanished}
+\Phi(r, \theta, \lambda) = 
+\sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(a_{lm}cos m\lambda + b_{lm}sin m\lambda)r^{-(l+1)}
+\end{equation}
+$$
+
+The next step is in solving this ``BVP`` in Dirichlet, is to recognize that it's boundary is in $r = R$, which yileds
+
+$$
+\begin{equation}\label{eqn:spherical_R}
+\Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos\theta)(a_{lm}cos m\lambda + b_{lm}sin m\lambda) R^l
+\end{equation}
+$$ 
+
+Now we develop our actual boundary function into surface spherical harmonics:
+
+$$
+\begin{equation}
+\Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(u_{lm}cos m\lambda + v_{lm}sin m\lambda)
+\end{equation}
+$$ 
+
+in which $v_{lm}$ and $u_{lm}$ are known coefficients now. The solution comes from a simple comparsion between these two series:
+
+$$
+u_{lm} = a_{lm} R^{-(l+1)} \qquad v_{lm} = b_{lm} R^{-(l+1)}
+$$
+
+Solving for $a$ and $b$ and inserting these coefficients back to $\eqref{eqn:spherical_harmonics}$ yields:
+
+$$
+\begin{equation}\label{eqn:spherical_last}
+\Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos\theta)(u_{lm}cos m\lambda + v_{lm}sin m\lambda)\left(\frac{R}{r}\right)^{l+1}
+\end{equation}
+$$
+
+This equation says if we know the function $\Phi$ on the boundary, we immediately know it everywhere in outer space [^1]. 
+
+Well, we've done here, at least in developing the spherical harmonics equation. But that doesn't seem quite familiar to those equations in geodesy textbooks. First, there is $n$ instead of $l$, and it's a potential, hence $V$ instead of $\Phi$, the last thing, what about $\frac{GM}{R}$ term? Where it's gone? Not to forget that there was $C_{nm}$ and $S_{nm}$ as spherical harmonics coefficients. Let's rewrite the previous equation $\eqref{eqn:spherical_last}$ to be more ``physical geodesy friendly``.
+
+$$
+\begin{equation}\label{eqn:spherical_harmonics_end}
+\V(r, \theta, \lambda) = \frac{GM}{R}\sum_{n=0}^{\infty}\left(\frac{R}{r}\right)^{n + 1}\sum_{m=0}^{n} P_{nm}(cos\theta)(C_{nm}cos m \lambda + S_{nm}sin m \lambda)
+\end{equation}
+$$
+
+So far so good, we've solved Laplace's equation, and then we solved the ``BVP``, we've also fixed some notations to be consistent with what you'll see in geodesy literatures[^6]. That might be trivial thing to do (not for me at least, I always get confused when I see an equation in different notations.) 
+
+Another interesting part is the types of the spherical harmonics, for now you should know that $n$ and $m$ are integers, and perhaps $m$ is in range of $[0 \to 1]$. There are three scenarios for our $n$ and $m$.
+- $m = 0$: __zonal spherical harmonics__, because when $m = 0$ the sine-part vanishes. The name ``zonal`` comes from the fact that with $P_{n0}$ we'll get ${n+1}$ latitude bands called zones.
+- $n = m$: __sectorial spherical harmonics__, the earth is divided into longitude bands called ``sectors``.
+- 
+Proceed to the next post to see how we can use this knowledge in geoid determination.
+
 ### Where I can find them in real life?
+
 
 ### Are they that important?
 
 
 [^1]: Wikipedia [link](en.wikipedia.org/wiki/bounday_value_problem)
 [^2]: Physical Geodesy Hoffmann, 
-[^3]: There is another way to solve it. See Physical geodesy Hoffmann.
+[^3]: There is another way to solve it. See Physical Geodesy Hoffmann et, al.
+[^4]: Lne
+[^5]: The preceding reference
+[^6]: In Physical Geodesy, Hoffman et, al. the degree and order are denoted by n & m.

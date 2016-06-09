@@ -111,7 +111,7 @@ More generally a &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt
 
 &lt;p&gt;Geodetic examples of the boundary functions are geopotential values (Dirichlet), gravity disturbance (Neumann), amd gravity anomaly (Robin).&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\tag{1.1}\label{regularity}
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{regularity}
 \lim_{r \to \infty} \Phi (r) = 0
 \end{equation}&lt;/script&gt;
 
@@ -122,7 +122,7 @@ More generally a &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt
 &lt;p&gt;Let’s consider the case of planar surface where x and y are the horizontal coordinates, z is the vertical coordinates. In this case we want to solve $f(x, y, z) = 0$ where z &amp;gt; 0.
 A very important step in the solution is the separation of variables. For that let’s rewrite the previous equation as follows&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{laplace}\tag{laplace}
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{laplace}
 \nabla (x, y, z) = \nabla f(x) g(y) h(z) = 0
 \end{equation}&lt;/script&gt;
 
@@ -136,7 +136,9 @@ A very important step in the solution is the separation of variables. For that l
 
 &lt;p&gt;We can modify the previous equation as follows&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;f&#39;&#39;gh + fg&#39;&#39;h + fgh&#39;&#39; = 0&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{eqn:rect}
+f&#39;&#39;gh + fg&#39;&#39;h + fgh&#39;&#39; = 0
+\end{equation}&lt;/script&gt;
 
 &lt;p&gt;Dividing the equation by &lt;code class=&quot;highlighter-rouge&quot;&gt;1 / fgh&lt;/code&gt;&lt;/p&gt;
 
@@ -154,11 +156,13 @@ A very important step in the solution is the separation of variables. For that l
 
 &lt;p&gt;The solution of these &lt;code class=&quot;highlighter-rouge&quot;&gt;ODEs&lt;/code&gt; is elementary since they’re $2^{nd}$ order &lt;code class=&quot;highlighter-rouge&quot;&gt;ODE&lt;/code&gt;.&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_1(x) = cos(nx),  f_2(x) = sin(nx)&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{eqn:ode}
+f_1(x) = cos(nx),  f_2(x) = sin(nx)
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;g_1(y) = cos(my), g_2(y) = sin(my)&lt;/script&gt;
+g_1(y) = cos(my), g_2(y) = sin(my)
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}&lt;/script&gt;
+h_1(z) = e^{\sqrt{n^2 + m^2z}}, h_2(z) = e^{\sqrt{n^2 + m^2z}}
+\end{equation}&lt;/script&gt;
 
 &lt;p&gt;The general solution $\Phi(x, y, z)$ will be the product of $f, g$, and $h$. However for each n, and m we get a new solution. So, we have to count for all possible solutions for all combinations of m, n.
 &lt;script type=&quot;math/tex&quot;&gt;\begin{equation}\label{eqn_2}
@@ -167,7 +171,7 @@ A very important step in the solution is the separation of variables. For that l
     c_{nm} sin(nx) cos(my) + \\d_{nm} sin(nx) sin(my) ) e^{-\sqrt{n^2 + m^2z}}+
     (e_{nm} cos(nx) cos(my) \\+ f_{nm} cos(nx) sin(my)+
     g_{nm} sin(nx) cos(my) \\+ h_{nm} sin(nx) sin(my))e^{\sqrt{n^2 + m^2z}} \right)
-\end{equation}\tag{2}&lt;/script&gt;
+\end{equation}&lt;/script&gt;
 The solution of the Laplace’s equation is not a solution of the &lt;code class=&quot;highlighter-rouge&quot;&gt;BVP&lt;/code&gt;. It only gives us the behaviour of the potential $\Phi$ in terms of base functions.
 For the horizontal domain the base functions are sines and cosines. Thus the potential is a Fourier series in the horizontal domain. The $n$ and $m$ are the wave numbers; the higher they are, the shorter the wavelengths.
 The vertical base functions are called &lt;em&gt;upward continutation&lt;/em&gt;, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward continutation either works as low-pass filter (minus sign), or as a high-pass filter.&lt;/p&gt;
@@ -183,7 +187,7 @@ solve for $\Phi$. The regularity condition demands already that we discard all c
 Next, we suppose that the boundary function is developed into a 2D Fourier series:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\tag{5}\label{fourier}
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{fourier}
 \Phi(x, y, z) = \sum_{n=0}^\infty \sum_{m=0}^{\infty} (P_{nm} cos(nx) cos(my) + q_{nm} cos(nx) sin(my) + \\r_{nm} sin(nx) cos(my) + s_{nm} sin(nx) sin(my) )
 \end{equation}&lt;/script&gt;
 
@@ -220,6 +224,82 @@ So generally the algorithm for solving the BVP is as follows:&lt;/p&gt;
 \frac{1}{r^2sin^2(\theta)} \frac{\partial^2 \Phi}{\partial \lambda^2} = 0
 \end{equation}&lt;/script&gt;
 
+&lt;p&gt;Now, let’s multiply it with $r^2$ we get the simpler form:
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+\boxed{
+    r^2 \frac{\partial^2 \Phi}{\partial r^2} + 2r \frac{\partial \Phi}{\partial r} +
+    \frac{\partial^2 \Phi}{\partial \theta^2} + \cot \theta \frac{\partial \Phi}{\partial \theta} +
+    \frac{1}{\sin ^2} \frac{\partial^2 \Phi}{\partial \lambda^2}
+}
+\end{equation}&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+r^2 \frac{\partial^2 \Phi}{\partial r^2} + 2r \frac{\partial \Phi}{\partial r} + \nabla_s \Phi = 0
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;Having done that, let’s use primes symbols, just to make the equation easier to read.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+r^2 f&#39;&#39; Y + 2rf&#39;Y + f\nabla_s Y = 0
+\end{equation}&lt;/script&gt;
+Again, dividing by $\frac{1}{fY}$, gives us:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}\label{eqn:sphere}
+r^2 \frac{f&#39;&#39;}{f} + 2r \frac{f&#39;}{f} + \frac{\nabla_s Y}{Y} = 0
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;You can guess that the solution of Laplace’s equation in spherical is quite similar to the rectangular one. From the preceding development of &lt;code class=&quot;highlighter-rouge&quot;&gt;Lapalce&#39;s equation&lt;/code&gt;, which you can find it $\eqref{eqn:rect}$.
+From the preceding $\eqref{eqn:sphere}$, the first part only depends on r, where the second part depends on what is so called the angular part.
+In the previous equation, we used two new terms, which is really bad practice. However, the idea behind these two terms is to seperate the equation into two parts. By setting $\Phi\left(r, \theta, \lambda \right) = f\left(r\right) Y \left(\theta, \lambda \right)$, and then the angular components are treated by setting $Y\left(\theta, \lambda \right) = g\left(\theta\right) h\left(\lambda\right)$, then apply the Laplace operator to $\Phi = fY$, which in turns yields $\eqref{eqn:sphere}$.&lt;/p&gt;
+
+&lt;p&gt;And again, to solve this differential equation, we’ll use the same technique that we used in the rectangular case. The first part, as noted before only depends on r, where the second part depends on the angular coordinates. In order to yield zero for all $r, \theta, \lambda$ (i.e., to satisfy the harmonic condition) we conclude that both parts are constant. It turns out that $l(l+1)$ is a good solver for the ```ODE``.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+r^2f&#39;&#39; + 2rf&#39; - l(l+1)f = 0
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;Which can be solved by trying the function $r^n$ &lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;. Which yields $f_1(r) = r^{-(l+1)}$ and $f_2(r) = r^l$
+I could have excluded this part and refer to any Geodesy literature, but for the sake of the completeness, and perhabs making you think that the guy behind this post knows what he says, I’ll include it.
+Let’s get back to the surface Laplace operator and seperate $Y$ into $g(\theta)h(\lambda)$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\nabla_sY + l(l+1)Y &amp;= 0 &amp;&amp; \text{surface Laplace operator}\\
+\frac{\partial^2Y}{\partial \theta^2} + cot(\theta) \frac{\partial Y}{\partial \theta} + \frac{1}{sin^2(\theta)} \frac{\partial^2Y}{\partial \lambda^2} + l(l+1)Y &amp;= 0 &amp;&amp; \text{We replace } \nabla_s \text{with the corresponding derivatives.}\\
+g&#39;&#39;h + cot(\theta) g&#39; h + \frac{1}{sin^2(\theta)} gh&#39;&#39; + l(l+1)gh &amp;= 0 &amp;&amp; \text{Using the primes, with the function as } g\\
+\underbrace{sin^2(\theta) \frac{g&#39;&#39;}{g} + sin^2 (\theta) cot(\theta)\frac{g&#39;}{g} + l(l+1) sin^2(\theta)}_\text{m^2} + \underbrace{\frac{h&#39;&#39;}{h}}_\text{-m^2} m^2 &amp;= 0
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Following the same reasoning as we did in rectangular case, the left part only depends on $\theta$, while the right part depends on 
+$\lambda$. The &lt;code class=&quot;highlighter-rouge&quot;&gt;ODE&lt;/code&gt; of the $\lambda$ part leads to the known solution:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align}
+h&#39;&#39; = m^2h = 0 \colon h_1(\lambda) = cos(m\lambda) &amp;&amp; h_2(\lambda) = sin(m\lambda)
+\end{align} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;You can guess that the &lt;code class=&quot;highlighter-rouge&quot;&gt;ODE&lt;/code&gt; for the $\theta$ part is somewhat difficult. &lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; It’s called the &lt;code class=&quot;highlighter-rouge&quot;&gt;characterstic differential equation for the associated Legendre function&lt;/code&gt; (pretty long name!).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align}
+g&#39;&#39; &amp;= cot(\theta)g&#39; + \left(l(l+1) - \frac{m^2}{sin^(\theta)}\right)g = 0 &amp;&amp;\text{dividing by } sin^2\theta\\ 
+    g_1(\theta) &amp;= P_{lm}(cos\theta) \qquad \colon \qquad g_2(\theta) = Q_{lm}(cos(\theta)
+\end{align} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;The function $P_{lm}(cos\theta)$ is called &lt;code class=&quot;highlighter-rouge&quot;&gt;associated Legendre&lt;/code&gt; of the $1^{st}$ kind, the function $Q_{lm}(cos\theta)$ is the $2^{nd}$ kind.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{Bmatrix}
+r^{-(l+1)}\\
+r^l\\
+ \end{Bmatrix}
+ p_{lm}(\cos(\theta)) = 
+ \begin{Bmatrix}
+ \cos(m\lambda)\\
+ \sin(m\lambda)
+ \end{Bmatrix}&lt;/script&gt;
+
 &lt;h3 id=&quot;where-i-can-find-them-in-real-life&quot;&gt;Where I can find them in real life?&lt;/h3&gt;
 
 &lt;h3 id=&quot;are-they-that-important&quot;&gt;Are they that important?&lt;/h3&gt;
@@ -234,6 +314,12 @@ So generally the algorithm for solving the BVP is as follows:&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:3&quot;&gt;
       &lt;p&gt;There is another way to solve it. See Physical geodesy Hoffmann. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;Lne &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;The preceding reference &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
