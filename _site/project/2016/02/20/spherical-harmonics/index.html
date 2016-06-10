@@ -15,11 +15,16 @@
     <link rel="canonical" href="http://eebax.com/project/2016/02/20/spherical-harmonics/">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for adonese's blog" href="/feed.xml" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201605312316" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201606101536" type="text/css">
     <!--Nprgoress -->
     <!-- Fonts -->
     
+
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
+<!--
+    <link href='https://fonts.googleapis.com/css?family=Tinos:400,400italic' rel='stylesheet' type='text/css'>
+-->
     <link href='//fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     
     
@@ -135,6 +140,32 @@
       </nav>
       <div class="clearfix"></div>
       
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+    
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:mmbusif@gmail.com"></a>
+    
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
     </div>
   </div>
 </header>
@@ -151,7 +182,7 @@
   
   <span class="post-meta small">
   
-    9 minute read
+    12 minute read
   
   </span>
 </div>
@@ -241,7 +272,7 @@ More generally a <code class="highlighter-rouge">BVP</code> tries to determine a
 
 <p>Geodetic examples of the boundary functions are geopotential values (Dirichlet), gravity disturbance (Neumann), amd gravity anomaly (Robin).</p>
 
-<script type="math/tex; mode=display">\begin{equation}\label{regularity}
+<script type="math/tex; mode=display">\begin{equation}\label{eqn:regularity}
 \lim_{r \to \infty} \Phi (r) = 0
 \end{equation}</script>
 
@@ -307,11 +338,12 @@ For the horizontal domain the base functions are sines and cosines. Thus the pot
 The vertical base functions are called <em>upward continutation</em>, since they describe the vertical behaviour. They either have a damping (with the minus sign), or amplifying effect. This effect apparently depends on $n$ and $m$. The higher $\sqrt{n^2 + m^2}$ the shorter the wavelength, the stronger the damping or amplifying effect. Thus the upward continutation either works as low-pass filter (minus sign), or as a high-pass filter.</p>
 
 <h3 id="solution-of-dirichlet-and-neumann-bvps-in-x-y-z">Solution of Dirichlet and Neumann BVPs in $x y z$</h3>
+
 <p><strong>Dirichlet</strong> Given:</p>
 
 <ul>
   <li>the general solution in $\eqref{eqn_2}$</li>
-  <li>the regularity condition</li>
+  <li>the regularity condition $\eqref{eqn:regularity}$</li>
   <li>the potential on the boundary <code class="highlighter-rouge">z = 0</code>: $\Phi (x, y, z)$
 solve for $\Phi$. The regularity condition demands already that we discard all contributions with the amplifying upward continuation. So half of the previous equation $\eqref{eqn_2}$ is used.
 Next, we suppose that the boundary function is developed into a 2D Fourier series:</li>
@@ -330,6 +362,7 @@ e_{nm} = f_{nm} ٍ= g_{nm} &= h_{nm} = 0
 \end{align} %]]></script>
 
 <h2 id="spherical-harmonics">Spherical Harmonics</h2>
+
 <p>Fourier’s series can’t be applied on the sphere, so the solution of the Laplace equation will provide a new set of base functions. We’ll assume a spherical Earth and we will use spherical coordinates $r, \theta, \lambda$
 So generally the algorithm for solving the BVP is as follows:</p>
 
@@ -430,6 +463,76 @@ r^l\\
  \sin(m\lambda)
  \end{Bmatrix}</script>
 
+<p>These are called <em>solid spherical harmonics</em>. Harmonics because they solve Laplace’s equation; spherical because they’re in spherical coordinates; and solid because they’re 3D functions, spanning the whole outer space. You can guess that we could get the surface spherical harmonics if we leave out the radial part.</p>
+
+<script type="math/tex; mode=display">Y_{lm}(\theta, \lambda) = 
+P_{lm}(cos\theta)
+\begin{Bmatrix)
+cos m\lambda\\
+sin m\lambda
+\end{Bmatrix}</script>
+
+<p>To get the full solution, we just have to combine all possible solutions, which lead us to $\eqref{eqn:spherical_harmonics}$</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{spherical_harmonics}
+\Phi(r, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(a_{lm}cos m \lambda + b_{lm}sin m\lambda)r^{-(l+1)} + P_{lm}(cos \theta)(c_{lm}cos m\lambda + d_{lm}sin m\lambda) r^l
+\end{equation}</script>
+
+<p>where:
+    * l is the degree
+    * m is the order
+    * $P_{lm}$ is associated Legender function of the $1^{st}$ kind also known as ALFs</p>
+
+<!--Attach the comparsion here, page 78 LNedrm -->
+
+<h2 id="solution-of-dirichlet-bvp-in-r-theta-lambda">Solution of Dirichlet <code class="highlighter-rouge">BVP</code> in $r, \theta, \lambda$</h2>
+
+<!-- An Introduction to the reason why we solved Laplace's equation -->
+<p>Having solved the Laplace equation, it’s very easy to solve the $1^{st} &amp; 2^{nd}$ <code class="highlighter-rouge">BVP</code>. In both cases the regularity condition $\eqref{eqn:regularity}$ demands that the term with the amplifying radial continuation $r^l$ disappears. Which result in $c_{lm} = d_{lm} = 0$ for all $l, m$ combinations (i.e., the second term of $\eqref{eqn:spherical_harmonics}$ becomes 0).</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{eqn:spherical_vanished}
+\Phi(r, \theta, \lambda) = 
+\sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(a_{lm}cos m\lambda + b_{lm}sin m\lambda)r^{-(l+1)}
+\end{equation}</script>
+
+<p>The next step is in solving this <code class="highlighter-rouge">BVP</code> in Dirichlet, is to recognize that it’s boundary is in $r = R$, which yileds</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{eqn:spherical_R}
+\Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos\theta)(a_{lm}cos m\lambda + b_{lm}sin m\lambda) R^l
+\end{equation}</script>
+
+<p>Now we develop our actual boundary function into surface spherical harmonics:</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(u_{lm}cos m\lambda + v_{lm}sin m\lambda)
+\end{equation}</script>
+
+<p>in which $v_{lm}$ and $u_{lm}$ are known coefficients now. The solution comes from a simple comparsion between these two series:</p>
+
+<script type="math/tex; mode=display">u_{lm} = a_{lm} R^{-(l+1)} \qquad v_{lm} = b_{lm} R^{-(l+1)}</script>
+
+<p>Solving for $a$ and $b$ and inserting these coefficients back to $\eqref{eqn:spherical_harmonics}$ yields:</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{eqn:spherical_last}
+\Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos\theta)(u_{lm}cos m\lambda + v_{lm}sin m\lambda)\left(\frac{R}{r}\right)^{l+1}
+\end{equation}</script>
+
+<p>This equation says if we know the function $\Phi$ on the boundary, we immediately know it everywhere in outer space <sup id="fnref:1:1"><a href="#fn:1" class="footnote">1</a></sup>.</p>
+
+<p>Well, we’ve done here, at least in developing the spherical harmonics equation. But that doesn’t seem quite familiar to those equations in geodesy textbooks. First, there is $n$ instead of $l$, and it’s a potential, hence $V$ instead of $\Phi$, the last thing, what about $\frac{GM}{R}$ term? Where it’s gone? Not to forget that there was $C_{nm}$ and $S_{nm}$ as spherical harmonics coefficients. Let’s rewrite the previous equation $\eqref{eqn:spherical_last}$ to be more <code class="highlighter-rouge">physical geodesy friendly</code>.</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{eqn:spherical_harmonics_end}
+\V(r, \theta, \lambda) = \frac{GM}{R}\sum_{n=0}^{\infty}\left(\frac{R}{r}\right)^{n + 1}\sum_{m=0}^{n} P_{nm}(cos\theta)(C_{nm}cos m \lambda + S_{nm}sin m \lambda)
+\end{equation}</script>
+
+<p>So far so good, we’ve solved Laplace’s equation, and then we solved the <code class="highlighter-rouge">BVP</code>, we’ve also fixed some notations to be consistent with what you’ll see in geodesy literatures<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup>. That might be trivial thing to do (not for me at least, I always get confused when I see an equation in different notations.)</p>
+
+<p>Another interesting part is the types of the spherical harmonics, for now you should know that $n$ and $m$ are integers, and perhaps $m$ is in range of $[0 \to 1]$. There are three scenarios for our $n$ and $m$.
+- $m = 0$: <strong>zonal spherical harmonics</strong>, because when $m = 0$ the sine-part vanishes. The name <code class="highlighter-rouge">zonal</code> comes from the fact that with $P_{n0}$ we’ll get ${n+1}$ latitude bands called zones.
+- $n = m$: <strong>sectorial spherical harmonics</strong>, the earth is divided into longitude bands called <code class="highlighter-rouge">sectors</code>.
+- 
+Proceed to the next post to see how we can use this knowledge in geoid determination.</p>
+
 <h3 id="where-i-can-find-them-in-real-life">Where I can find them in real life?</h3>
 
 <h3 id="are-they-that-important">Are they that important?</h3>
@@ -437,19 +540,22 @@ r^l\\
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Wikipedia <a href="en.wikipedia.org/wiki/bounday_value_problem">link</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>Wikipedia <a href="en.wikipedia.org/wiki/bounday_value_problem">link</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
     </li>
     <li id="fn:2">
       <p>Physical Geodesy Hoffmann, <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>There is another way to solve it. See Physical geodesy Hoffmann. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+      <p>There is another way to solve it. See Physical Geodesy Hoffmann et, al. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:4">
       <p>Lne <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:5">
       <p>The preceding reference <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>In Physical Geodesy, Hoffman et, al. the degree and order are denoted by n &amp; m. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -490,6 +596,17 @@ r^l\\
 </div>
 
 
+
+
+  <div class="py2 post-footer">
+  <img src="/images/me.jpg" alt="Mohamed Yousif" class="avatar" />
+  <p>
+  Just another Github page!
+  </p>
+  <p>
+    Follow me on <a href="https://twitter.com/_adonese">Twitter</a>.
+  </p>
+</div>
 
 
 
