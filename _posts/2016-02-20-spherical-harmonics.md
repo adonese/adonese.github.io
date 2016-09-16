@@ -7,14 +7,14 @@ categories: project
 ---
 
 ## A DISCLAIMER
-* This post isn't intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever! 
+* This post isn't intended to be comprehensive, full of math notations, weird concepts, formal language whatsoever!
 * I'll try to use as less math notations as possible.
 * This is just for adding other bullets.
 * Spherical harmonics are used in many applications, which rise the problem of naming conventions, I had trouble times suffering from this issue, it doesn't seem to exist a unique notations. With that being said, all the notations I'll be using here are from ``Physical Geodesy`` and most of them are from Germany authors (just in case it conflicts with Americans authors, anyway most of geodesy literature are from Germany).
 
 ## Conventions in this post
 * Vectors will be indicated by **v**, while matrices will be indicated by **A** [capital bold letter], anyway you should understand them from the context.
-* Acronyms, I'll indroduce the full name first, then it's acronym which I'll use it in the rest of the post.
+* Acronyms, I will introduce the full name first, then it's acronym.
 
 ## Physics is boring, math is even worse! Both? Are you kidding me?
 Let's face it! We all hate physics classes. Most of them was too intuitive that makes you react like? Whaaat?
@@ -31,7 +31,7 @@ Have we learned something? Not sure, let's jump to other part
 
 The reason for being no, is that there are already a lot of prerequisites, that's great actually, assuming that you've a general idea about them. You should have an idea about ``differential equations`` and how they relate to it, ``angular frequency``! What if I don't have an idea about them? Or I just failed to link them? This post is for that reason!
 
-I guess that gives me a good to reason to write this post.
+I guess that gives me a good reason to write this post.
 
 ## What the heck are spherical harmonics?
 We all know what sphere is, and we probably heard the word ``harmonic`` a few times in music. They both seem too intuitive, but there inlies the problem.
@@ -42,14 +42,14 @@ From a math perspective, a function is a called a harmonic if it satisfies Lapla
 $$\Phi = 0$$
 
 A very good question arise, why do we care about solving Laplace's equation?
-The answer for this question is even trickier! We need to solve Laplace's equation as a step for solving boundary values problems ``BVPs``. Before you ask, we need to solve BVPs because, in our case, earth is a good example of a boundary problem (It's bounded by latitudes and longitudes). 
+The answer for this question is even trickier! We need to solve Laplace's equation as a step for solving boundary values problems ``BVPs``. Before you ask, we need to solve BVPs because, in our case, earth is a good example of a boundary problem (It's bounded by latitudes and longitudes).
 
 ## Boundary value problems
 
 ### What is the Boundary value problem?
 
 If I didn't mention this term before that officially makes me a horrible writer! Our problem is to determinet the gravitational force in outer space without knowing the denisty structure of the earth. See [this](en.wikipedia.com/wiki/boundary_value_problem) wikipage for nice explanation. [^1] Boundary value problem is differntial equation with a set of other constraints called the *boundary conditions*. The important part is that the solution of the boundary value problem is also a solution to the differential equation.
-Now we have a better idea of what our problem is, we can't measure the density of the earth. Molodonskey was the first that to base physical geodesy on boundary value problems on the earth's surface rather than on the geoid [^2] Hoffmann et, al. 
+Now we have a better idea of what our problem is, we can't measure the density of the earth. Molodonskey was the first that to base physical geodesy on boundary value problems on the earth's surface rather than on the geoid [^2] Hoffmann et, al.
 More generally a ``BVP`` tries to determine a function in a spatial domain from:
 
 - It's value on the boundary,
@@ -255,7 +255,7 @@ $$
 
 <br>
 
-Following the same reasoning as we did in rectangular case, the left part only depends on $\theta$, while the right part depends on 
+Following the same reasoning as we did in rectangular case, the left part only depends on $\theta$, while the right part depends on
 $\lambda$. The ``ODE`` of the $\lambda$ part leads to the known solution:
 
 $$
@@ -268,7 +268,7 @@ You can guess that the ``ODE`` for the $\theta$ part is somewhat difficult. [^5]
 
 $$
 \begin{align}
-g'' &= cot(\theta)g' + \left(l(l+1) - \frac{m^2}{sin^(\theta)}\right)g = 0 &&\text{dividing by } sin^2\theta\\ 
+g'' &= cot(\theta)g' + \left(l(l+1) - \frac{m^2}{sin^(\theta)}\right)g = 0 &&\text{dividing by } sin^2\theta\\
     g_1(\theta) &= P_{lm}(cos\theta) \qquad \colon \qquad g_2(\theta) = Q_{lm}(cos(\theta)
 \end{align}
 $$
@@ -280,17 +280,17 @@ $$
 r^{-(l+1)}\\
 r^l\\
  \end{Bmatrix}
- p_{lm}(\cos(\theta)) = 
+ p_{lm}(\cos(\theta)) =
  \begin{Bmatrix}
  \cos(m\lambda)\\
  \sin(m\lambda)
  \end{Bmatrix}
-$$ 
+$$
 
 These are called _solid spherical harmonics_. Harmonics because they solve Laplace's equation; spherical because they're in spherical coordinates; and solid because they're 3D functions, spanning the whole outer space. You can guess that we could get the surface spherical harmonics if we leave out the radial part.
 
 $$
-Y_{lm}(\theta, \lambda) = 
+Y_{lm}(\theta, \lambda) =
 P_{lm}(cos\theta)
 \begin{Bmatrix)
 cos m\lambda\\
@@ -316,11 +316,11 @@ where:
 ## Solution of Dirichlet ``BVP`` in $r, \theta, \lambda$
 
 <!-- An Introduction to the reason why we solved Laplace's equation -->
-Having solved the Laplace equation, it's very easy to solve the $1^{st} & 2^{nd}$ ``BVP``. In both cases the regularity condition $\eqref{eqn:regularity}$ demands that the term with the amplifying radial continuation $r^l$ disappears. Which result in $c_{lm} = d_{lm} = 0$ for all $l, m$ combinations (i.e., the second term of $\eqref{eqn:spherical_harmonics}$ becomes 0). 
+Having solved the Laplace equation, it's very easy to solve the $1^{st} & 2^{nd}$ ``BVP``. In both cases the regularity condition $\eqref{eqn:regularity}$ demands that the term with the amplifying radial continuation $r^l$ disappears. Which result in $c_{lm} = d_{lm} = 0$ for all $l, m$ combinations (i.e., the second term of $\eqref{eqn:spherical_harmonics}$ becomes 0).
 
 $$
 \begin{equation}\label{eqn:spherical_vanished}
-\Phi(r, \theta, \lambda) = 
+\Phi(r, \theta, \lambda) =
 \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(a_{lm}cos m\lambda + b_{lm}sin m\lambda)r^{-(l+1)}
 \end{equation}
 $$
@@ -331,7 +331,7 @@ $$
 \begin{equation}\label{eqn:spherical_R}
 \Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos\theta)(a_{lm}cos m\lambda + b_{lm}sin m\lambda) R^l
 \end{equation}
-$$ 
+$$
 
 Now we develop our actual boundary function into surface spherical harmonics:
 
@@ -339,7 +339,7 @@ $$
 \begin{equation}
 \Phi(R, \theta, \lambda) = \sum_{l=0}^{\infty}\sum_{m=0}^{l} P_{lm}(cos \theta)(u_{lm}cos m\lambda + v_{lm}sin m\lambda)
 \end{equation}
-$$ 
+$$
 
 in which $v_{lm}$ and $u_{lm}$ are known coefficients now. The solution comes from a simple comparsion between these two series:
 
@@ -355,7 +355,7 @@ $$
 \end{equation}
 $$
 
-This equation says if we know the function $\Phi$ on the boundary, we immediately know it everywhere in outer space [^1]. 
+This equation says if we know the function $\Phi$ on the boundary, we immediately know it everywhere in outer space [^1].
 
 Well, we've done here, at least in developing the spherical harmonics equation. But that doesn't seem quite familiar to those equations in geodesy textbooks. First, there is $n$ instead of $l$, and it's a potential, hence $V$ instead of $\Phi$, the last thing, what about $\frac{GM}{R}$ term? Where it's gone? Not to forget that there was $C_{nm}$ and $S_{nm}$ as spherical harmonics coefficients. Let's rewrite the previous equation $\eqref{eqn:spherical_last}$ to be more ``physical geodesy friendly``.
 
@@ -365,12 +365,12 @@ $$
 \end{equation}
 $$
 
-So far so good, we've solved Laplace's equation, and then we solved the ``BVP``, we've also fixed some notations to be consistent with what you'll see in geodesy literatures[^6]. That might be trivial thing to do (not for me at least, I always get confused when I see an equation in different notations.) 
+So far so good, we've solved Laplace's equation, and then we solved the ``BVP``, we've also fixed some notations to be consistent with what you'll see in geodesy literatures[^6]. That might be trivial thing to do (not for me at least, I always get confused when I see an equation in different notations.)
 
 Another interesting part is the types of the spherical harmonics, for now you should know that $n$ and $m$ are integers, and perhaps $m$ is in range of $[0 \to 1]$. There are three scenarios for our $n$ and $m$.
 - $m = 0$: __zonal spherical harmonics__, because when $m = 0$ the sine-part vanishes. The name ``zonal`` comes from the fact that with $P_{n0}$ we'll get ${n+1}$ latitude bands called zones.
 - $n = m$: __sectorial spherical harmonics__, the earth is divided into longitude bands called ``sectors``.
-- 
+-
 Proceed to the next post to see how we can use this knowledge in geoid determination.
 
 ### Where I can find them in real life?
@@ -380,7 +380,7 @@ Proceed to the next post to see how we can use this knowledge in geoid determina
 
 
 [^1]: Wikipedia [link](en.wikipedia.org/wiki/bounday_value_problem)
-[^2]: Physical Geodesy Hoffmann, 
+[^2]: Physical Geodesy Hoffmann,
 [^3]: There is another way to solve it. See Physical Geodesy Hoffmann et, al.
 [^4]: Lne
 [^5]: The preceding reference
