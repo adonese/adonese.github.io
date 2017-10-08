@@ -141,6 +141,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - /_site
 keep_files:
   - .git
   - .svn
@@ -198,43 +199,22 @@ whitelist:
   - jemoji
 
 
-# Archives
-#  Type
-#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
-#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
-#  Path (examples)
-#  - Archive page should exist at path when using Liquid method or you can
-#    expect broken links (especially with breadcrumbs enabled)
-#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path/my-awesome-category/index.html ~> path: /
 category_archive:
   type: liquid
   path: /categories/
 tag_archive:
   type: liquid
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
 
-
-# HTML Compression
-# - http://jch.penibelst.de/
 compress_html:
   clippings: all
   ignore:
     envs: development
 
 collections:
+  posts:
+    output: true
+    permalink: /:collection/:path/
   publications:
     output: true
     permalink: /:collection/:path/
@@ -274,25 +254,23 @@ defaults:
       layout: single
       author_profile: true
 
-  #   # _pages
-  # - scope:
-  #     path: "_codes"
-  #     type: posts
-  #   values:
-  #     layout: single
-  #     author_profile: true
+  - scope:
+      path: "_codes"
+      type: codes
+    values:
+      layout: archive
+      author_profile: true
 
-  #   # _pages
-  # - scope:
-  #     path: "_teaching"
-  #     type: posts
-  #   values:
-  #     layout: single
-  #     author_profile: 
-  #     # _pages
-  # - scope:
-  #     path: "_conferences"
-  #     type: posts
-  #   values:
-  #     layout: single
-  #     author_profile: true
+  - scope:
+      path: "_conferences"
+      type: conferences
+    values:
+      layout: archive
+      author_profile: true  
+
+  - scope:
+      path: "_teaching"
+      type: teaching
+    values:
+      layout: archive
+      author_profile: true
