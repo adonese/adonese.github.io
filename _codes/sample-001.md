@@ -1,6 +1,5 @@
 ---
 title: "some nice title"
-layout: archive
 ---
 
 

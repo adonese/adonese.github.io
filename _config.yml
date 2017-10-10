@@ -236,7 +236,7 @@ collections:
 defaults:
   # _posts
   - scope:
-      path: ""
+      path: "_posts"
       type: posts
     values:
       layout: single
@@ -258,19 +258,19 @@ defaults:
       path: "_codes"
       type: codes
     values:
-      layout: archive
+      layout: single
       author_profile: true
 
   - scope:
       path: "_conferences"
       type: conferences
     values:
-      layout: archive
+      layout: single
       author_profile: true  
 
   - scope:
       path: "_teaching"
       type: teaching
     values:
-      layout: archive
+      layout: single
       author_profile: true
