@@ -6,5 +6,7 @@ main:
     url: /teaching/
   - title: "codes"
     url: /codes/
-  - title: "conferences"
-    url: /conferences/
+  - title: "misc"
+    url: /misc/
+  - title: "til"
+    url: /til/

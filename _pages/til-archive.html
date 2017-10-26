@@ -1,0 +1,27 @@
+---
+layout: archive
+title: "TIL"
+permalink: /til/
+---
+
+
+{% include base_path %}
+
+<div class="grid__wrapper">
+  {% for post in site.til %}
+    {% include archive-single.html type="grid" %}
+  {% endfor %}
+</div>
+
+<div class="grid__wrapper">
+  <div class="grid__item">
+    <hr>
+    <p>And, things I hate</p>
+  </div> 
+</div>
+
+<div class="grid__wrapper">
+  {% for post in site.tih %}
+    {% include archive-single.html type="grid" %}
+  {% endfor %}
+</div>
