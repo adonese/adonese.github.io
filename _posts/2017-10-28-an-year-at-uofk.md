@@ -1,6 +1,6 @@
 ---
 title: "An year at University of Khartoum"
-excerpt: "Teaching at University of Khartoum"
+excerpt: "Teaching at have always been one of dreams. I still cannot believe that I had a chance to teach at University of Khartoum, the most prestigious university in my country. In this post, I summarize my work there. There are a few things not good I wish to be resolved."
 ---
 
 >I've always been dreaming of teaching.
