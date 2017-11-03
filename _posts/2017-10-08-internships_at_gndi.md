@@ -25,3 +25,4 @@ The internship period is three months. Our interns will work on various projects
 
 All of our works will be open source and freely available for anyone to use and contribute. However, that is not even the best part. We, and this very awesome interns will work together to give back. We will be giving workshops and tutorials on these technologies-basically everything we believe to be useful for Geomatics Engineers. We are also creating Geodesy Study group. We have many reasons as to why this study group is important. We need people to _understand_ geodesy and thereafter apply it.
 
+After three months I will write another post describing our work through this internship. Before wrapping up this post. There is a good reason why I insisted on choosing students from Geomatics department. I graduated from this department and I taught at it too. I have a strong claim to know its problems.
