@@ -3,7 +3,7 @@ title: "An year at University of Khartoum"
 excerpt: "Teaching at University of Khartoum"
 ---
 
->I've always dreaming of teaching.
+>I've always been dreaming of teaching.
 
 I worked as a teaching assistant at University of Khartoum, Geomatics Engineering department. I've TAed different classes--mostyl computational/programming ones. It was very nice experience, I couldn't be more happier. Though, I have some notes.
 

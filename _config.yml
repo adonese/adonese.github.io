@@ -257,6 +257,7 @@ defaults:
       share: true
       related: true
       mathjax: false
+      distill: false
 
   # _pages
   - scope:
@@ -284,8 +285,10 @@ defaults:
       path: "_teaching"
       type: teaching
     values:
-      layout: single
+      layout: splash
       author_profile: true
+      distill: false
+      mathjax: false
 
   - scope:
       path: "_misc"
