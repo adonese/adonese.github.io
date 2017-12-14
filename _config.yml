@@ -142,6 +142,7 @@ exclude:
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
   - /_site
+  - /node_modules
 keep_files:
   - .git
   - .svn
