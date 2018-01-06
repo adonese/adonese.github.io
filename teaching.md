@@ -2,7 +2,8 @@
 layout: single
 author_profile: true
 ---
-I'm on leave from University of Khartoum. You can contact me through my <a href="mailto:mmbusif@gmail.com">email</a>
+
+<i>I'm on a leave from University of Khartoum. You can contact me through my <a href="mailto:mmbusif@gmail.com">email</a>.</i>
 
 ## Courses I taught at UofK
 
