@@ -3,7 +3,10 @@ title: A friend of mine was faced with his facebook's posts being printed on mon
 ---
 Money's paper is a special type of papers that only used by authorized companies. It is typically used in the company's official documents e.g., contracts.
 
-A friend of mine (a bad that actually thinks our governors are villain, screw you anti-progression), he was being summoned in response to his recent posts. Anyways, once he got there, he found his own posts were printed on money papers. I didn't actually ask him about their conversation, though I will fake one for you.
+A friend of mine (a bad one that actually thinks our governors are villain, screw you anti-progression), he was being summoned in response to his recent posts. Anyways, once he got there, he found his own posts were printed on money papers. 
+Those were bloody valuable posts he got.
+
+I didn't actually ask him about their conversation, though I will fake one for you.
 
 My villain friend: Hi Sir,
 
