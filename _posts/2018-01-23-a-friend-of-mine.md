@@ -1,5 +1,6 @@
 ---
 title: A friend of mine was faced with his facebook's posts being printed on money papers
+layout: post
 ---
 Money's paper is a special type of papers that only used by authorized companies. It is typically used in the company's official documents e.g., contracts.
 
