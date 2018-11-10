@@ -23,7 +23,7 @@ github_username:  adonese
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-so-simple
+remote_theme: "mmistakes/so-simple-theme"
 plugins:
   - jekyll-feed
 
