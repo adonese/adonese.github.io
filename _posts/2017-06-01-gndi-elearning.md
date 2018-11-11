@@ -1,5 +1,6 @@
 ---
 title: "gndi E-learning Platform"
+layout: post
 excerpt: "In G&I, we decided to level up the way classical training centers typically operate. We started our very first beta version of our new product, and here are our findings. To the best of our knowledge, no similar projects have been done before."
 ---
 
