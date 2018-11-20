@@ -1,7 +1,7 @@
 ---
 title: A tale of three channels
 layout: post
-excerpt: "This post discusses the current e-payment in Sudan and the challenges we are facing."
+excerpt: "EBS is a huge mess. they made terrible decisions, but they're not the only ones to be blamed for everything. Fixing this mess is important, but it is very challenging. In this post, i've tried to distill why?"
 ---
 
 
