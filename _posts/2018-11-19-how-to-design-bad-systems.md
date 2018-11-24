@@ -78,6 +78,11 @@ issuer => payment_network => acquirer
 
 There's no such a thing as iPIN in BoK switch. While you can happily use your BoK card in every possible merchant (POS), you cannot do the same over internet. The just don't match. So, for our system to be a PCI compliant, _we introduced new APIs that doesn't work with the country's major Bank_. Good job guys, you nailed it there.
 
+>Requirement 2a:
+     Cardholder PINs shall be processed in accordance with approved standards.
+a.    All cardholder PINs processed online must be encrypted and decrypted using an approved cryptographic technique that provides a level of security compliant with international and industry standards. Any cryptographic technique implemented meets or exceeds the cryptographic strength of TDEA using double-length keys.
+b.    All cardholder PINs processed offline using IC card technology must be protected in accordance with the requirements in Book 2 of the EMV IC Card Specifications for Payment Systems and ISO 9654.
+
 ## EBS v2.0
 - Make it PCI complaint
 - Ditch the consumer to interoperate with other switches
