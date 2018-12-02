@@ -4,10 +4,6 @@ layout: post
 ---
 
 
-# E-purse
-
-## Types of cards
-
 There are mainly three types of cards, depending on the way money is withdrawn to the merchant's account:
 - debit card: where the money is _automatically_ deduced from your bank account. It is directly linked to your account, which means you need to have a enough money or an agreed upon overdraft [1].
 - credit card: they are not linked to your account, they allow you to buy things immediatelly and pay for their costs at a later time. I find the urge to elaborate more on this part as it is quite interesting. You have a credit score
