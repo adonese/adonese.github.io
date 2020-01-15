@@ -80,4 +80,27 @@ Libraries are made to handle the general case, their clients should accounts for
 - it uses grpc protocol
 - it gets the result with error if available
 
-It is the responsibility of the client to implement the protocol and to handle the errors. But, what about caching the results? It is the client responsibility to handle the results. `rate service` doesn't care about this, it just gets a (float32, error). Adding the cache there is completely hurtful -- and I see lot's of people do that.
+It is the responsibility of the client to implement the protocol and to handle the errors. But, what about caching the results? It is the client responsibility to handle the results. `rate service` doesn't care about this, it just gets a (float32, error). Adding the cache there is completely hurtful -- and I see lot's of people do that. The clients are responsible for implementing this logic. And this is the gist of this post.
+
+##### rate limiting
+
+cashqbot has a go routine that handles the limiting service, the logic is quite simple:
+
+- get the result and store it in a package level variable
+- a ticker channel that activates every [TIME]
+- at each time it activates, we update that variable by connection to `rate service`
+- our bot rate handler becomes like this:
+
+```go
+// it is not exactly this way, but it is the gist of it
+func rate() float32{
+    return myGlobalRateVariable
+}
+```
+
+## Results
+
+- We have refactored the rate function into a new rate service that is exposed over grpc endpoint. The new grpc service can grow in complexity while not affecting other system components and maintinaing backward compatibility
+- We have hugely simplified bot rate handler
+- The `rate service` is not tightly coupled to any client's specifications
+- We hardened our tests for the rate service parsing logic
