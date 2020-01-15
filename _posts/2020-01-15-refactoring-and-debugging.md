@@ -1,6 +1,9 @@
 ---
 title: How to design libraries
 layout: post
+excerpt: "I wanted to write something about api design, how to design things that you and others can use. It went on debugging and refactoring with a slight mention at the end to a good design.
+
+I learned that all things break; every assumption you make will break. It is the natural process of system evolution. The idea is design for this. In microservices i often hear that term design for failure meaning that you have to consider failures as a factor in your system. Here the term could be quite the same, design for breaking the assumption."
 ---
 
 This post is about how to design libraries. It can help you write good code that you can reuse it in other different parts.
