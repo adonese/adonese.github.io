@@ -59,6 +59,8 @@ Since rate service will be used by different clients on our stack, we find that 
   - retrieve the value and update the cache
   - get the value from the cache
 
+_You can see that we copy-pasted the previous listing._
+
 Now, we can use our rate service from different platforms without rewriting it over and over.
 
 But none of that fixed the problem.
