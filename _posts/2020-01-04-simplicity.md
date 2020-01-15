@@ -71,4 +71,13 @@ Our external currency provider has changed their html which break all of our par
 
 ### revisiting the design
 
-The rate service was a good decision. It will allow for this service to grow independantly from the rest of the system, while being used by different clients. In cashqbot, it was like 100 LOC, but what if we want to add more currency providers? What if we want to handle different currencies than just USD (this will likely result in breaking current implementation). It can also decide to maintain the api for these clients, while having another one. The possibilities are infinity. It can grow too much that containing it in cashqbot requirements. And software always grows. Containment is wrong. Embrace its complexity and let it grows without affecting other parts. Let it grow _independently_.
+The rate service was a good decision. It will allow for this service to grow independantly from the rest of the system, while being used by different clients. In cashqbot, it was like 100 LOC, but what if we want to add more currency providers? What if we want to handle different currencies than just USD (this will likely result in breaking current implementation). It can also decide to maintain the api for these clients, while having another one. The possibilities are endless. It can grow too much that containing it in cashqbot requirements. And software always grows. Containment is wrong. Embrace its complexity and let it grows without affecting other parts. Let it grow _independently_.
+
+#### library and the clients
+
+Libraries are made to handle the general case, their clients should accounts for the special cases. The design of rate service is quite simple:
+
+- it uses grpc protocol
+- it gets the result with error if available
+
+It is the responsibility of the client to implement the protocol and to handle the errors. But, what about caching the results? It is the client responsibility to handle the results. `rate service` doesn't care about this, it just gets a (float32, error). Adding the cache there is completely hurtful -- and I see lot's of people do that.
