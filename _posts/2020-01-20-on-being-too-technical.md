@@ -7,7 +7,7 @@ layout: post
 
 This week was a little bit fun for me. I had this incident where one of our clients has had a meeting with us and in the process he made joke about my technical skills--as in they the business owners use us the coders to do their stuff. It was indeed a bad joke, but it led me into writing this post. I wanted to share with you how extremely excited I am of being a programmer and the myth behind "technical term".
 
-I have heard this too much lately and I wanted to shed some light on this, it is also quite related to [my other post on the joy of coding](/on-the-joy-of-coding). This part is very ambigtious and hard to define.
+I have heard this too much lately and I wanted to shed some light on this, it is also quite related to [my other post on the joy of coding](/2020/01/04/on-the-joy-of-coding.html). This part is very ambigtious and hard to define.
 
 If i'm the owner, everything for me looks _technical_; be it business or engineering. I'm a programmer (i'd love to be known for that actually!), the business and the marketing part looks so technical for me--and i'd expect the same for the business to consider me technical.
 
@@ -32,11 +32,9 @@ Years later and I still enjoy my naivety of being "just a programmer".
 
 ![You get to meet extremely nice people and be friends](/assets/1.webp "You get to meet extremely nice people and be friends")
 ![You get to meet extremely nice people and be friends](/assets/2.webp "You get to meet extremely nice people and be friends")
-
 ![Very late dinners?](/assets/3.webp "Very late dinners! Yeah, sign me in!")
 ![Very late dinners?](/assets/4.webp "Very late dinners! Yeah, sign me in!")
 ![Very late dinners?](/assets/5.webp "This was supposed to be شعيرية. Salamon loved it though! He ate the whole plate!")
-
 ![non sexual materials](/assets/6.webp "NOOOO! That video was not porn!")
 ![Projector white board before ruined](/assets/7.webp "Our projector white board, when it was well white")
 ![It was always like this](/assets/8.webp "We never settled. We are always a step off completely collapsing!")
