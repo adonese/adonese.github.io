@@ -19,14 +19,14 @@ description: Think. Act.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: _adonese
-github_username:  adonese
+github_username: adonese
+author: Mohamed Yousif
 
 # Build settings
 markdown: kramdown
 remote_theme: "mmistakes/so-simple-theme"
 plugins:
   - jekyll-feed
-
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
