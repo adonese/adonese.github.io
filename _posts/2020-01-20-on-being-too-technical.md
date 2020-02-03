@@ -30,6 +30,8 @@ Software helped me build things. Stuff that I'm very proud of and I enjoyed ever
 
 Years later and I still enjoy my naivety of being "just a programmer".
 
+_Hover over the image to read the caption-- not sure how that works on mobile though!_
+
 ![You get to meet extremely nice people and be friends](/assets/1.webp "You get to meet extremely nice people and be friends")
 ![You get to meet extremely nice people and be friends](/assets/2.webp "You get to meet extremely nice people and be friends")
 ![Very late dinners?](/assets/3.webp "Very late dinners! Yeah, sign me in!")
