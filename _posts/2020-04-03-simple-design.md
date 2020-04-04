@@ -1,5 +1,5 @@
 ---
-title: Simple design: probably a good one!
+title: "Simple design: probably a good one!"
 layout: post
 ---
 
