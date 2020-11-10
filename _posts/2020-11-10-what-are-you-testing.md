@@ -108,6 +108,6 @@ And this is where systems in Sudan fall short. No testing whatsoever have been d
 
 This falls in good suggestions yet no one cares! But it is important it is extremely important to maintain security policy and adhere to it. It should be part of the company process and manual. (An echo from the abyss that sounds: who listens WHO LISTENS!).
 
-
+Come again? What are you testing exactly?
 
 [1]: https://www.tbs-certificates.co.uk/FAQ/en/tls-12-obligatoire.html
