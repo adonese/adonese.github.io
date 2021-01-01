@@ -6,7 +6,10 @@ excerpt: "I wrote this post 4 hours before the new year, or my timezone's new ye
 
 So it is a new year, huh? You suddenly find your friends achieving really cool things and you feel like you have not done any thing. This post is for you, for US.
 
-I don't that life is a discrete function and treating it that way won't help. Success is not linear, in the journey of your life you will have far more failures than your successes. 
+I don't think life is a discrete function, and treating it that way might be the source of this *optimizing for dopamine*.
+
+
+Success is not linear, in the journey of your life you will have far more failures than your successes. 
 
 Take a break, if anything. Enjoy the little things and continue on what you are doing!
 
