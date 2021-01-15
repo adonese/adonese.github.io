@@ -3,7 +3,7 @@ title: API design
 layout: post
 ---
 
-This post serves as a walkthrough for noebs sdks. Noebs is an open source payment gateway with large support and adoption from many corporations in Sudan. Our goal is to _make payments secure and simple_, and we want to do that super fast. To this end, we started rolling out our sdks. SDKs are fancy way of saying libraries, a code that others can import to interact with our services. Noebs sdk is derived from our code, and it is being used in prod for a while now. 
+This post serves as a walkthrough for noebs sdks. Noebs is an open source payment gateway with large support and adoption from many corporations in Sudan. Our goal is to _make payments secure and simple_, and we want to do that super fast. To this end, we started rolling out our sdks. SDKs are fancy way of saying libraries, a code that others can import to interact with our services. Noebs sdk is derived from our code, and it is being used in prod for a while now. The code for all of these sdks are available [here](https://github.com/noebs)
 
 When started developing our sdk, we had these constraints:
 
@@ -36,3 +36,6 @@ Here's how noebs works internally:
 We simply have a very big class that contains *every* field in noebs! They are not that much, so don't worry. Our class, `Request`, has all the necessary fields that will be used by evert method in our SDK. marshalling internally excludes empty and null fields, and noebs does the same too. This way, we wouldn't need to have a `per method` class to contain the request data. This is a huge win and reduction in code. In fact the whole [noebs-dart sdk](https://pub.dev/packages/noebs) only consists of 144 LOC for the logic part (and other 232 SLOC for the `Request` class)! And this includes documentations, empty lines, etc!
 
 We have a private method called `_api` that serves as our http client for all `noebs` services.
+
+
+Writing code this way is easier for us to maintain, and easier for the library consumers too to use and they are comfortably know that everything is exposed to them, and they don't need to trap panics through `try catch` block. We believe that many develoeprs simply ignore `catch` block and they opt to stderr it instead. Errors are first class citizens in noebs sdks and they are as important as successful responses, if not moreso.
