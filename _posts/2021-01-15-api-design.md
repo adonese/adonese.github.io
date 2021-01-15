@@ -29,7 +29,7 @@ The other part is our http client design. One of the unique goals behind `noebs`
 Here's how noebs works internally:
 
 - takes a `request`
-- `request` has common fields (we literally call them so in our code)[https://github.com/adonese/noebs/blob/16fb401241018eac71aed2ebd244cc65d1c17f81/ebs_fields/fields.go#L153-L158]
+- `request` has common fields [we literally call them so in our code](https://github.com/adonese/noebs/blob/16fb401241018eac71aed2ebd244cc65d1c17f81/ebs_fields/fields.go#L153-L158)
 - the only differences between say `balance` api and `purchase` api are extra fields for amount and destination, and change in the url (balance <=> purchase), we can use purchase api in balance api, and so on.
 
 
