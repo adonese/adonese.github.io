@@ -1,6 +1,9 @@
 ---
 title: "On life and love"
 layout: post
+tags:
+    - love
+    - ta
 ---
 
 Relationships are hard to maintain. It touches very deep parts inside you, it makes you more insecure and usually more dumber. Relationships are hard.

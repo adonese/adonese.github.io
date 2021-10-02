@@ -2,6 +2,9 @@
 title: "The non-achievers"
 layout: post
 excerpt: "I wrote this post 4 hours before the new year, or my timezone's new year"
+tags:
+    - ranting
+    - general
 ---
 
 So it is a new year, huh? You suddenly find your friends achieving really cool things and you feel like you have not done any thing. This post is for you, for US.
