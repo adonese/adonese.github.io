@@ -1,7 +1,7 @@
 ---
-title: technical jargons
+title: bad practices and dirty code
 layout: post
-excerpt: "fuck best practices and to clean code my ass"
+excerpt: "fuck best practices and clean code my ass"
 tags:
     - technical
     - bad-practices
