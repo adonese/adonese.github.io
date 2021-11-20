@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>A tale of three channels | adonese&#39;s Blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="This post is about systems, APIs, business decisions.
+Payment Nearly every transaction involves three parties: a merchant that accepts the card, a bank that issues it, and a payment network that facilitates the transaction between the first two parties. You hear the term PCI a lot.
+ The standard was created to increase controls around cardholder data to reduce credit card fraud. ~ Wikipedia
+ We (financial institutions) offer our clients (card holders) these services to ease their access into their accounts.">
+<meta name="author" content="">
+<link rel="canonical" href="/post/2018-11-19-how-to-design-bad-systems/" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6f60056d44d3f7eb69a4bc6c332b59960f3a995802bded244750232f33713c49.css" integrity="sha256-b2AFbUTT9&#43;tppLxsMytZlg86mVgCve0kR1AjLzNxPEk=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.88.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="A tale of three channels" />
+<meta property="og:description" content="This post is about systems, APIs, business decisions.
+Payment Nearly every transaction involves three parties: a merchant that accepts the card, a bank that issues it, and a payment network that facilitates the transaction between the first two parties. You hear the term PCI a lot.
+ The standard was created to increase controls around cardholder data to reduce credit card fraud. ~ Wikipedia
+ We (financial institutions) offer our clients (card holders) these services to ease their access into their accounts." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018-11-19-how-to-design-bad-systems/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-19T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2018-11-19T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A tale of three channels"/>
+<meta name="twitter:description" content="This post is about systems, APIs, business decisions.
+Payment Nearly every transaction involves three parties: a merchant that accepts the card, a bank that issues it, and a payment network that facilitates the transaction between the first two parties. You hear the term PCI a lot.
+ The standard was created to increase controls around cardholder data to reduce credit card fraud. ~ Wikipedia
+ We (financial institutions) offer our clients (card holders) these services to ease their access into their accounts."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "A tale of three channels",
+      "item": "/post/2018-11-19-how-to-design-bad-systems/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A tale of three channels",
+  "name": "A tale of three channels",
+  "description": "This post is about systems, APIs, business decisions.\nPayment Nearly every transaction involves three parties: a merchant that accepts the card, a bank that issues it, and a payment network that facilitates the transaction between the first two parties. You hear the term PCI a lot.\n The standard was created to increase controls around cardholder data to reduce credit card fraud. ~ Wikipedia\n We (financial institutions) offer our clients (card holders) these services to ease their access into their accounts.",
+  "keywords": [
+    
+  ],
+  "articleBody": "This post is about systems, APIs, business decisions.\nPayment Nearly every transaction involves three parties: a merchant that accepts the card, a bank that issues it, and a payment network that facilitates the transaction between the first two parties. You hear the term PCI a lot.\n The standard was created to increase controls around cardholder data to reduce credit card fraud. ~ Wikipedia\n We (financial institutions) offer our clients (card holders) these services to ease their access into their accounts. In most cases, the bank takes the liability for any frauds that happen. So, PCI standards are used in the whole payment process, in the card, POS, and the payment network itself, EBS. It is the industry best practices for the security.\nWhat could possibly go wrong, 1 Again, we have four parties in the payment process\n the card holder (issuer) the merchant, POS the payment network and the bank (acquirer) We need to secure the transaction in every one of them.  All of the credit cards in Sudan are magnetic strip ones. There are, indeed, EMV ones, but our systems don’t support EMV transactions. Magnetic strip cards are very cheap as oppose of their counterpart, EMV ones. And there in lies a problem.\nWhat defines your card is actually just three fields: PAN, PIN, expDate (I intentionally used their EBS request fields one). I can encode your PAN and expDate into a newly printed card and use it as if it were your card! (I will have to guess your PIN, which will be your birth year.) These are not new problems, it is known for years and people have moved into new security practices, EMV. The current request looks something like this, in our supposed payment network system.\n{\"PAN\": \"92220617xxxxxx\", \"PAN\": \"332acfd13412\", \"exDate\": \"2206\"} And these are exactly the fields that represent your card.\nEMV solves this problem by generating a secure random string that is unique to every transaction. This way, even someone has hacked the system, they will only gets to see this random string that does nothing! Unlike magnetic strip ones, your data won’t be sent over the wire–just a very secure random text will be.\n{\"EMV\": \"very secure text\"} Even if the system was hacked, I cannot use these information to retrieve any of the cards data. But, we cannot just simply upgrade to EMV. It requires a whole infrastructure upgrade. And that’s pretty expensive. VERY expensive. And we don’t need it, either.\n We know the current system issues, you can either wait for someone to fix them, or know these issues and work with them. ~ Omrabi\n I totally agree with this view. I don’t think we need to upgrade the system and I don’t think that upgrading it will solve any of the current problems.\nTowards EMV system Upgrading our infrastructure is challenging. We need to upgrade the whole infrastructure\n EMV cards Certified EMV POS and a payment network that accepts EMV transactions  We have EMV POS, in fact, most of our POS in Morsal are EMV ones. But the challenging part is upgrading all of these POS to use EMV info instead of magnetic strip ones. This won’t be possible at all and it will hurt the system. The card part, while being the easiest, is also challenging. Magnetic strip cards are really cheap. You can get one by as low as cents. While EMV ones are very expensive. Given that there is no demand on even the cheap ones, why would you force people into investing one something that is not used?\nWhat about the payment network?\nWhy not just ditching the whole merchant thingy? EBS has introduced new APIs called Consumer. They are used as a way to enable transactions over internet. From PCI PIN securtiy requirements #1\n All cardholders-entered PINs must be processed in equipment that conforms to the requirements for secure cryptographic devices (SCDs). PINs must never appear in the clear outside of an SCD.\n Translation: you cannot just enter your PIN over a merchants keyboard. The keyboard you’re keyying your PIN in must hash your PIN to avoid keylogging. This is why you don’t see merchants with PCs. But people love to use their credit card over the internet right?\nEBS has introduced new set of APIs called consumer APIs. As their names imply, they are used by consumers, and they are mainly used to allow ecommerce. To solve the problem of PIN should be entered over SCD they use something called IPIN, or internet PIN. But that affects the whole system, in a very disastoruos way.\nPCI standards PCI standards are established to secure the transactions and to decrease the fraud cases. A payment system should be PCI complaint at every endpoint of it. It is the only possible way to integrate with other payment systems.\nUsing Consumer and IPIN allowed us to make PCI compliant transactions over internet, but that comes with a huge cost. Every other bank with private switch (e.g., Khartoum Bank) cannot use this functionality. They don’t have an IPIN. Let’s revise the payment process again. You have an internet store where you sell books, you allow your customers to pay for the book’s price online. And you’re connected to EBS. EBS uses iPIN instead of PIN, right? Very soon you will notice that your Bank of Khartoum clients cannot use your service. accepts iPIN | issuer = payment_network = acquirer | accepts PIN != wrong pin entered BoK\nThere’s no such a thing as iPIN in BoK switch. While you can happily use your BoK card in every possible merchant (POS), you cannot do the same over internet. The just don’t match. So, for our system to be a PCI compliant, we introduced new APIs that doesn’t work with the country’s major Bank. Good job guys, you nailed it there.\n Requirement 2a: Cardholder PINs shall be processed in accordance with approved standards. a. All cardholder PINs processed online must be encrypted and decrypted using an approved cryptographic technique that provides a level of security compliant with international and industry standards. Any cryptographic technique implemented meets or exceeds the cryptographic strength of TDEA using double-length keys. b. All cardholder PINs processed offline using IC card technology must be protected in accordance with the requirements in Book 2 of the EMV IC Card Specifications for Payment Systems and ISO 9654.\n EBS v2.0  Make it PCI complaint Ditch the consumer to interoperate with other switches Ditch the merchant layer, to be a PCI complaint   You cannot fix the unfixable, mate. ~ Captain Jack Sparrow\n The current system cannot be PCI complaint. It requires rewriting and renewing the whole infrastructure, EBS itself, every POS, all of the cards. This is not possible. Merchant layer abuses PCI at every possible way, yet it is the only working one. You cannot ditch it either. And none of these issues actually have affected the system adoption. Let’s first make the transformation, and later think of improving or replacing what we have.\nnoebs When I launched this project one of my goals is to fix exactly these kinda of issues. The name might not be the greatest, but if anything, If anything, we are embracing the use of EBS. One of the first design decisions I took was to use EBS merchant services and totally ignore consumer ones. And that turns out to be very good decision. Here’s our solution to the aroused problems.\n there will be one and only one service: merchant. It will allow interoperability between all switches. to secure the PIN over internet issue, we will be using an OTP that will be sent over the cardholder mobile number. Our philosophy is to do what others do. And they are all using OTP to validate the transaction was initiated from the original card holder, not of a security breach. Of course that is not the most secure system either, but you always have to take the risk. If you compare it, you will find that it is more risky to use magnetic strip cards than to enter your PIN over internet. They are really the same. There is no single POS that employs SCD practices anyway.  We designed a new API layer, with a new security check called IPIN to comply with PCI PIN requirements. It affects the whole system. Our system is not PCI complaint, at almost every piece of it. STOP PCI BULLYING and be dynamic for the good of the community. This problem cannot be solved unless the whole parties come together and discuss them. We encourage openess, interoperability and building systems that comply with the industry standards. We also beleive that, for the good of the system, we can skip these standards and encourage the system adoption with its whole problems.\n",
+  "wordCount" : "1460",
+  "inLanguage": "en",
+  "datePublished": "2018-11-19T00:00:00Z",
+  "dateModified": "2018-11-19T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/2018-11-19-how-to-design-bad-systems/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "adonese's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="" accesskey="h" title="adonese&#39;s Blog (Alt + H)">adonese&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      A tale of three channels
+    </h1>
+    <div class="post-meta"><span title='2018-11-19 00:00:00 +0000 UTC'>November 19, 2018</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><em>This post is about systems, APIs, business decisions</em>.</p>
+<h1 id="payment">Payment<a hidden class="anchor" aria-hidden="true" href="#payment">#</a></h1>
+<p>Nearly every transaction involves three parties: a merchant that accepts the card, a bank that issues it, and a payment network that facilitates the transaction between the first two parties. You hear the term PCI a lot.</p>
+<blockquote>
+<p>The standard was created to increase controls around cardholder data to reduce credit card fraud.
+~ <a href="https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard">Wikipedia</a></p>
+</blockquote>
+<p>We (financial institutions) offer our clients (card holders) these services to ease their access into their accounts. <em>In most cases, the bank takes the liability for any frauds that happen</em>. So, PCI standards are used in the whole payment process, in the <em>card</em>, <em>POS</em>, and the <em>payment network</em> itself, EBS. It is the industry best practices for the security.</p>
+<h2 id="what-could-possibly-go-wrong-1">What could possibly go wrong, 1<a hidden class="anchor" aria-hidden="true" href="#what-could-possibly-go-wrong-1">#</a></h2>
+<p>Again, we have four parties in the payment process</p>
+<ul>
+<li>the card holder (issuer)</li>
+<li>the merchant, POS</li>
+<li>the payment network</li>
+<li>and the bank (acquirer)
+We need to secure the transaction in every one of them.</li>
+</ul>
+<p>All of the credit cards in Sudan are magnetic strip ones. There are, indeed, EMV ones, but our systems don&rsquo;t support EMV transactions. Magnetic strip cards are very cheap as oppose of their counterpart, EMV ones. And there in lies a problem.</p>
+<p>What defines your card is actually just three fields: PAN, PIN, expDate (I intentionally used their EBS request fields one). I can encode your PAN and expDate into a newly printed card and use it as if it were your card! (I will have to guess your PIN, which will be your birth year.)
+These are not new problems, it is known for years and people have moved into new security practices, EMV.
+The current request looks something like this, in our supposed payment network system.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;PAN&#34;</span>: <span style="color:#e6db74">&#34;92220617xxxxxx&#34;</span>, <span style="color:#e6db74">&#34;PAN&#34;</span>: <span style="color:#e6db74">&#34;332acfd13412&#34;</span>, <span style="color:#e6db74">&#34;exDate&#34;</span>: <span style="color:#e6db74">&#34;2206&#34;</span><span style="color:#f92672">}</span>
+</code></pre></div><p>And these are exactly the fields that represent your card.</p>
+<p>EMV solves this problem by generating a secure random string that is unique to every transaction. This way, even someone has hacked the system, they will only gets to see this random string that does nothing! <em>Unlike magnetic strip ones, your data won&rsquo;t be sent over the wire&ndash;just a very secure random text will be</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;EMV&#34;</span>: <span style="color:#e6db74">&#34;very secure text&#34;</span><span style="color:#f92672">}</span>
+</code></pre></div><p>Even if the system was hacked, I cannot use these information to retrieve any of the cards data. But, we <em>cannot</em> just simply upgrade to EMV. It requires a whole infrastructure upgrade. And that&rsquo;s pretty expensive. VERY expensive. And we don&rsquo;t need it, either.</p>
+<blockquote>
+<p>We know the current system issues, you can either wait for someone to fix them, or know these issues and work with them. ~ Omrabi</p>
+</blockquote>
+<p>I totally agree with this view. I don&rsquo;t think we need to upgrade the system and I don&rsquo;t think that upgrading it will solve any of the current problems.</p>
+<h2 id="towards-emv-system">Towards EMV system<a hidden class="anchor" aria-hidden="true" href="#towards-emv-system">#</a></h2>
+<p>Upgrading our infrastructure is challenging. We need to upgrade the whole infrastructure</p>
+<ul>
+<li>EMV cards</li>
+<li>Certified EMV POS</li>
+<li>and a payment network that accepts EMV transactions</li>
+</ul>
+<p>We have EMV POS, in fact, most of our POS in Morsal are EMV ones. But the challenging part is upgrading all of these POS to use EMV info instead of magnetic strip ones. This won&rsquo;t be possible at all and it will hurt the system.
+The card part, while being the easiest, is also challenging. Magnetic strip cards are <em>really</em> cheap. You can get one by as low as cents. While EMV ones are very expensive. Given that there is no demand on even the cheap ones, why would you force people into investing one something that is not used?</p>
+<p>What about the payment network?</p>
+<h2 id="why-not-just-ditching-the-whole-merchant-thingy">Why not just ditching the whole merchant thingy?<a hidden class="anchor" aria-hidden="true" href="#why-not-just-ditching-the-whole-merchant-thingy">#</a></h2>
+<p>EBS has introduced new APIs called Consumer. They are used as a way to enable transactions over internet.
+From PCI PIN securtiy requirements #1</p>
+<blockquote>
+<p>All cardholders-entered PINs must be processed in equipment that conforms to the requirements for secure cryptographic devices (SCDs). PINs must never appear in the clear outside of an SCD.</p>
+</blockquote>
+<p>Translation: you cannot just enter your PIN over a merchants keyboard. The keyboard you&rsquo;re keyying your PIN in must hash your PIN to avoid keylogging. This is why you don&rsquo;t see merchants with PCs. But people love to use their credit card over the internet right?</p>
+<p>EBS has introduced new set of APIs called consumer APIs. As their names imply, they are used by consumers, and they are mainly used to allow ecommerce. To solve the problem of <code>PIN should be entered over SCD</code> they use something called IPIN, or internet PIN. But that affects the whole system, in a very disastoruos way.</p>
+<h2 id="pci-standards">PCI standards<a hidden class="anchor" aria-hidden="true" href="#pci-standards">#</a></h2>
+<p>PCI standards are established to secure the transactions and to decrease the fraud cases. A payment system should be PCI complaint at every endpoint of it. It is the only possible way to integrate with other payment systems.</p>
+<p>Using Consumer and IPIN allowed us to make PCI compliant transactions over internet, but that comes with a huge cost. Every other bank with private switch (e.g., Khartoum Bank) cannot use this functionality. They don&rsquo;t have an IPIN. Let&rsquo;s revise the payment process again. You have an internet store where you sell books, you allow your customers to pay for the book&rsquo;s price online. And you&rsquo;re connected to EBS. EBS uses iPIN instead of PIN, right? Very soon you will notice that your Bank of Khartoum clients cannot use your service.
+accepts iPIN
+|
+issuer =&gt; payment_network =&gt; acquirer
+|
+accepts PIN
+!= wrong pin entered
+BoK</p>
+<p>There&rsquo;s no such a thing as iPIN in BoK switch. While you can happily use your BoK card in every possible merchant (POS), you cannot do the same over internet. The just don&rsquo;t match. So, for our system to be a PCI compliant, <em>we introduced new APIs that doesn&rsquo;t work with the country&rsquo;s major Bank</em>. Good job guys, you nailed it there.</p>
+<blockquote>
+<p>Requirement 2a:
+Cardholder PINs shall be processed in accordance with approved standards.
+a.    All cardholder PINs processed online must be encrypted and decrypted using an approved cryptographic technique that provides a level of security compliant with international and industry standards. Any cryptographic technique implemented meets or exceeds the cryptographic strength of TDEA using double-length keys.
+b.    All cardholder PINs processed offline using IC card technology must be protected in accordance with the requirements in Book 2 of the EMV IC Card Specifications for Payment Systems and ISO 9654.</p>
+</blockquote>
+<h2 id="ebs-v20">EBS v2.0<a hidden class="anchor" aria-hidden="true" href="#ebs-v20">#</a></h2>
+<ul>
+<li>Make it PCI complaint</li>
+<li>Ditch the consumer to interoperate with other switches</li>
+<li>Ditch the merchant layer, to be a PCI complaint</li>
+</ul>
+<blockquote>
+<p>You cannot fix the unfixable, mate. ~ Captain Jack Sparrow</p>
+</blockquote>
+<p>The current system cannot be PCI complaint. It requires rewriting and renewing the whole infrastructure, EBS itself, every POS, all of the cards. This is not possible.
+<em>Merchant layer abuses PCI at every possible way, yet it is the only working one</em>. You cannot ditch it either. And none of these issues actually have affected the system adoption. Let&rsquo;s first make the transformation, and later think of improving or replacing what we have.</p>
+<h1 id="noebsnoebsacts-sdcom"><a href="noebs.acts-sd.com">noebs</a><a hidden class="anchor" aria-hidden="true" href="#noebsnoebsacts-sdcom">#</a></h1>
+<p>When I launched this project one of my goals is to fix exactly these kinda of issues. The name might not be the greatest, but if anything, <em>If anything, we are embracing the use of EBS</em>. One of the first design decisions I took was to use EBS merchant services and totally ignore consumer ones. And that turns out to be very good decision. Here&rsquo;s our solution to the aroused problems.</p>
+<ul>
+<li>there will be one and only one service: merchant. It will allow interoperability between all switches.</li>
+<li>to secure the PIN over internet issue, we will be using an OTP that will be sent over the cardholder mobile number.
+Our philosophy is to do what others do. And they are all using OTP to validate the transaction was initiated from the original card holder, not of a security breach. Of course that is not the most secure system either, but you always have to take the risk. If you compare it, you will find that it is more risky to use magnetic strip cards than to enter your PIN over internet. They are really the same. There is no single POS that employs SCD practices anyway.</li>
+</ul>
+<p><em>We designed a new API layer, with a new security check called IPIN to comply with PCI PIN requirements. It affects the whole system. Our system is not PCI complaint, at almost every piece of it. STOP PCI BULLYING and be dynamic for the good of the community</em>.
+This problem cannot be solved unless the whole parties come together and discuss them. We encourage openess, interoperability and building systems that comply with the industry standards. We also beleive that, for the good of the system, we can skip these standards and encourage the system adoption with its whole problems.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="">adonese&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
