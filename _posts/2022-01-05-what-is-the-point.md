@@ -14,3 +14,5 @@ But life is weird, don't you think so? Why does it become so boring as you age? 
 The more we age, the more we learn stuff. But worst of it all, is the more we have experience, the more we met and part away from people we encountered and we shared their beliefs and never to see them again.
 
 i don't have answers and my thoughts are wildy random.
+
+in the quest of understanding the purpose of life, one should note that
