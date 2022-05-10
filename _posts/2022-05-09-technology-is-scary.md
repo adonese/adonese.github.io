@@ -4,7 +4,7 @@ layout: post
 tags:
     - techie
     - ranting
-excerpt: "Is this the right way to go with?"
+excerpt: "Whenever you type-in something with your keyboard, your keystrokes are logged to better offer you autocorrect options. You are opting-in to submit all of your text to Google or Apple (microsoft and samsung also offer similar keyboard apps). The thing is, they exclude personally identifiable info so ads and trackers won't be able to identify you, but is that really real? At what scale should we be all freaked out and start to be conscious about our privacy. Should we really put all of that trust in Google and Apple?. I'm not scare about my porn weird fetishes, but maybe i should."
 ---
 
 
