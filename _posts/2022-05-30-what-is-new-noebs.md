@@ -48,5 +48,25 @@ We are yet to perform an auditing in noebs. It is expensive to be honest and we 
 - Complete our SDKs: we have Java, Dart, and JS, but we need to add more languages especially WordPress and PHP and their plugins.
 - Unit testing noebs is a non-trivial task and it needs to be done before we can claim we have a noebs V1 product... But that is challenging.
 
+But, what i really want to address is the deployment..
+### noebs deployment
+
+Currently, noebs is only as useful as the connectivity of EBS is up. If e.g., EBS QA merchant server is down, we are on our own. I have been vocally reluctant to add mocking endpoints to noebs source code. It will just make the whole code messy, and will make it far more harder to document the code. The code will be hard to maintain. I don't like that approach.
+
+Ideally, what I'm thinking of is of this sort:
+
+```mermaid
+graph TD
+    D[local]--Accessible--> A
+    D-.Not accessible.->B
+    D==VPN?==>B
+    A[noebs] -->|VPN| B(EBS Endpoints)
+    A[noebs]--> H(Redis)
+    B --> F{fa:fa-laptop EBS Consumer}
+    B --> G{fa:fa-server EBS Merchant}
+```
+
+- We don't have an access to EBS directly, and as a result it is rather difficult to perform any integration tests.
+
 
 As we are heading towards the 4th year of noebs, I believe we are more closer than ever to have a V1 product.
