@@ -16,4 +16,4 @@ A lot has left this country already, from my batch we are 4 or 3 left in Sudan. 
 
 That aside, there are others who are still there. Half-assed efforts will not take you anywhere. You are not sacrificing anything, please don't use that card. Give it all your best, sincerely. Things will probably not work out, but at least it won't because you didn't put up enough effort. Don't think of any excuses, just keep working hard.
 
-[^1]: Ahmed Gadein wrote a great post on opportunity cost, g
+[^1]: Ahmed Gadein wrote a great post on opportunity cost, you can also use google for curious readers.
