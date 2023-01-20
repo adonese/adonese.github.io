@@ -1,5 +1,5 @@
 ---
-title: be happy
+title: love life
 layout: post
 excerpt: "it is so easy to dwell into our most darkest selves while ignroing all of the beauty in our lives."
 ---
