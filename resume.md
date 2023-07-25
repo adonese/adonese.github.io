@@ -22,7 +22,7 @@ Experience:
 - Collaborated with business stakeholders and partners, developing proposals, presentations, and projections for new opportunities.
 - Oversaw the social media strategy and soft-launch of the flagship payment app, generating user feedback and engagement.
 
-## Sharik: 2021 - Present
+## (Cofounder, Tech Advisor) Sharik: 2021 - Present
 - Co-founded Sharik, a spin-off of UNDP's work in COOPS and SACCOS, focused on implementing a successful cooperative and saving groups model in Sudan.
 - Prepared legal frameworks and proposals for donors, prototyped with selected coops, and scaled up the experiment to 105 coops across Sudan.
 - Remain part-time CTO for Sharik, ensuring the robustness of the system and overseeing technical operations.
