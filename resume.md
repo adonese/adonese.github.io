@@ -84,6 +84,8 @@ Experience:
 - Knowledge of GIS and geospatial data analysis
 - Familiarity with cloud-based technologies and infrastructure, including AWS
 - Hands-on experience on mobile development using (Flutter, Java with XML layouts, and Jetpack compose)
+- Extensive hands-on experience with HTTP protocols such as gRPC, WebSockets, HTTP2, and QUIC, showcasing a deep understanding of network communication.
+- Well-versed in containerization technologies like Docker and orchestration platforms like Kubernetes, enabling efficient deployment and scalability.
 - Hands-on experience in DynamoDB, lambda, SNS and SQS
 - Experience in working with payment systems and POS integration
 - Strong project management and leadership skills
@@ -94,6 +96,10 @@ Experience:
 - Highly adaptable and easy-going individual who excels in maintaining positive working relationships and diffusing conflicts between stakeholders.
 - Demonstrated ability to act as a mediator during disputes, fostering open communication and finding mutually beneficial solutions.
 - Proven track record of creating a harmonious work environment by promoting collaboration and resolving conflicts with a calm and diplomatic approach.
+- A true coding geek with a profound love for experimentation and exploration of various programming languages and technologies.
+- Constantly staying up-to-date with the latest industry trends and actively implementing them in projects, even beyond the scope of my field.
+- Actively engaged in tech forums for Python and Go, actively participating in discussions and keeping abreast of language advancements.
+- Organized numerous developer talks, dev hubs, and tech meetups in Sudan, fostering a vibrant tech community and sharing knowledge with fellow enthusiasts.
 
 References:
 Available upon request
