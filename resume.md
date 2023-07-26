@@ -17,14 +17,16 @@ Experience:
 
 ## Tuti Tech Investment: 2021 - Present
 - Co-founded and lead the technical vision of Tuti Tech Investment, a cloud-based payment platform with cross-border operations.
+- Helped shaping the company's vision by proposing to the board and the CEO to provide agency banking solution that offers B2B solutions. That contributed to the overall strategic directions of tuti.
 - Built and managed a diverse technical team, delivering innovative solutions for mobile, web, and POS payments.
+- Build a solid backend infrastructure to help delivering high end results that contribute the organization success by adapting an Event Driven Archtiecture to ensure the system can process high traffic of transactions while offering realtime analytics and fraud detection modules, using fanout provided by AWS SNS in companion with DynamoDB and SQS.
 - Ensured technical and regulatory compliance of the platform, adhering to PCI DSS and financial authorities' standards.
 - Collaborated with business stakeholders and partners, developing proposals, presentations, and projections for new opportunities.
 - Oversaw the social media strategy and soft-launch of the flagship payment app, generating user feedback and engagement.
 
 ## (Cofounder, Tech Advisor) Sharik: 2021 - Present
 - Co-founded Sharik, a spin-off of UNDP's work in COOPS and SACCOS, focused on implementing a successful cooperative and saving groups model in Sudan.
-- Prepared legal frameworks and proposals for donors, prototyped with selected coops, and scaled up the experiment to 105 coops across Sudan.
+- Prepared legal frameworks and proposals for donors, prototyped with selected coops, and scaled up the experiment to 200 coops across Sudan.
 - Remain part-time CTO for Sharik, ensuring the robustness of the system and overseeing technical operations.
 - Lead system architect for several Sharik-tech projects.
 
@@ -33,12 +35,13 @@ Experience:
 - Reviewed policies, conducted disk reviews, and prepared papers for roundtable discussions.
 - Made recommendations for technical platforms for SACCOS, including registration systems, integrations, and internal requirements.
 - Worked on the implementation of e-SACCOS and facilitated the use of fintech in Sudan.
+- Helped greatly scaling the organization operation. We started as a small focused team working on building the foundation legal and tech framework for COOPs in Sudan. We scaled up the number of COOPs from 5 to 200 distributed across Sudan.
 
 ## Cofounded Solus Ltd: 2019 - 2021
 - Co-founded and led Solus Ltd, a fintech startup focused on building a responsible company around the open-source payment gateway, noebs.
 - Overcame challenges in establishing the company during Sudan's revolution and secured recognition from the regulator for our technical competency.
 - Built the company from the ground-up, led its licensing and PCI-DSS certification process until succeeding.
-- Sold my shares with valuation of six figures.
+- Bootstrapped the startup, created a solid MVP that gained traction from local and international VCS. Sold my shares with valuation of six figures.
 - Implemented a sophisticated fanout approach to ensure a reliable messaging delivery system for transactions where different parties are involved (the system uses AWS VPC, AWS SNS, DynamoDB, AWS Step function and SQS)
 
 ## noebs: 2018 - Present
@@ -75,10 +78,12 @@ Experience:
 ## Skills:
 - Proficient in distributed systems design and development
 - Strong programming skills in Python, Go, Java, Kotlin, and PHP
+- Experience with databases both SQL and nosql: sqlite, postgresql, dynamoDB and redis
 - Experience with machine learning, including training models on frameworks such as Pytorch and jax
 - Expertise in web development technologies such as HTML, CSS, JavaScript, and frameworks like Django, Angular, and React, SolidJS
 - Knowledge of GIS and geospatial data analysis
 - Familiarity with cloud-based technologies and infrastructure, including AWS
+- Hands-on experience on mobile development using (Flutter, Java with XML layouts, and Jetpack compose)
 - Hands-on experience in DynamoDB, lambda, SNS and SQS
 - Experience in working with payment systems and POS integration
 - Strong project management and leadership skills
