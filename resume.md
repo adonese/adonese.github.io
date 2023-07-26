@@ -90,5 +90,10 @@ Experience:
 - Excellent problem-solving and analytical abilities
 - Effective communication and collaboration skills
 
+## Personal Characteristcs:
+- Highly adaptable and easy-going individual who excels in maintaining positive working relationships and diffusing conflicts between stakeholders.
+- Demonstrated ability to act as a mediator during disputes, fostering open communication and finding mutually beneficial solutions.
+- Proven track record of creating a harmonious work environment by promoting collaboration and resolving conflicts with a calm and diplomatic approach.
+
 References:
 Available upon request
