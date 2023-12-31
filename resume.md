@@ -5,7 +5,6 @@ permalink: /resume/
 ---
 
 
-
 Objective:
 Results-oriented senior software engineer with a strong background in distributed systems seeking a challenging position to utilize my expertise in software development, system design, and project management.
 Education:
@@ -16,13 +15,26 @@ You can check my [linkedin](https://linkedin.com/in/adonese) or [Github](https:/
 Experience:
 
 ## Tuti Tech Investment: 2021 - Present
-- Co-founded and lead the technical vision of Tuti Tech Investment, a cloud-based payment platform with cross-border operations.
-- Helped shaping the company's vision by proposing to the board and the CEO to provide agency banking solution that offers B2B solutions. That contributed to the overall strategic directions of tuti.
-- Built and managed a diverse technical team, delivering innovative solutions for mobile, web, and POS payments.
-- Build a solid backend infrastructure to help delivering high end results that contribute the organization success by adapting an Event Driven Archtiecture to ensure the system can process high traffic of transactions while offering realtime analytics and fraud detection modules, using fanout provided by AWS SNS in companion with DynamoDB and SQS.
-- Ensured technical and regulatory compliance of the platform, adhering to PCI DSS and financial authorities' standards.
-- Collaborated with business stakeholders and partners, developing proposals, presentations, and projections for new opportunities.
-- Oversaw the social media strategy and soft-launch of the flagship payment app, generating user feedback and engagement.
+Co-founded and led the technical vision of Tuti Tech Investment, a cloud-based payment platform with cross-border operations, resulting in:
+
+- Building and managing a diverse technical team of 15 engineers, increasing the team size from 1, and reducing time to market by 2 quarters.
+Delivering innovative solutions for mobile, web, and POS payments, ensuring seamless user experiences.
+- Ensuring technical and regulatory compliance of the platform, adhering to PCI DSS and financial authorities' standards, resulting in enhanced security and trust.
+- Collaborating with business stakeholders and partners, developing proposals, presentations, and projections for new opportunities, contributing to the growth and expansion of the company.
+- Oversaw the social media strategy and soft-launch of the flagship payment app, generating user feedback and high user engagement.
+
+As a Senior Software Engineer at Tuti Tech Investment, I played a pivotal role in the development and implementation of a groundbreaking solution that combined Ethereum's blockchain technology with a Point of Sale (POS) network. This resulted in the offering of offline transactions in conjunction with EMV chip cards, addressing the challenges faced by individuals in areas with limited connectivity or infrastructure. Key contributions include:
+
+- Migrated legacy Android Java code with multiple activities and XML views to Jetpack Compose, improving code maintainability and enhancing the user interface.
+- Developed a secure and customized keyboard for the payment app, ensuring a seamless and secure user experience during transactions.
+- Built the core backend system for the chat messaging feature, utilizing Redis for publishing and subscribing, and web sockets for real-time communication. This system effectively handled message delivery, offline message storage, and ensured smooth chat functionality.
+- Implemented an event-driven system using streams for microfinance transaction processing, resulting in efficient and reliable processing of transactions.
+- Managed and grew the technical team from 1 to 15 engineers, enabling the company to scale and meet project deadlines effectively.
+- Successfully delivered an agency banking solution at a cost of only $10,000 per 3 months, saving the company an estimated $900,000 in software subscription costs. This achievement was made possible by aligning the team's plan with the organization's objectives, smartly architecting reusable code, and collaborating with the CEO and CFO.
+- Leveraged the chat system developed internally to gain a competitive edge in the market, reducing costs and enabling real-time communication between users.
+- Open-sourced the chat library, allowing for its reuse in other features of the platform, such as P2P direct payments, resulting in enhanced functionality and cost savings.
+
+These accomplishments demonstrate my ability to lead technical teams, drive innovation, and deliver results. As a staff engineer, I am excited to bring my expertise and experience to contribute to the success of your organization.
 
 ## (Cofounder, Tech Advisor) Sharik: 2021 - Present
 - Co-founded Sharik, a spin-off of UNDP's work in COOPS and SACCOS, focused on implementing a successful cooperative and saving groups model in Sudan.
@@ -38,11 +50,21 @@ Experience:
 - Helped greatly scaling the organization operation. We started as a small focused team working on building the foundation legal and tech framework for COOPs in Sudan. We scaled up the number of COOPs from 5 to 200 distributed across Sudan.
 
 ## Cofounded Solus Ltd: 2019 - 2021
-- Co-founded and led Solus Ltd, a fintech startup focused on building a responsible company around the open-source payment gateway, noebs.
-- Overcame challenges in establishing the company during Sudan's revolution and secured recognition from the regulator for our technical competency.
-- Built the company from the ground-up, led its licensing and PCI-DSS certification process until succeeding.
-- Bootstrapped the startup, created a solid MVP that gained traction from local and international VCS. Sold my shares with valuation of six figures.
-- Implemented a sophisticated fanout approach to ensure a reliable messaging delivery system for transactions where different parties are involved (the system uses AWS VPC, AWS SNS, DynamoDB, AWS Step function and SQS)
+As a co-founder of Solus, I played a pivotal role in establishing and building a business around the open-source payment system, Noebs. Despite initial challenges and failed partnerships, I successfully formed a dedicated team of founders who shared a belief in open-source values and responsible business practices. In addition to focusing on technical aspects, we also prioritized employee benefits, including stock options, health insurance, and support for unions, reflecting our commitment to creating a supportive and inclusive work environment.
+
+During this time, I navigated the complexities of Sudan's revolution, which presented numerous challenges. With a seed funding of $10,000 and the potential for guaranteed funding of $100,000 upon CBOS approval, Solus faced a tumultuous environment. Notably, we received recognition from the regulator for being the first vendor to pass the first round of testing, owing to our open-source system. This achievement led to enlightening meetings with the Head of Electronic Payment Department, where we discussed various aspects of our system, including security, the benefits of open-source approaches, and system durability.
+
+Despite the political upheaval and internet shutdown that followed, I remained dedicated to Solus. With two co-founders departing and most team members leaving due to financial constraints, I persevered alongside a non-programmer co-founder. Over the course of 18 months, I took on various responsibilities, including working on the backend core system using Go, developing the dashboard with React, implementing analytics and instrumentation using Prometheus and Grafana, and managing the mobile app and web portal using Angular. Additionally, I utilized my social media accounts on LinkedIn and my blog to attract customers to Solus, resulting in securing a contract with a Sudanese/Omani telecom provider. I successfully integrated Noebs APIs into their POS system, overcoming challenges such as strict timelines, outdated POS technology, limited support, and time zone differences.
+
+Despite the subsequent disruptions caused by the COVID-19 pandemic, I continued to contribute to the tech community and society at large. I collaborated with the Ministry of Health to develop a rapid response system (https://github.com/gndi/tracker), linking call center systems with isolation centers. Additionally, I worked with the Ministry of Trading and Industry on a system design (https://github.com/adonese/mit) to track the flow of flour from importers to grinders to bakeries, combating corruption in the process.
+
+During this time, I also worked as a freelancer, building various apps, including a service app and a real-time ride-sharing app, utilizing AWS infrastructure for efficient data management and communication. Furthermore, I won a bid to develop an enterprise management system for fuel stations on behalf of the Ministry of Petroleum. Unfortunately, the project was halted due to policy changes.
+
+Driven by my interest in expanding our business offerings, I explored collaborations with microfinance institutions to provide savings and loan products. This led to my involvement with the COOP movement in Sudan, hosting meetings and brainstorming sessions to develop impactful solutions. Our efforts attracted the attention of the United Nations Development Programme (UNDP), who expressed interest in funding our cooperative projects.
+
+One of the most significant technical projects I led during my time at Solus was the development of an offline-first payment system. By leveraging the power of Ethereum's blockchain technology and integrating it with EMV chip card technology, we created a decentralized and tamper-proof ledger for recording transactions. Smart contracts played a crucial role in ensuring secure and predefined transaction execution. This solution enabled users to conduct offline transactions securely and seamlessly, regardless of internet connectivity.
+
+My experience at Solus highlighted my ability to navigate challenging circumstances, think innovatively, integrate diverse technologies, and create solutions that positively impact people's lives. Through my proficiency in blockchain technology, particularly Ethereum, and my expertise in POS systems and EMV chip card integration, I successfully contributed to the growth and success of Solus.
 
 ## noebs: 2018 - Present
 - Developed and maintained an open-source payment gateway, including SDKs for Android and Flutter, ecommerce plugin, POS integration, and RESTful API layer.
