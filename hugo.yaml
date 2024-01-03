@@ -12,4 +12,12 @@ menu:
     - identifier: search
       name: Search
       url: /search/
-      weight: 3
+      weight: 2
+params:
+  env: production
+  
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
