@@ -9,10 +9,18 @@ menu:
       name: Home
       url: /
       weight: 1
+    - identifier: slides
+      name: Presentations
+      url: https://slides.adonese.sd
+      weight: 2
     - identifier: search
       name: Search
       url: /search/
-      weight: 2
+      weight: 3
+    - identifier: bio
+      name: Bio and Resume
+      url: /bio
+      weight: 4
 params:
   env: production
   
