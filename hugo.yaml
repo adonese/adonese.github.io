@@ -23,6 +23,15 @@ menu:
       weight: 4
 params:
   env: production
+  homeInfoParams:
+    Title: Hi there 👋🏿
+  socialIcons: # optional
+    - name: "github"
+      url: "https://github.com/adonese"
+    - name: "twitter"
+      url: "https://twitter.com/_adonese"
+    - name: "linkedin"
+      url: "https://twitter.com/in/adonese"
   
 outputs:
   home:
