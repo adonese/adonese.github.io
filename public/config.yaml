@@ -1,0 +1,6 @@
+baseURL: ""
+disablePathToLower: true
+languageCode: en-us
+title: adonese's Blog
+theme: [PaperMod, hugo-shortcode-gallery]
+timeout: 60000
