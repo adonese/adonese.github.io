@@ -2,6 +2,10 @@
 title: "Payment for developers![Alt text](image.png)"
 date: 2024-01-12T12:57:44+04:00
 draft: false
+ShowReadingTime: true
+ShowShareButtons: true
+ShowTOC: true
+ShareButtons: ["linkedin", "x", "facebook"]
 ---
 
 
@@ -51,15 +55,51 @@ An enticing but not largely deployed technology is Point to Point Encryption. P2
 
 That is it actually. We could use https for everything and it's as secure as it could be. And while https offers the utmost level of security to ensure that the financial message, the payload, is encrypted and secured at transmit, it doesn't really help at all to ensure that the transaction was in fact made from the authorized party. The same way that, when you click on https://facebook.com/adonese10 you wouldn't actually be authorized to access my account just because you are using https. That's why you use username and password to access it. And with the advancement of technology even the mere password username combination is not enough. We discovered the need of a second factor authenticator.
 
-```
-Security is the game of cat and mouse
-```
+
+> Security is the game of cat and mouse
+
 
 So, the typical password:username combination didn't work and we had to discover 2FA or two factor authentications. Dictionary-based and similar brute-force attack made it just with sufficient coding skills, it was not at all difficult to hack into an online account. That was the time where the world was heading to Internet Banking: a new concept that promised to radically change the way we bank by banking using our computers. But before we dive deeper into that world, let's stumble upon the wonder world of 2FA and MFA.
 
+## Something you know, something you have, something you are
+
+Historically, the authentication process as we explored earlier started with _the something you know_ which was just your password. At that time, payment industry had more robust infrastructure for authentication in terms of something you know (your pin), and something you have the card itself. However, when we went online with the ecommerce and the failed promise of internet banking: the payment industry had to fallback to the same security levels as the rest of the internet, the something you know only -- while actively trying to educate the customers to not share their cards with anyone.
+![Don't share your card](nosharecard.png).
+
+When was the last time your account got hacked? Remember those sketchy facebook posts: hey fellas sorry my account got hacked? Welp. Social media and people spending more time on the internet had a huge positive net affect on the internet security. The first was https everywhere and then with the introduction of SMS verification: the something you have. SMS was cheap, it was greatly scaleable. The cost of SMS is technically a zero (I read on hackernews years ago that: sms can be sent over a control channel, which is often used to register your phone to a cellular tower, setting up and disconnecting calls -- so it is always on, and SMS can be sent within that channel.). But SMS is susceptible to SIM swapping. 
+
+> There are two types of attacks: random attacks using bruteforce, dictionary-based and the likes. And then there are targeted attacks. SMS helped with the random attacks, and made targeted attacks more difficult
+
+The last topic that we shall briefly introduce here and then later expand on is the something you are. Biometrics. These are the most secure form of authentication, and most difficult to hack. While reading this article, you might find it a nobrainer to open your bank account via a video-selfie, and access it via your device PIN, fingerprint, and FaceID. They have became synonymous with security.
+
+More recently, we became adept to carry over our mobiles almost all the time, everywhere. Mobile devices have also gain considerable improvements over the years to become the industry standard in terms of security. Modern mobile devices have actually acquired PCI DSS licenses to be used as a POS (you can use your iphone or android to purchase and authorize transactions in a POS, or a website.) What mobile devices offer more is the biometric aspects of them: now we have something that is so unique to only and only match you.
+
+> Every fingerprint is unique, so it’s rare that even a small section of two separate fingerprints are alike enough to register as a match for Touch ID. The probability of this happening is 1 in 50,000 with a single, enrolled finger.  ~ Apple
+
+And for FaceID
+
+>The probability that a random person in the population could look at your iPhone or iPad Pro and unlock it using Face ID is less than 1 in 1,000,000 with a single enrolled appearance whether or not you're wearing a mask. ~ Apple
+
+We will get back to the something you are. But this so far shall set the stage for what to come next. More often than not, I notice a trend where developers cannot really relate between the regular coding and "fintech coding", my idea here is to try and gap this bridge. As the case with security, there is always an ongoing research on new methods to mitigate against more sophisticated attacks. One interesting takes are:
+- Risk Based Authentication and Behavioral Usage Authentication: this actually deployed to some degree in iphone, where you can see a random pop up to remind you to enter your iCloud password, or in Google where it logs you out and asks you to reenter your credentials. While they are two distinct approaches, in practice they are often used together.
+- Signing and verification: We will back to this because there's some foundational knowledge we are yet to introduce.
+
+### Something we are exploring with Sharik -- Risk is innate to each transaction
+
+Sharik is Coop Foundation non profit. Sharik offers programs for community based cooperatives, among other activities. Sponsored by diffeent International NGOS, Sharik is planning to launch and Identity Verificaiton System to help with the collapsing state in Sudan. The key word here is identity verification and what it entails. 
+
+Risk is innate to the payment transaction. We spoke tentatively about [How To Design Bad Systems](/post/2018-11-19-how-to-design-bad-systems/). You cannot fight fraud, but you could model the risk associated with the parties involved, and let the parties decide whether they are okay with that. 
+
+{{<figure src="./risk-ass.png" caption="Here's a simple classical flow for payment. Tip: please you can click to enlarge the figure.">}}
+
+We would like to derive the formula that every transaction is composed of a risk factor. Historically, a merchant would almost always bear all of the costs plus an extra chargeback fees (we will talk about it in a bit). The idea was to always incentivize the consumers since they are ones driving the whole industry. The cost on the merchant is the refund + any operational costs (man hours, filing complaints etc) + a between 20-100$ penalty on the merchant. So, some estimates the refund of a $100 is around $250. That's a lot, but also largely exaggerated. Another consideration is that Visa allows up to 1% of monthly chargebacks upon merchants before imposing limitations on the merchant (high risk profile merchant, extra processing fees to name but only a few) -- same applies to mastercard. 
+
+If we were to visualize the actual flow, it will look something similar to this
+
+{{<figure src="./riskass.png" caption="An extra check is being made by the payment processor to ">}}
 
 
-### Two Factor Authentication and Multi-Factor Authentication
+### Now, mapping all of that to the payment industry
 
 With the advancements of technology, and the era of internet has kicked it, it was imminent to find alternative ways to authenticate transactions, a la _card not present_ transactions. 
 ![Security](./security.png)
@@ -116,6 +156,6 @@ Now, we subtract the modulo from 10
 
 None of that really matters that big and can be frankly ignored. But, I'd like to once again explain the elegancy of these systems. Work of art. Point to take home: if you are developer, you might as well get some inspirations from this. If you are a user then you be warned about your cards security.
 
-## Sometimes
+### Card Not Present Transactions
 
-Working
+![Alt text](3ds.png)
