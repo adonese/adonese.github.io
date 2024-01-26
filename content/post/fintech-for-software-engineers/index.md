@@ -98,6 +98,14 @@ If we were to visualize the actual flow, it will look something similar to this
 
 {{<figure src="./riskass.png" caption="An extra check is being made by the payment processor to ">}}
 
+Now, we have also included a risk-based authentication factor too. A merchant can opt-in to processs with a high-risk transaction without asking for a PIN or an OTP (while that is discouraged, and might subject the merchant to a chargeback in addition to penalities from their network processor, it is good to point out the possibilities to aim the product managers, developers and entreprneurs in their fintech journey). 
+
+At Sharik, we are ideation the possibilities for a centralized identity management system. The really first rather undated version was [OpenID](https://github.com/adonese/openid), we had a conversation with Samir Surag and at that time I was independantly tinkering with Blockchain and was caught by how far one can go decentralized and more concretely how one can utilize a rather more robust way to authenticate users via seed and words mnemonic. We have not really achieved any progress past an initial meeting, but the idea remained enticing. Now Sharik is a complex organization and it means different things to different people in our case our focus is on Sharik Toolbox and Sharik SACCOS units. 
+
+> Most of what we do (the case is extremely very obvious with credit cards type) is that we move debt (risk), and we get rewarded in terms of fees in exchange for that. That's why the issuer bank (card holders bank) usually takes the majority of the fees! Because they do the 1/n - [Thread link](https://twitter.com/_adonese/status/1494052500764303362)
+
+![Copied from twitter](./mvdebt.png)
+
 
 ### Now, mapping all of that to the payment industry
 
