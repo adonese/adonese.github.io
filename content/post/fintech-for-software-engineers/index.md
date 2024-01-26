@@ -1,5 +1,5 @@
 ---
-title: "Payment for developers![Alt text](image.png)"
+title: "Payment for developers!"
 date: 2024-01-12T12:57:44+04:00
 draft: false
 ShowReadingTime: true
