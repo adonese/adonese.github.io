@@ -22,6 +22,7 @@ menu:
       url: /bio
       weight: 4
 params:
+  customCSS: ["css/style.css", "css/bootstrap.min.css"]
   env: production
   homeInfoParams:
     Title: Hi there 👋🏿

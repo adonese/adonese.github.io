@@ -1,0 +1,17 @@
+.callout {
+    margin-bottom: 1.5rem;
+    border-width: 3px;
+}
+
+.callout .icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.card.border-warning {
+    border-color: #ffc107 !important;
+}
+
+.card.border-info {
+    border-color: #17a2b8 !important;
+}

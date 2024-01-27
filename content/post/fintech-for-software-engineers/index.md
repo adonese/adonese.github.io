@@ -47,9 +47,42 @@ Before we move further, it is important to see the whole picture here and reflec
 - Merchants are also well legilible to ensure they are in compliance with procedures for card acceptance. A good scenario to emphasize how this ecosystem plays together is the classical example of "my card was stolen", and _chargebacks_. When a cardholder flags a transaction as not authorized, their bank (issuer bank) would hard (they have the incentive) to refund the card-holder. Now, depending on the circumantances, the merchant is weakest link in the chain -- and while a $1000 won't yield the bank bankrupt, it can inflict a considerable damage to the merchant.
 ![Chargebacks](./ecosystem.png)
 
+## VPN and the private network
+
+A crucial step in the payment is the VPN-protected network access. VPN secures a tunnel of communication, sending tcp requests between two entities. VPN creates a secure connection over a less secure network, that is the internet. VPN is used here to limit the interaction to a handful of entities that are constrained by a different process in the organization: when you want to integrate with say a bank, before you reach the stage of technical integration, you would have to go through a series of processes, including legal, compliance, and business and thorough due dilligence: a) that will mark you as a trusted partner, and b) you can be held accountable for any breach of security. A good thing to remember is that a human process still exists and it is the thin layer between sanity and absolute chaos.
+
+> engineers often try to come up with technical solutions to human problems
+
+
+![How the switch works](./switch.png)
+
+We have these components:
+- the core banking system: the layer responsbile about tracking accounts, accounts creations, updating deposits / withdrawals. When you visit your bank branch, that is thin layer over the core banking system. Some of these are archaic systems being maintained (?) for years
+- the payment switch: the switch is responsible for routing payment information between the various entities: it connects with the card scheme (visa, mastercard), which then connects with the issuer bank, and back again to the switch to connect to the scheme -> to the merchant account. We are talking about a routing system if that can relate to backend engineers.
+- usually the layer between the switch or the gateway usually is secured behind a VPN and it uses iso8583 protocol. 
+- the cbs varies, but we it can be a combination of proprietary solutions with SOAP / XML, over regular http, and hence the need for VPN.
+- between the point of interaction (POI), the POS and the switch or the payment gateway the communication is mostly via iso8583 with shy efforts to fully replace that with ISO20022. Some payment processors, payment gateways, use a VPN network to communicate between the POS and the network, some use even a VPN with Secure Access Module (SAM) chip (a la SIM card) for securely authenticating the POS to the payment gateway, third use APN (Access Point Name) to connect to the payment gateway, and again the APN credentials would be shared securely (physically handed over to the acquirer, that is the merchant's fintech company that is responsible about the software) -- some use combination of any or all of the before. We are not here in the context of endorsing or discouraging any of the previous approaches mentioned, we are merely just stating the industry norms.
+
+![Alt text](./protocols.png)
+
+
+### A lot back into the future
+
+Traditionally banks were designed around physical branches. For older readers this might be a familiar sight. If you want to transfer money you'd have to go to your branch, list the recipient information and they would, the teller would ask you for the branch and account ID for the recipient -- since, the scale was not of an issue, they would do the lookup themselves and issue the transfer. The teller would then ask you to sign a paper, and then you'd be done. There is indeed extra steps but point is: branches data were siloed, and they were not connected to each other. Moving further, banks expanded in their branches and it became a growth hindering issue to go with this decentralized approach. We then discovered the core banking system, a centralized entity that has everything about the bank account holders, in a central place. The advent towards a centralized model serves an actual utility and helps with actual problems. It is highly advised to review previous attempts before suggesting enhancements. It is also very important to understand how banks operate, and what they value most. The core banking system helps with organizational challenges to the banks and that's why the often overlooked centralized model is more convenient to the people with the final say, the bankers.
+
+
+
+> There's a divergence between formal regulations (or "de jure" rules) and informal norms or practices (or "de facto" standards).
+
+
+
+
 ## Point to Point Encryption and E2EE 
 
 An enticing but not largely deployed technology is Point to Point Encryption. P2PE is a fancy way of saying that financial information is encrypted at each point, starting from the POS (Point of Interaction, POI) all the way to the payment processor, where the data will be decrypted with the aim of Hardware Secure Module (HSM). In one of our previous works, we were trying to deploy a card reader solution and as per the shared specifications, our solution felt to be compliant. We were doing a software encryption and from there, from the POS all the way to the payment processor the payload was encrypted. Eventually, the payment processor delegated the whole case to the regulator and the regulator deemed our approach to be non-compliant. Payment has nuances. We as developers are adept to https, especially younger generations of developers. I remember when I first started learning coding everything was http only, before recently https became the norm.
+
+
+
 
 **Why not just https? Wouldn't that helps everything payment?**
 
@@ -93,6 +126,8 @@ Risk is innate to the payment transaction. We spoke tentatively about [How To De
 {{<figure src="./risk-ass.png" caption="Here's a simple classical flow for payment. Tip: please you can click to enlarge the figure.">}}
 
 We would like to derive the formula that every transaction is composed of a risk factor. Historically, a merchant would almost always bear all of the costs plus an extra chargeback fees (we will talk about it in a bit). The idea was to always incentivize the consumers since they are ones driving the whole industry. The cost on the merchant is the refund + any operational costs (man hours, filing complaints etc) + a between 20-100$ penalty on the merchant. So, some estimates the refund of a $100 is around $250. That's a lot, but also largely exaggerated. Another consideration is that Visa allows up to 1% of monthly chargebacks upon merchants before imposing limitations on the merchant (high risk profile merchant, extra processing fees to name but only a few) -- same applies to mastercard. 
+
+**It is good to point out the clear but subtle for some, differences between purchase and peer to peer transfers*: Purchase is when you buy a good from a merchant, in our case via a POS. It is always protected by consumer protection laws, and it allows you "return" the good and get a refund. This is the most important thing. Whether the purchase was made through online or offline. Peer to Peer transfer is as if you give ~~away~~ cash to a friend of yours, you _cannot_ ask any other person to help you get that money back, but you can go to your friend and ask them to return it. When you make a p2p transfer it is usually a final transaction that cannot be reversed, that's why you'd be prompted to "Add a Beneficiary" first.
 
 If we were to visualize the actual flow, it will look something similar to this
 
@@ -165,5 +200,12 @@ Now, we subtract the modulo from 10
 None of that really matters that big and can be frankly ignored. But, I'd like to once again explain the elegancy of these systems. Work of art. Point to take home: if you are developer, you might as well get some inspirations from this. If you are a user then you be warned about your cards security.
 
 ### Card Not Present Transactions
+
+{{<callout info>}}
+Remember in the payment, we always have to make tradeoff between security and convenience. 
+{{</callout>}}
+
+For card not present transactions, usually the cited figures for fraudlent transactions are 0.08% - 0.13% -- they are no exact figures they might go up and down (for example: visa and mastercard )
+
 
 ![Alt text](3ds.png)

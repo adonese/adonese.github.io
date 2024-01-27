@@ -1,0 +1,8 @@
+<div class="callout card shadow {{ if eq (.Get 0) "warning" }}border-warning text-warning{{ else if eq (.Get 0) "info" }}border-info text-info{{ end }}">
+    <div class="card-body d-flex align-items-start">
+        <div class="icon display-4 mr-3">{{ if eq (.Get 0) "warning" }}⚠️{{ else if eq (.Get 0) "info" }}ℹ️{{ end }}</div>
+        <div>
+            <p class="card-text">{{ .Inner }}</p>
+        </div>
+    </div>
+</div>
