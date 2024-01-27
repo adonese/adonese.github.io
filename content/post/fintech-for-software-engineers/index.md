@@ -6,6 +6,7 @@ ShowReadingTime: true
 ShowShareButtons: true
 ShowTOC: true
 ShareButtons: ["linkedin", "x", "facebook"]
+weight: 1
 ---
 
 
@@ -50,6 +51,11 @@ Before we move further, it is important to see the whole picture here and reflec
 ## VPN and the private network
 
 A crucial step in the payment is the VPN-protected network access. VPN secures a tunnel of communication, sending tcp requests between two entities. VPN creates a secure connection over a less secure network, that is the internet. VPN is used here to limit the interaction to a handful of entities that are constrained by a different process in the organization: when you want to integrate with say a bank, before you reach the stage of technical integration, you would have to go through a series of processes, including legal, compliance, and business and thorough due dilligence: a) that will mark you as a trusted partner, and b) you can be held accountable for any breach of security. A good thing to remember is that a human process still exists and it is the thin layer between sanity and absolute chaos.
+
+In most of the cases, the industry is still using IPSec with l2tp vpn. The process usually involves sharing a pre-shared key (PSK) between the two parties, and then using that key to establish a secure tunnel. The PSK is usually shared via a secure channel -- eg, they will send it over an SMS, some cases involve a physical handover of the key in a CD. And then there are credentials those are the IP of the server and exchange of ports and IPS (source and destination) to white-list the new entity. That's it pretty much. Another enticing new protocol is wireguard. Wireguard is extremely simple to setup and use (for both server and clients), also modern and built with golang. Has some neat use cases in that they deliver usually kernel-space level of services in a user-space mode. The specifics of wireguard are not relevant to this article, but we encourage the curious readers to look into it. There's also this diagram to showcase some similarities and differences between the two protocols.
+
+![How ipsec and wireguard relates](./wireguard.png.png)
+
 
 > engineers often try to come up with technical solutions to human problems
 
