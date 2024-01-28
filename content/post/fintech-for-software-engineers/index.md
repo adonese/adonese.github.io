@@ -35,7 +35,7 @@ We are starting with the POS because it is the most used platform (historically)
 
 This is pretty much how every POS network operates, and by all means it is a work of art. Elegant and beautifully done peace of system. It doesn't compromise security for convenience. It is _usable_ and to this day very much in used whenever you swipe your card. Pretty much like HTTP/1.1. Elegant design. But let's unroll it even further since we are in the business of security, and let's see what attack vectors we have:
 - Level-0 is the VPN network, without that the whole security are bound to collapse ![Wireguard and l2tp/ipsec](./crypto.png)
-- Level-1 is the symmetric key, which is usually DES or 3DES. ![DES](./ped.png). There are strict requirements when it comes to PED (PIN Entry Device) and the encryptions too imposed by the regulator. Now, the exact way to DES/3DES encrypt a PIN is irrelevant to this article, however we encourage the curious readers to look into our open source repo that shows an implementation in python, [Check TA, funnily named after one of the authors' ex](https://github.com/adonese/ta).
+- Level-1 is the symmetric key, which is usually DES or 3DES. ![DES](./ped.png). There are strict requirements when it comes to PED (PIN Entry Device) and the encryptions too imposed by the regulator. Now, the exact way to DES/3DES encrypt a PIN is irrelevant to this article, however we encourage the curious readers to look into our open source repo that shows an implementation in python, [Check our open source PIN Block tool, TA](https://github.com/adonese/ta). Looking at the code, you can see how one can calculate PIN block using DES (and 3DES), and how the whole system comes in place: the PAN is used to mask the raw pin, whilst in some systems (card personalizations) the pin digits (number of pin: 4 or 6) is embedded in the track 2 info to aim with a more secure PIN encryption.
 
 It is also super important to visualize the actual process, because payment infrastructure might be so overwhelming that often developers find them obscure to understand. What really happens is the following:
 - A terminal POS will send the request, with the sufficient information, including the pan, encrypted pin, expdate, terminal id (super important), transaction amount, system trace audit number 
@@ -54,7 +54,7 @@ A crucial step in the payment is the VPN-protected network access. VPN secures a
 
 In most of the cases, the industry is still using IPSec with l2tp vpn. The process usually involves sharing a pre-shared key (PSK) between the two parties, and then using that key to establish a secure tunnel. The PSK is usually shared via a secure channel -- eg, they will send it over an SMS, some cases involve a physical handover of the key in a CD. And then there are credentials those are the IP of the server and exchange of ports and IPS (source and destination) to white-list the new entity. That's it pretty much. Another enticing new protocol is wireguard. Wireguard is extremely simple to setup and use (for both server and clients), also modern and built with golang. Has some neat use cases in that they deliver usually kernel-space level of services in a user-space mode. The specifics of wireguard are not relevant to this article, but we encourage the curious readers to look into it. There's also this diagram to showcase some similarities and differences between the two protocols.
 
-![How ipsec and wireguard relates](./wireguard.png.png)
+![How ipsec and wireguard relates](./wireguard.png)
 
 
 > engineers often try to come up with technical solutions to human problems
@@ -204,6 +204,39 @@ Now, we subtract the modulo from 10
 ```
 
 None of that really matters that big and can be frankly ignored. But, I'd like to once again explain the elegancy of these systems. Work of art. Point to take home: if you are developer, you might as well get some inspirations from this. If you are a user then you be warned about your cards security.
+
+# Types of cards and the principle of least privilege
+
+> A very fascinating new OS design is called Fuchsia. It is a microkernel OS, and it is built with Rust. It is a very interesting project to follow. You can check the project here [link to Fuchsia OS](https://fuchsia.dev)
+
+
+Contactless or more commonly tap and go is gaining huge traction and being extensively used by acquirers and fintechs in the last years. The usability of it surpassed any other method and it truly helps merchants acquire more customers. And it totally relates to Fuchsia design here as well: Fuchsia came up with two interesting design choices, they don't have a concept of a `sudo` and secondly pretty much apart from the system startup and bootstrapping is handled in the user space. Now, with contactless cards a merchant won't ask you to provide your PIN at all, you just tap your card and violla you're good to go. You don't share your pin, you don't actually even share your card info at all! You only exchange with the merchant a token your card generate to represent your card, the process is called tokenization and it is something we will touch on later on the topic of card not present transactions. We advise the curious users if they are interested into more details about tokenization to read about our published works on the topic [link to tokenization](https://github.com/adonese/tokenization), another really good intro is our preface to Visa and MasterCard [link to preface](https://github.com/adonese/noebs/wiki/VISA-and-MasterCard). But the idea is that: sharing PIN over the wire has two big issues:
+- the issuer bank and the user; in that the card holders are subject to frauds
+- and the acquirer and the merchants; the merchants are subject to chargebacks
+You can think of the PIN as synonym to the admin password that you would enter to run a priviliged command; to authorize a transaction: modern OS like Fuchsia dropped it; and so is the payment industry. Fintech was never alienated from the broader programming and tech industry, in fact the reason for writing this guideline is to help relate familiar programming concepts that developers know and well versed in to the fintech industry.
+
+> The world is shifting towards more compartaemntalized systems, and the payment industry is no exception. The idea is to limit the attack surface as much as possible.
+
+There are two types of contactless payments and while they offer the same service, they have different security models:
+
+### Contactless payments with cards and NFC only
+
+Whether the contactless payment origin was a mobile, or just a card, there is a common structure for its security model:
+- In the contactless payment, a token will be used instead of the payment details. Payment details are Pan, CVV, and expiration date
+- A security token (often called cryptogram, and sometimes referred to as fingerprint) is also used in combination with the 
+
+### Mobile contactless payments
+
+In the case of mobile contactless payments, that is when you add your bank credit / debit card to your mobile's wallet and use your mobile to make purchases (tap and go), the scheme usually follows this structure. I didn't dive in much deep into apple's ecosystem, but this is at least valid for Google's Wallet: google issues a one-time virtual card only valid for that transaction. A fascinating process happens when you use your mobile wallet to tap and go:
+- when you tap with mobile in the pos, Google will initiate the transaction with the payment processor
+- Google interacts with the card network generally either Visa Token Service, or MasterCard Digital Enablement Service to issue a random virtual card for the transaction 
+- The payment processor will then create a token on behalf of your main bank account, and send it across to the merchant. The token is retrieveable by your bank via the payment processor
+- The merchant will then send a debit message to the payment processor which includes the token, the amount, and the merchant id 
+- Your bank with the payment processor will then retrieve your actual bank account details, and charge you the amount
+
+This way your actual bank account details is only ever available to you and the payment processor!
+
+> A no-auth is retrospectively better than a weak auth.
 
 ### Card Not Present Transactions
 
