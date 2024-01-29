@@ -5,8 +5,15 @@ draft: false
 ShowReadingTime: true
 ShowShareButtons: true
 ShowTOC: true
-ShareButtons: ["linkedin", "x", "facebook"]
+ShareButtons: 
+    - linkedin
+    - x
+    - facebook
 weight: 1
+url: "book"
+aliases : 
+    - /post/fintech-for-software-engineers
+    - /book
 ---
 
 
