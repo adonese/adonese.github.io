@@ -10,6 +10,8 @@ weight: 1
 ---
 
 
+This is a deep dive in payment for developers. The purpose of this rather lengthy article is to show in a very simple way how payment works, while always relating and linking it to the overal progress in technology: servers and security. Fintech and payment is my personal passion and for many years I have been working with teams, business people, tech founders, banks, regulators, international companies and I feel I have a thing or two to help developers with. It is also intended for this guidline to work particularly well for backend and servers developers since I believe majority of complexity lies in there. You will see lots of graphs and I'd highly recommend you to click on them to enlarge them and look at them thoroughly. I have came to realize, personally, sometimes a picture is worth a thousand words. Another angle that this article is trying to push for is "learning by example". We are following a practical approach with less focus on jargons and theory, and more on the whys and hows. Working with [noebs, an open source payment gateway](https://github.com/adonese/noebs) has also left us with a solid open source foundation and ready codebases that curious developers can tap into for even more practical examples.
+
 
 ## Use Public Key Cryptography
 
@@ -255,11 +257,33 @@ When it comes to NFC cards, some intrinsic mobile features are lost. Namely the 
 
 ### Card Not Present Transactions
 
+We have briefly layed out the foundation for the future payment scheme to come, that is card not present transactions. Card not present are not exactly a new technology, it has been as old as the dot com boom and the growing ecosystem of online payment. As with the case for every payment method, there's always a compromise between usability and security. For the card-not-present transactions, up until now CVV was in use to authenticate online transactions. And it was made distinct (3 digits) to avoid any confusion to the users with the PIN, and at the same time to offer a combination between something you know (the CVV) and to some degree something you have (welp, if you don't share you card with anyone, then technically it is a something you have too). CVV has been the industry go-to method for years and until we moved to otp and 3DSecure.
+
+CVV or card verification value relies only on card number, expiration date, and the cvv. All of those are printed in your card, so whomever (you or anyone else) have access to the card, they can make the transactions. If a hacker stole your card, then they can make whatever purchases they want. CVV doen't really authenticate the card holder, it only authenticates the card. And that's why it is not a good idea to share your card with anyone.
+
+
+![Alt text](./card.png)
+
+
+3DSecure on the other hand offer a more robust way to authenticate the card holder info, while at the same time offer a near frictionless experience. The process starts this way:
+- upon checkout, payment details will be sent by the payment processor to the acquirer bank
+- the acquirer bank will contact the appropriate card scheme (visa or mastercard), which acts as a routing system a la _processor_ here and contact the issuing bank, with the card holder info
+- we are showing the actual flow in the figure below, so make sure to check it, but in the end the issuing bank will send a response that has a url with token for this operation
+- the user will be redirected to check the url (a webpage that will have their bank branding and all of that), and then they will be notified about the payment details, in addition to the amount and the merchant details. They will then be asked to enter an otp that was sent to their registered phone number (or a push notification to their mobile banking app), and after they enter the correct password / otp, they will be redirected back to their merchant store
+- at the end of the day all of these transactions will be batched and ready for settlement
+
+![Alt text](./3ds.png)
+
+**What are the differences between payment processors and card schemes?**
+
+As we noticed in the flow earlier a certain overlapping between the card schemes and payment processors, and you wouldn't be blamed for it. Payment processors are the software and technology providers that offers the solution for all of the payments stakeholders to effectively interact with each others. They are not really banks, and nor they actually do the process of moving money, they are _facilitators_ between all of these participants. Card schemes on the other hand, while they do do some facilitating between acquiring and issuing banks, they set the rules and standards for cards transsactions (also the fees), as well as handling the clearing and settlement of the transactions. **They are not actually move funds between banks, but notify them acquiring and issuing banks for said transactions.**
+
+At the end of the day, the payment processor's software in that was used to power the transaction would batch upload all of the transactions onto the acquiring / issuing banks, via the card scheme. Neither the payment processor nor the card scheme actually move funds between banks, and the actual settlement process is either held via a central bank, or a correspondent bank.
+
 {{<callout info>}}
 Remember in the payment, we always have to make tradeoff between security and convenience. 
 {{</callout>}}
 
-For card not present transactions, usually the cited figures for fraudlent transactions are 0.08% - 0.13% -- they are no exact figures they might go up and down (for example: visa and mastercard )
+For card not present transactions, usually the cited figures for fraudlent transactions are 0.08% - 0.13% -- they are no exact figures they might go up and down (for example: visa and mastercard have between 1% to 0.6% chargeback before putting the merchant under more stricter, and hence higher processing fees.)
 
 
-![Alt text](3ds.png)
