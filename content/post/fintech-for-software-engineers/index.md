@@ -17,7 +17,9 @@ aliases :
 ---
 
 
-This is a deep dive in payment for developers. The purpose of this rather lengthy article is to show in a very simple way how payment works, while always relating and linking it to the overal progress in technology: servers and security. Fintech and payment is my personal passion and for many years I have been working with teams, business people, tech founders, banks, regulators, international companies and I feel I have a thing or two to help developers with. It is also intended for this guidline to work particularly well for backend and servers developers since I believe majority of complexity lies in there. You will see lots of graphs and I'd highly recommend you to click on them to enlarge them and look at them thoroughly. I have came to realize, personally, sometimes a picture is worth a thousand words. Another angle that this article is trying to push for is "learning by example". We are following a practical approach with less focus on jargons and theory, and more on the whys and hows. Working with [noebs, an open source payment gateway](https://github.com/adonese/noebs) has also left us with a solid open source foundation and ready codebases that curious developers can tap into for even more practical examples.
+This is a deep dive in payment for developers. The purpose of this rather lengthy article is to show in a very simple way how payment works, while always relating and linking it to the overal progress in technology: servers and security. Fintech and payment is my personal passion and for many years I have been working with teams, business people, tech founders, banks, regulators, international companies and I feel I have a thing or two to help developers with. It is also intended for this guidline to work particularly well for backend and servers developers since I believe majority of complexity lies in there. You will see lots of graphs and I'd highly recommend you to click on them to enlarge them and look at them thoroughly. I have came to realize, personally, sometimes a picture is worth a thousand words. Another angle that this article is trying to push for is "learning by example". We are following a practical approach with less focus on jargons and theory, and more on the whys and hows. Working with [noebs, an open source payment gateway](https://github.com/adonese/noebs) has also left us with a solid open source foundation and ready codebases that curious developers can tap into for even more practical examples. The intention was never to write a book, that would never be possible for my time and resources. Another consideration (reads big catch) is that I deliberately dropped citation and referneces. Usually that is a big red flag, but in my defence I was eager to get a first publishable draft out of my way; and with the advent of chatbots and AI, it became practically trivial to throw in the whole text to any free chatgpt-ish service and ask it for resources. But mostly it was for my personal convenience: listing and citing resources would have added a considerable burden on me that I just was not able to do. Lastly, I wrote this preface after I finished a draft version of this article, so there's that.
+
+I also included some examples and extensive set of graphs. Example codes listed herein were mostly for my own preferences too, since calculating luhn number was something I recall I never encountered doing, and the elegancy of the solution caught and triggered the nerd in me. But again, the intention was never to have an amalgamation, but rather just to show bits and pieces from here and there. 
 
 
 ## Use Public Key Cryptography
@@ -40,6 +42,9 @@ We are starting with the POS because it is the most used platform (historically)
 
 ![ISO8583](./iso8583.png)
 
+**ISO8583 is a messaging protocol that defines the data elements and the structure or content of the message exchanged between two financial systems.** It doesn't really specify the underlying protocol: TCP, a full duplex TCP or https, that is an implmentation part and outside the scope of the protocol. There's a good reason that why ISO8583 still uses TCP and not HTTP: TCP is a full duplex meaning peers (POS, and the acquirer bank) can send / receive requests simulatenously. HTTP follows request / response cycle, in that until after you recieve a response, the POS will be blocking.
+
+I'd advise the readers to look into [^1] for a depiction of a tcp connection.
 
 
 This is pretty much how every POS network operates, and by all means it is a work of art. Elegant and beautifully done peace of system. It doesn't compromise security for convenience. It is _usable_ and to this day very much in used whenever you swipe your card. Pretty much like HTTP/1.1. Elegant design. But let's unroll it even further since we are in the business of security, and let's see what attack vectors we have:
@@ -294,3 +299,5 @@ Remember in the payment, we always have to make tradeoff between security and co
 For card not present transactions, usually the cited figures for fraudlent transactions are 0.08% - 0.13% -- they are no exact figures they might go up and down (for example: visa and mastercard have between 1% to 0.6% chargeback before putting the merchant under more stricter, and hence higher processing fees.)
 
 
+
+[^1]: [A tcp connection, click to see the figure](./tcp.png)
