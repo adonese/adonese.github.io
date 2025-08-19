@@ -20,10 +20,10 @@ menu:
       name: Search
       url: /search/
       weight: 3
-    - identifier: bio
-      name: Bio and Resume
-      url: /bio
-      weight: 4
+    # - identifier: bio
+    #   name: Bio and Resume
+    #   url: /bio
+    #   weight: 4
 params:
   customCSS: ["css/style.css", "css/bootstrap.min.css", "css/bio.css"]
   env: production
