@@ -1,0 +1,6 @@
+{{- $title := .Get 0 -}}
+{{- $parent := .Parent -}}
+{{- $tabs := $parent.Scratch.Get "tabs" | default slice -}}
+{{- $content := .Inner | markdownify -}}
+{{- $tabs = $tabs | append (dict "title" $title "content" $content) -}}
+{{- $parent.Scratch.Set "tabs" $tabs -}}

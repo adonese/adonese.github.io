@@ -1,2 +1,28 @@
-_site
-public
+# Hugo build output
+public/
+_site/
+
+# Hugo caches
+resources/_gen/
+.hugo_build.lock
+
+# Sass cache
+.sass-cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+*.sublime-*
+
+# Node (if used for tooling)
+node_modules/
+
+# Environment files
+.env
+.env.local

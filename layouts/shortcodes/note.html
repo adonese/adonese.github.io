@@ -1,0 +1,24 @@
+{{- $type := .Get 0 | default "info" -}}
+{{- $title := .Get 1 -}}
+{{- $icon := "" -}}
+{{- $class := "" -}}
+{{- if eq $type "warning" -}}
+  {{- $icon = "!" -}}
+  {{- $class = "note-warning" -}}
+{{- else if eq $type "danger" -}}
+  {{- $icon = "!!" -}}
+  {{- $class = "note-danger" -}}
+{{- else if eq $type "success" -}}
+  {{- $icon = "+" -}}
+  {{- $class = "note-success" -}}
+{{- else -}}
+  {{- $icon = "i" -}}
+  {{- $class = "note-info" -}}
+{{- end -}}
+<div class="shortcode-note {{ $class }}">
+  <div class="note-icon">{{ $icon }}</div>
+  <div class="note-content">
+    {{- if $title -}}<strong class="note-title">{{ $title }}</strong>{{- end -}}
+    {{ .Inner | markdownify }}
+  </div>
+</div>

@@ -1,17 +1,270 @@
+/* ===========================================
+   Shortcode Styles - No Bootstrap Required
+   =========================================== */
+
+/* Details/Accordion */
+.shortcode-details {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.shortcode-details summary {
+  padding: 0.75rem 1rem;
+  background: var(--code-bg);
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+}
+
+.shortcode-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.shortcode-details summary::before {
+  content: ">";
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.shortcode-details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.shortcode-details .details-content {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Tabs */
+.shortcode-tabs {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.tabs-nav {
+  display: flex;
+  background: var(--code-bg);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: var(--primary);
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: var(--theme);
+}
+
+.tabs-content {
+  padding: 1rem;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* Note/Callout boxes */
+.shortcode-note {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.note-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.note-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.note-title {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.note-info {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+}
+
+.note-info .note-icon {
+  background: #3b82f6;
+  color: white;
+}
+
+.note-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+}
+
+.note-warning .note-icon {
+  background: #f59e0b;
+  color: white;
+}
+
+.note-danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+.note-danger .note-icon {
+  background: #ef4444;
+  color: white;
+}
+
+.note-success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+}
+
+.note-success .note-icon {
+  background: #22c55e;
+  color: white;
+}
+
+/* Code block with filename */
+.shortcode-code {
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.code-header {
+  padding: 0.5rem 1rem;
+  background: var(--code-bg);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+.code-filename {
+  font-family: monospace;
+}
+
+.shortcode-code .highlight {
+  margin: 0;
+  border-radius: 0;
+}
+
+.shortcode-code pre {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Callout boxes */
 .callout {
-    margin-bottom: 1.5rem;
-    border-width: 3px;
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid;
 }
 
-.callout .icon {
-    font-size: 2.5rem;
-    line-height: 1;
+.callout-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.75rem;
 }
 
-.card.border-warning {
-    border-color: #ffc107 !important;
+.callout-content {
+  flex: 1;
+  min-width: 0;
 }
 
-.card.border-info {
-    border-color: #17a2b8 !important;
+.callout-info {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+}
+
+.callout-info .callout-icon {
+  background: #3b82f6;
+  color: white;
+}
+
+.callout-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+}
+
+.callout-warning .callout-icon {
+  background: #f59e0b;
+  color: white;
+}
+
+.callout-danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+.callout-danger .callout-icon {
+  background: #ef4444;
+  color: white;
+}
+
+.callout-success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+}
+
+.callout-success .callout-icon {
+  background: #22c55e;
+  color: white;
+}
+
+/* Legacy support for old callout classes */
+.callout.border-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+}
+
+.callout.border-info {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
 }

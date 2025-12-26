@@ -1,8 +1,22 @@
-<div class="callout card shadow {{ if eq (.Get 0) "warning" }}border-warning text-warning{{ else if eq (.Get 0) "info" }}border-info text-info{{ end }}">
-    <div class="card-body d-flex align-items-start">
-        <div class="icon display-4 mr-3">{{ if eq (.Get 0) "warning" }}⚠️{{ else if eq (.Get 0) "info" }}ℹ️{{ end }}</div>
-        <div>
-            <p class="card-text">{{ .Inner }}</p>
-        </div>
-    </div>
+{{- $type := .Get 0 | default "info" -}}
+{{- $class := "" -}}
+{{- $icon := "" -}}
+{{- if eq $type "warning" -}}
+  {{- $class = "callout-warning" -}}
+  {{- $icon = "!" -}}
+{{- else if eq $type "danger" -}}
+  {{- $class = "callout-danger" -}}
+  {{- $icon = "!!" -}}
+{{- else if eq $type "success" -}}
+  {{- $class = "callout-success" -}}
+  {{- $icon = "+" -}}
+{{- else -}}
+  {{- $class = "callout-info" -}}
+  {{- $icon = "i" -}}
+{{- end -}}
+<div class="callout {{ $class }}">
+  <div class="callout-icon">{{ $icon }}</div>
+  <div class="callout-content">
+    {{ .Inner | markdownify }}
+  </div>
 </div>

@@ -1,4 +1,4 @@
-baseURL: ""
+baseURL: "https://adonese.sd/"
 disablePathToLower: true
 languageCode: en-us
 title: adonese's Blog
@@ -35,7 +35,7 @@ params:
     - name: "twitter"
       url: "https://twitter.com/_adonese"
     - name: "linkedin"
-      url: "https://twitter.com/in/adonese"
+      url: "https://linkedin.com/in/adonese"
 
 outputs:
   home:

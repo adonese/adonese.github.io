@@ -1,0 +1,17 @@
+{{- $file := .Get "file" -}}
+{{- $lang := .Get "lang" | default "" -}}
+{{- $hl := .Get "hl" | default "" -}}
+<div class="shortcode-code">
+  {{- if $file -}}
+  <div class="code-header">
+    <span class="code-filename">{{ $file }}</span>
+  </div>
+  {{- end -}}
+  {{- if $hl -}}
+    {{ highlight (.Inner) $lang (printf "linenos=table,hl_lines=%s" $hl) }}
+  {{- else if $lang -}}
+    {{ highlight (.Inner) $lang "linenos=table" }}
+  {{- else -}}
+    <pre><code>{{ .Inner }}</code></pre>
+  {{- end -}}
+</div>
