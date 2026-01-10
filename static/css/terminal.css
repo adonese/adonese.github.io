@@ -38,11 +38,11 @@
   --font-ui: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-  /* Reading width - wider for better readability on modern screens */
-  --content-width: 760px;
-  --wide-width: 980px;
+  /* Reading width - generous for modern screens */
+  --content-width: 940px;
+  --wide-width: 1140px;
   /* Override PaperMod main-width to ensure consistency */
-  --main-width: 760px;
+  --main-width: 940px;
 
   /* Override PaperMod vars */
   --theme: var(--bg);
@@ -129,7 +129,7 @@ body.dark {
    =========================================== */
 
 .main {
-  max-width: var(--content-width);
+  max-width: var(--content-width) !important;
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }
