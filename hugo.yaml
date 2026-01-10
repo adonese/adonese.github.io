@@ -20,22 +20,31 @@ menu:
       name: Search
       url: /search/
       weight: 3
-    # - identifier: bio
-    #   name: Bio and Resume
-    #   url: /bio
-    #   weight: 4
+    - identifier: bio
+      name: /about
+      url: /bio
+      weight: 4
 params:
-  customCSS: ["css/style.css", "css/bootstrap.min.css", "css/bio.css"]
+  customCSS: ["css/terminal.css", "css/style.css"]
   env: production
+  defaultTheme: light
+  disableThemeToggle: true
   homeInfoParams:
-    Title: Hi there 👋🏿
-  socialIcons: # optional
+    Title: Mohamed Yousif
+    Content: |
+      Building payment infrastructure that works when everything else fails.
+      Created [noebs](https://github.com/noebs/noebs), open-source payment gateway used by banks across Africa.
+      Currently leading funding orchestration at Exinity Group ($1B+ annually).
+      [Resume](/resume.pdf)
+  socialIcons:
     - name: "github"
       url: "https://github.com/adonese"
     - name: "twitter"
       url: "https://twitter.com/_adonese"
     - name: "linkedin"
       url: "https://linkedin.com/in/adonese"
+    - name: "rss"
+      url: "/index.xml"
 
 outputs:
   home:
