@@ -1,0 +1,22 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+Technical blog by {{ .Site.Params.author }} covering payment systems, fintech infrastructure, distributed systems, and software engineering. Author of noebs, an open-source payment gateway used by banks across Africa.
+
+Each blog post has a clean Markdown version available at the same URL with `index.html.md` appended.
+
+## Blog Posts
+
+{{ range where .Site.RegularPages "Section" "post" -}}
+- [{{ .Title }}]({{ .Permalink }}index.html.md): {{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 150 }}{{ end }}
+{{ end }}
+## About
+
+- [About / Bio]({{ "bio/" | absURL }}index.html.md): Background, experience, and contact information
+
+## Optional
+
+- [RSS Feed]({{ "index.xml" | absURL }}): Subscribe to new posts via RSS
+- [Archives]({{ "archives" | absURL }}): All posts organized by date
+- [Sitemap]({{ "sitemap.xml" | absURL }}): Full site structure
