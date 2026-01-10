@@ -1,0 +1,35 @@
+{{- $related := slice }}
+{{- $tags := .Params.tags }}
+{{- $currentPage := . }}
+
+{{- /* Get related posts by matching tags */ -}}
+{{- if $tags }}
+  {{- $related = where (where site.RegularPages "Type" "post") ".Params.tags" "intersect" $tags }}
+  {{- /* Remove current page from related */ -}}
+  {{- $related = $related | symdiff (slice $currentPage) }}
+  {{- /* Limit to 3 related posts */ -}}
+  {{- $related = first 3 $related }}
+{{- end }}
+
+{{- /* If no tag matches, fall back to recent posts */ -}}
+{{- if eq (len $related) 0 }}
+  {{- $related = where site.RegularPages "Type" "post" }}
+  {{- $related = $related | symdiff (slice $currentPage) }}
+  {{- $related = first 3 $related }}
+{{- end }}
+
+{{- if gt (len $related) 0 }}
+<aside class="related-posts">
+  <h2 class="related-posts-title">Related Posts</h2>
+  <ul class="related-posts-list">
+    {{- range $related }}
+    <li class="related-post-item">
+      <a href="{{ .Permalink }}" class="related-post-link">
+        <span class="related-post-title">{{ .Title }}</span>
+        <span class="related-post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</aside>
+{{- end }}
