@@ -1,21 +1,24 @@
 /* ===========================================
-   Shortcode Styles - No Bootstrap Required
+   Shortcode Styles - Terminal Theme
    =========================================== */
 
 /* Details/Accordion */
 .shortcode-details {
   margin: 1rem 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--term-border, var(--border));
   border-radius: 6px;
   overflow: hidden;
+  background: var(--term-bg-elevated, var(--code-bg));
 }
 
 .shortcode-details summary {
   padding: 0.75rem 1rem;
-  background: var(--code-bg);
+  background: var(--term-bg-subtle, var(--code-bg));
   cursor: pointer;
   font-weight: 500;
   list-style: none;
+  font-family: var(--font-mono, monospace);
+  color: var(--term-text, var(--primary));
 }
 
 .shortcode-details summary::-webkit-details-marker {
@@ -27,6 +30,7 @@
   display: inline-block;
   margin-right: 0.5rem;
   transition: transform 0.2s;
+  color: var(--term-green, #3fb950);
 }
 
 .shortcode-details[open] summary::before {
@@ -35,21 +39,22 @@
 
 .shortcode-details .details-content {
   padding: 1rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--term-border, var(--border));
 }
 
 /* Tabs */
 .shortcode-tabs {
   margin: 1.5rem 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--term-border, var(--border));
   border-radius: 6px;
   overflow: hidden;
+  background: var(--term-bg-elevated, var(--entry));
 }
 
 .tabs-nav {
   display: flex;
-  background: var(--code-bg);
-  border-bottom: 1px solid var(--border);
+  background: var(--term-bg-subtle, var(--code-bg));
+  border-bottom: 1px solid var(--term-border, var(--border));
   overflow-x: auto;
 }
 
@@ -57,10 +62,11 @@
   padding: 0.75rem 1.25rem;
   border: none;
   background: transparent;
-  color: var(--secondary);
+  color: var(--term-text-muted, var(--secondary));
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
+  font-family: var(--font-mono, monospace);
   white-space: nowrap;
   transition: color 0.2s, border-color 0.2s;
   border-bottom: 2px solid transparent;
@@ -68,13 +74,13 @@
 }
 
 .tab-btn:hover {
-  color: var(--primary);
+  color: var(--term-text, var(--primary));
 }
 
 .tab-btn.active {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-  background: var(--theme);
+  color: var(--term-green, #3fb950);
+  border-bottom-color: var(--term-green, #3fb950);
+  background: var(--term-bg-elevated, var(--theme));
 }
 
 .tabs-content {
@@ -96,7 +102,8 @@
   margin: 1.5rem 0;
   padding: 1rem;
   border-radius: 6px;
-  border-left: 4px solid;
+  border-left: 3px solid;
+  background: var(--term-bg-elevated, rgba(0,0,0,0.1));
 }
 
 .note-icon {
@@ -106,9 +113,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 4px;
   font-weight: bold;
   font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
 }
 
 .note-content {
@@ -119,46 +127,48 @@
 .note-title {
   display: block;
   margin-bottom: 0.25rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
 }
 
 .note-info {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
+  background: var(--term-bg-elevated, rgba(59, 130, 246, 0.1));
+  border-color: var(--term-blue, #58a6ff);
 }
 
 .note-info .note-icon {
-  background: #3b82f6;
-  color: white;
+  background: var(--term-blue, #58a6ff);
+  color: var(--term-bg, #0d1117);
 }
 
 .note-warning {
-  background: rgba(245, 158, 11, 0.1);
-  border-color: #f59e0b;
+  background: var(--term-bg-elevated, rgba(245, 158, 11, 0.1));
+  border-color: var(--term-amber, #d29922);
 }
 
 .note-warning .note-icon {
-  background: #f59e0b;
-  color: white;
+  background: var(--term-amber, #d29922);
+  color: var(--term-bg, #0d1117);
 }
 
 .note-danger {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: #ef4444;
+  background: var(--term-bg-elevated, rgba(239, 68, 68, 0.1));
+  border-color: var(--term-red, #f85149);
 }
 
 .note-danger .note-icon {
-  background: #ef4444;
-  color: white;
+  background: var(--term-red, #f85149);
+  color: var(--term-bg, #0d1117);
 }
 
 .note-success {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: #22c55e;
+  background: var(--term-bg-elevated, rgba(34, 197, 94, 0.1));
+  border-color: var(--term-green, #3fb950);
 }
 
 .note-success .note-icon {
-  background: #22c55e;
-  color: white;
+  background: var(--term-green, #3fb950);
+  color: var(--term-bg, #0d1117);
 }
 
 /* Code block with filename */
@@ -166,19 +176,21 @@
   margin: 1.5rem 0;
   border-radius: 6px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--term-border, var(--border));
+  background: var(--term-bg-subtle, var(--code-bg));
 }
 
 .code-header {
   padding: 0.5rem 1rem;
-  background: var(--code-bg);
-  border-bottom: 1px solid var(--border);
+  background: var(--term-bg-elevated, var(--code-bg));
+  border-bottom: 1px solid var(--term-border, var(--border));
   font-size: 0.85rem;
-  color: var(--secondary);
+  color: var(--term-text-muted, var(--secondary));
 }
 
 .code-filename {
-  font-family: monospace;
+  font-family: var(--font-mono, monospace);
+  color: var(--term-cyan, #39c5cf);
 }
 
 .shortcode-code .highlight {
@@ -198,7 +210,8 @@
   margin: 1.5rem 0;
   padding: 1rem;
   border-radius: 6px;
-  border-left: 4px solid;
+  border-left: 3px solid;
+  background: var(--term-bg-elevated, rgba(0,0,0,0.1));
 }
 
 .callout-icon {
@@ -208,9 +221,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 4px;
   font-weight: bold;
   font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
 }
 
 .callout-content {
@@ -219,52 +233,52 @@
 }
 
 .callout-info {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
+  background: var(--term-bg-elevated, rgba(59, 130, 246, 0.1));
+  border-color: var(--term-blue, #58a6ff);
 }
 
 .callout-info .callout-icon {
-  background: #3b82f6;
-  color: white;
+  background: var(--term-blue, #58a6ff);
+  color: var(--term-bg, #0d1117);
 }
 
 .callout-warning {
-  background: rgba(245, 158, 11, 0.1);
-  border-color: #f59e0b;
+  background: var(--term-bg-elevated, rgba(245, 158, 11, 0.1));
+  border-color: var(--term-amber, #d29922);
 }
 
 .callout-warning .callout-icon {
-  background: #f59e0b;
-  color: white;
+  background: var(--term-amber, #d29922);
+  color: var(--term-bg, #0d1117);
 }
 
 .callout-danger {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: #ef4444;
+  background: var(--term-bg-elevated, rgba(239, 68, 68, 0.1));
+  border-color: var(--term-red, #f85149);
 }
 
 .callout-danger .callout-icon {
-  background: #ef4444;
-  color: white;
+  background: var(--term-red, #f85149);
+  color: var(--term-bg, #0d1117);
 }
 
 .callout-success {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: #22c55e;
+  background: var(--term-bg-elevated, rgba(34, 197, 94, 0.1));
+  border-color: var(--term-green, #3fb950);
 }
 
 .callout-success .callout-icon {
-  background: #22c55e;
-  color: white;
+  background: var(--term-green, #3fb950);
+  color: var(--term-bg, #0d1117);
 }
 
 /* Legacy support for old callout classes */
 .callout.border-warning {
-  background: rgba(245, 158, 11, 0.1);
-  border-color: #f59e0b;
+  background: var(--term-bg-elevated, rgba(245, 158, 11, 0.1));
+  border-color: var(--term-amber, #d29922);
 }
 
 .callout.border-info {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
+  background: var(--term-bg-elevated, rgba(59, 130, 246, 0.1));
+  border-color: var(--term-blue, #58a6ff);
 }
