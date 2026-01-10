@@ -1,0 +1,40 @@
+# robots.txt for adonese.sd
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://adonese.sd/sitemap.xml
+
+# LLM-friendly content index
+# See https://llmstxt.org for specification
+LLMs-Txt: https://adonese.sd/llms.txt
+
+# AI Crawlers - Allowed
+# These bots are welcome to crawl and index content
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: YouBot
+Allow: /
