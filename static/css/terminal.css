@@ -38,9 +38,9 @@
   --font-ui: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-  /* Reading width */
-  --content-width: 680px;
-  --wide-width: 900px;
+  /* Reading width - wider for better readability on modern screens */
+  --content-width: 780px;
+  --wide-width: 960px;
 
   /* Override PaperMod vars */
   --theme: var(--bg);
@@ -640,54 +640,68 @@ body.dark {
   background: none !important;
   border: none !important;
   border-radius: 0 !important;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--border) !important;
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 .paginav a {
-  flex: 1;
-  padding: 0;
-  border: none !important;
-  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border) !important;
+  border-radius: 8px;
   text-decoration: none;
-  transition: color 0.15s;
+  transition: all 0.2s ease;
 }
 
 .paginav a:hover {
-  border: none;
+  border-color: var(--border-strong) !important;
+  background: var(--bg-elevated);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.paginav a:first-child {
+.paginav a.prev {
   text-align: left;
 }
 
-.paginav a:last-child {
+.paginav a.next {
   text-align: right;
+  grid-column: 2;
 }
 
+/* When only next exists, push it to the right */
+.paginav a.next:first-child {
+  grid-column: 2;
+}
+
+/* Label (« Prev / Next ») */
 .paginav .title {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+/* Post title */
+.paginav a > span:last-child {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text);
-  display: block;
-  margin-top: 0.25rem;
+  line-height: 1.4;
   transition: color 0.15s;
 }
 
-.paginav a:hover .title {
+.paginav a:hover > span:last-child {
   color: var(--link);
-}
-
-.paginav span:first-child {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 /* ===========================================
@@ -1052,11 +1066,17 @@ body.dark {
   }
 
   .paginav {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  .paginav a {
-    text-align: left !important;
+  .paginav a.next {
+    grid-column: 1;
+    text-align: left;
+  }
+
+  .paginav a.next:first-child {
+    grid-column: 1;
   }
 
   #search-modal .search-container {
@@ -1072,4 +1092,164 @@ body.dark {
   .archive-entry-date {
     width: auto;
   }
+}
+
+/* ===========================================
+   Additional Design Refinements
+   =========================================== */
+
+/* Post content horizontal rules - more subtle */
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 3rem 0;
+}
+
+/* Tables - cleaner look */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+.post-content table th {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--bg-subtle);
+  border-bottom: 2px solid var(--border-strong);
+}
+
+.post-content table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-content table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Definition lists */
+.post-content dl {
+  margin: 1.5rem 0;
+}
+
+.post-content dt {
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 1rem;
+}
+
+.post-content dt:first-child {
+  margin-top: 0;
+}
+
+.post-content dd {
+  margin-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+/* Keyboard inputs */
+.post-content kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  box-shadow: 0 1px 0 var(--border-strong);
+}
+
+/* Better spacing for nested lists */
+.post-content ul ul,
+.post-content ol ol,
+.post-content ul ol,
+.post-content ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* Post tags - refined */
+.post-tags {
+  margin-top: 2rem;
+}
+
+.post-tags a {
+  font-family: var(--font-ui) !important;
+  font-size: 0.8rem !important;
+  background: var(--bg-subtle) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 4px !important;
+  transition: all 0.15s !important;
+}
+
+.post-tags a:hover {
+  border-color: var(--border-strong) !important;
+  color: var(--text) !important;
+  background: var(--bg-elevated) !important;
+}
+
+/* Share buttons - cleaner */
+.share-buttons {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-top: 1.5rem;
+  justify-content: flex-start !important;
+}
+
+.share-buttons a {
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.share-buttons a:hover {
+  opacity: 1;
+}
+
+/* Author section if present */
+.post-footer .author {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Breadcrumbs - minimal */
+.breadcrumbs {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--link);
+}
+
+/* Cover images */
+.post-cover img {
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+/* Reading progress indicator - optional enhancement */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  z-index: 1000;
+  transition: width 0.1s;
 }
