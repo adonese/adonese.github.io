@@ -345,7 +345,7 @@ description: "From Sudan to the world: Engineering inclusive fintech solutions t
     <h2>📬 Let's Connect</h2>
     <p>Open to advisory roles, speaking engagements, and collaboration on impactful projects</p>
     <div class="contact-links">
-        <a href="/cv.pdf" class="contact-link">📄 Download Resume</a>
+        <a href="/resume.pdf" class="contact-link">📄 Download Resume</a>
         <a href="https://github.com/adonese" class="contact-link" target="_blank">💻 GitHub</a>
         <a href="https://linkedin.com/in/adonese" class="contact-link" target="_blank">💼 LinkedIn</a>
         <a href="https://twitter.com/_adonese" class="contact-link" target="_blank">🐦 Twitter</a>
