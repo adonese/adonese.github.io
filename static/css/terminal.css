@@ -509,6 +509,32 @@ body.dark {
 }
 
 /* ===========================================
+   Pagination
+   =========================================== */
+
+.pagination {
+  margin-top: 2rem;
+}
+
+.pagination a,
+.page-link {
+  background: none !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: border-color 0.15s;
+}
+
+.pagination a:hover,
+.page-link:hover {
+  border-color: var(--text-muted) !important;
+  background: none !important;
+}
+
+/* ===========================================
    Selection
    =========================================== */
 
