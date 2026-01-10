@@ -39,8 +39,10 @@
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
   /* Reading width - wider for better readability on modern screens */
-  --content-width: 780px;
-  --wide-width: 960px;
+  --content-width: 760px;
+  --wide-width: 980px;
+  /* Override PaperMod main-width to ensure consistency */
+  --main-width: 760px;
 
   /* Override PaperMod vars */
   --theme: var(--bg);
@@ -1252,4 +1254,87 @@ body.dark {
   background: var(--accent);
   z-index: 1000;
   transition: width 0.1s;
+}
+
+/* ===========================================
+   Related Posts
+   =========================================== */
+
+.related-posts {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.related-posts-title {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.related-posts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.related-post-item {
+  margin: 0;
+}
+
+.related-post-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.related-post-link:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+}
+
+.related-post-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+
+.related-post-link:hover .related-post-title {
+  color: var(--link);
+}
+
+.related-post-date {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .related-post-link {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .related-post-date {
+    order: -1;
+  }
 }
