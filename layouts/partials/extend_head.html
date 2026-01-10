@@ -2,3 +2,8 @@
 {{- range .Site.Params.customCSS }}
 <link rel="stylesheet" href="{{ . | relURL }}">
 {{- end }}
+
+{{- /* Custom JS files */ -}}
+{{- range .Site.Params.customJS }}
+<script defer src="{{ . | relURL }}"></script>
+{{- end }}
