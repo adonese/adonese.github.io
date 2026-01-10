@@ -25,8 +25,19 @@ menu:
       url: /bio
       weight: 5
 params:
+  # SEO & Social
+  description: "Technical blog by Mohamed Yousif. Writing about payment systems, fintech infrastructure, software engineering, and building reliable systems."
+  author: "Mohamed Yousif"
+  images: ["/images/og-default.png"]  # Default OG image for posts without cover
+  keywords: ["payments", "fintech", "software engineering", "noebs", "backend development"]
+  social:
+    twitter: "_adonese"
+
+  # Custom assets
   customCSS: ["css/terminal.css", "css/style.css"]
   customJS: ["js/search.js"]
+
+  # Site behavior
   env: production
   defaultTheme: light
   disableThemeToggle: true
@@ -36,6 +47,7 @@ params:
   ShowCodeCopyButtons: true
   ShowToc: true
   TocOpen: false
+
   homeInfoParams:
     Title: Mohamed Yousif
     Content: |
