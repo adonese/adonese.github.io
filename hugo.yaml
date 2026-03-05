@@ -53,7 +53,7 @@ params:
     Content: |
       Building payment infrastructure that works when everything else fails.
       Created [noebs](https://github.com/noebs/noebs), open-source payment gateway used by banks across Africa.
-      Currently leading funding orchestration at Exinity Group ($1B+ annually).
+      Currently leading funding orchestration at Exinity Group ().
       [Resume](/resume.pdf)
   socialIcons:
     - name: "github"
