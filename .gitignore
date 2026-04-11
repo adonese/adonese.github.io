@@ -5,6 +5,7 @@ _site/
 # Hugo caches
 resources/_gen/
 .hugo_build.lock
+data/generated/
 
 # Sass cache
 .sass-cache/
