@@ -34,7 +34,7 @@ params:
     twitter: "_adonese"
 
   # Custom assets
-  customCSS: ["css/terminal.css", "css/style.css"]
+  customCSS: ["css/terminal.css", "css/style.css", "css/refinements.css"]
   customJS: ["js/search.js"]
 
   # Site behavior

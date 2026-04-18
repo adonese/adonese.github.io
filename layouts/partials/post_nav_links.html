@@ -1,0 +1,16 @@
+{{- if (or .NextInSection .PrevInSection) }}
+<nav class="paginav">
+  {{- with .PrevInSection }}
+  <a class="prev" href="{{ .Permalink }}">
+    <span class="title">Previous</span>
+    <span class="post-title">{{- .Name -}}</span>
+  </a>
+  {{- end }}
+  {{- with .NextInSection }}
+  <a class="next" href="{{ .Permalink }}">
+    <span class="title">Next</span>
+    <span class="post-title">{{- .Name -}}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}

@@ -1,0 +1,7 @@
+{{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
+{{- if ge (len $headers) 1 -}}
+<aside class="toc" aria-labelledby="toc-title">
+  <p id="toc-title" class="toc-title">Contents</p>
+  {{ .TableOfContents }}
+</aside>
+{{- end }}
