@@ -1,0 +1,15 @@
+---
+title: "Computer Use"
+date: 2026-05-09T11:42:41+04:00
+draft: false
+---
+
+I have been writing and documenting my ai usage here in couple of posts. Some patterns are emerging, for example I find great usage of AI in computer usage. That is, using AI to do things that I would have done manually. A clear example from the last month or so. I have a personal app that I use to stream some media I own. I used codex to spin up a VM build a stremio-recongnizable endpoint which feeds my media to stremio of which I can watch in the TV.  I have done that in any afternoon where I was attending to other family matters. The code is nodejs which was odd to me (why would my agent pick this?) but I was not really interested much in checking what the code does (this is not a financial system and I have no risk here). I run it by chatgpt and asked it to spot any security issues and that was it. Doing this exercise by myself is still possible. I know exactly what I need to do: just implement x APIs, read from that source and process data in some format and pass on those links to the other source. But I'd have most likely churned halfway through that (and most definitely wouldn't had spent time with family).
+
+Today, I had a similar problem. I needed to sideload a certain app on firestick. Firestick is an awesome device, it comes with full android and with developer's settings that can be enabled as well. I needed to sideload stremio on my firestick rather than TV directly because the TV comes with an old version of stremio. This time I used deepseek v4 pro. Now, the ugly part was that this is a new machine so I needed to install adb and bunch of other android stuff that I forgot what they even were. I started a session with DSv4 and asked it to download adb (and all android debugging stuff) and then I asked it to connect via adb to my firestick and install stremio. And welp it churned for couple of minutes and viola, done.
+
+Other thing I also like to use ai for is CI for my pet/open source projects. I would just point it to use gh to fetch last logs from the current git and then reproduce the issue and then fix it. AI love to churn on a well defined well scoped problems with a clear end goal. 
+
+---
+
+One pattern I noticed is agent sneakily passing user-agent and trying to circumvent cloudflare antibot. I reckon this will change some business metrics but I'm yet to fathom the broader impact. For example, today's session I could have ended up visiting some websites (increase visitors metrics, viewed ads, etc) but I have done all of that via my agent. And some would argue it will be a little bit difficult for the web ad industry to count this session me and my agent had as a session (as otherwise it would be very difficult to upsell any other services to my agent) and also even they psychological effect is zero. As even if my agent had seen an ad, there's no concept of memory here. This agent will be dismissed immediately after that task had ended.
